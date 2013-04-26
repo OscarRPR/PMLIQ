@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.brainstorm</groupId>
+  <artifactId>PMLIQ</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>PMLIQ</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>laf-plugin</groupId>
+      <artifactId>laf-plugin</artifactId>
+      <version>7.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>laf-widget</groupId>
+      <artifactId>laf-widget</artifactId>
+      <version>7.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>substance</groupId>
+      <artifactId>substacne</artifactId>
+      <version>7.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>trident</groupId>
+      <artifactId>trident</artifactId>
+      <version>7.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>jcalendar</groupId>
+      <artifactId>jcalendar</artifactId>
+      <version>1.4</version>
+    </dependency>
+  </dependencies>
+</project>
