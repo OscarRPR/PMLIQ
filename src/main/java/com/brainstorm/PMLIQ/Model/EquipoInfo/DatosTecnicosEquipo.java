@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.brainstorm.PMLIQ.Model.Equipo;
+package com.brainstorm.PMLIQ.Model.EquipoInfo;
 
 /**
  *
@@ -26,19 +26,19 @@ public class DatosTecnicosEquipo {
         this.dimensiones = dimensiones;
     }
 
-    public int getTemperaturaAmbiente() {
+    public Double getTemperaturaAmbiente() {
         return temperaturaAmbiente;
     }
 
-    public void setTemperaturaAmbiente(int temperaturaAmbiente) {
+    public void setTemperaturaAmbiente(Double temperaturaAmbiente) {
         this.temperaturaAmbiente = temperaturaAmbiente;
     }
 
-    public int getHR() {
+    public Double getHR() {
         return HR;
     }
 
-    public void setHR(int HR) {
+    public void setHR(Double HR) {
         this.HR = HR;
     }
 
@@ -68,6 +68,6 @@ public class DatosTecnicosEquipo {
 
     DatosElectricosEquipo datosElectricos;
     DimensionesEquipo dimensiones;
-    int temperaturaAmbiente, HR;
+    Double temperaturaAmbiente, HR;
     String otraOpcion, requerimientosAdicionales, especificacionMedicion;
 }

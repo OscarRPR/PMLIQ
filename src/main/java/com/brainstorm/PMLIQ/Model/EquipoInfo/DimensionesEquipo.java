@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.brainstorm.PMLIQ.Model.Equipo;
+package com.brainstorm.PMLIQ.Model.EquipoInfo;
 
 import com.brainstorm.PMLIQ.Model.Enum.PosicionUsoEquipo;
 
@@ -12,6 +12,6 @@ import com.brainstorm.PMLIQ.Model.Enum.PosicionUsoEquipo;
  */
 public class DimensionesEquipo {
     
-    int alto, ancho, profundo, peso;
+    Double alto, ancho, profundo, peso;
     PosicionUsoEquipo posicionUsoEquipo;
 }

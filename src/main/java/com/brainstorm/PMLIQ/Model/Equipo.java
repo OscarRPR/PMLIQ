@@ -2,12 +2,19 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.brainstorm.PMLIQ.Model.Equipo;
+package com.brainstorm.PMLIQ.Model;
 
 import com.brainstorm.PMLIQ.Model.Enum.TipoEquipo;
 import com.brainstorm.PMLIQ.Model.Enum.TipoManual;
 import com.brainstorm.PMLIQ.Model.Enum.UsoEquipo;
+import com.brainstorm.PMLIQ.Model.EquipoInfo.Accesorio;
+import com.brainstorm.PMLIQ.Model.EquipoInfo.DatosTecnicosEquipo;
+import com.brainstorm.PMLIQ.Model.EquipoInfo.EquipoAsociado;
+import com.brainstorm.PMLIQ.Model.Validation.Exceptions.LongitudStringException;
+import com.brainstorm.PMLIQ.Model.Validation.Validacion;
+import com.brainstorm.PMLIQ.Model.Validation.ValidacionEquipo;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,6 +22,24 @@ import java.util.ArrayList;
  */
 
 public class Equipo {
+
+    public Equipo(String nombre, String placaInventario, String claseEquipo, String tipoEquipo, 
+                  String marca, String modelo, String serieEquipo, String tipoManual,
+                  String codigoDocumento, String ubicacionEnLaboratorio, String usoEquipo, 
+                  String tareasEquipo) {
+        this.nombre = nombre;
+        this.placaInventario = placaInventario;
+        this.claseEquipo = claseEquipo;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.tipoEquipo = TipoEquipo.valueOf(tipoEquipo.toUpperCase());
+        this.serieEquipo = serieEquipo;
+        this.codigoDocumento = codigoDocumento;
+        this.tipoManual = TipoManual.valueOf(tipoManual.toUpperCase());
+        this.ubicacionEnLaboratorio = ubicacionEnLaboratorio;
+        this.usoEquipo = UsoEquipo.valueOf(usoEquipo.toUpperCase());
+        this.tareasEquipo = tareasEquipo;
+    }
 
     public String getNombre() {
         return nombre;
@@ -64,19 +89,19 @@ public class Equipo {
         this.tipoEquipo = tipoEquipo;
     }
 
-    public int getSerieEquipo() {
+    public String getSerieEquipo() {
         return serieEquipo;
     }
 
-    public void setSerieEquipo(int serieEquipo) {
+    public void setSerieEquipo(String serieEquipo) {
         this.serieEquipo = serieEquipo;
     }
 
-    public int getCodigoDocumento() {
+    public String getCodigoDocumento() {
         return codigoDocumento;
     }
 
-    public void setCodigoDocumento(int codigoDocumento) {
+    public void setCodigoDocumento(String codigoDocumento) {
         this.codigoDocumento = codigoDocumento;
     }
 
@@ -114,7 +139,7 @@ public class Equipo {
 
     String nombre, placaInventario, claseEquipo, marca, modelo;
     TipoEquipo tipoEquipo;
-    int serieEquipo, codigoDocumento;
+    String serieEquipo, codigoDocumento;
     TipoManual tipoManual;
     String ubicacionEnLaboratorio;
     UsoEquipo usoEquipo;

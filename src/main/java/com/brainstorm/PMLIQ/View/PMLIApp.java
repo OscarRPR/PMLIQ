@@ -4,6 +4,8 @@
  */
 package com.brainstorm.PMLIQ.View;
 
+import com.brainstorm.PMLIQ.Control.AdministrarEquipos;
+import com.brainstorm.PMLIQ.Model.Sistema;
 import com.brainstorm.PMLIQ.View.ventana.MainWindow;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,9 +22,17 @@ import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 public class PMLIApp {
 
     private JFrame mainWindow;
-    /**
-     * @param args the command line arguments
-     */
+    private Sistema sistema;
+    
+    private AdministrarEquipos admEquipos;
+    
+    private PMLIApp()
+    {
+        admEquipos = new AdministrarEquipos();
+        sistema = new Sistema();
+        sistema.inicializaEquipos();
+    }
+    
     public static void main(String[] args) {
         
   	JFrame.setDefaultLookAndFeelDecorated(true);
@@ -61,11 +71,21 @@ public class PMLIApp {
 		}
 		return m_this;
     }
+
+    public Sistema getSistema() {
+        return sistema;
+    }
     
     public JFrame getMainWindow()
     {
         return mainWindow;
     }
+
+    public AdministrarEquipos getAdmEquipos() {
+        return admEquipos;
+    }
+    
+    
     
     private static PMLIApp m_this;
 }

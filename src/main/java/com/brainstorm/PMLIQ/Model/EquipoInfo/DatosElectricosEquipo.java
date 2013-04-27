@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.brainstorm.PMLIQ.Model.Equipo;
+package com.brainstorm.PMLIQ.Model.EquipoInfo;
 
 import com.brainstorm.PMLIQ.Model.Enum.TipoElectrico;
 
@@ -12,35 +12,35 @@ import com.brainstorm.PMLIQ.Model.Enum.TipoElectrico;
  */
 public class DatosElectricosEquipo {
 
-    public int getVoltaje() {
+    public Double getVoltaje() {
         return voltaje;
     }
 
-    public void setVoltaje(int voltaje) {
+    public void setVoltaje(Double voltaje) {
         this.voltaje = voltaje;
     }
 
-    public int getPotencia() {
+    public Double getPotencia() {
         return potencia;
     }
 
-    public void setPotencia(int potencia) {
+    public void setPotencia(Double potencia) {
         this.potencia = potencia;
     }
 
-    public int getCorriente() {
+    public Double getCorriente() {
         return corriente;
     }
 
-    public void setCorriente(int corriente) {
+    public void setCorriente(Double corriente) {
         this.corriente = corriente;
     }
 
-    public int getFases() {
+    public Double getFases() {
         return fases;
     }
 
-    public void setFases(int fases) {
+    public void setFases(Double fases) {
         this.fases = fases;
     }
 
@@ -52,6 +52,6 @@ public class DatosElectricosEquipo {
         this.tipoElectrico = tipoElectrico;
     }
  
-    int voltaje, potencia, corriente, fases;
+    Double voltaje, potencia, corriente, fases;
     TipoElectrico tipoElectrico;
 }

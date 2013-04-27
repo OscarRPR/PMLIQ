@@ -8,6 +8,12 @@ import com.brainstorm.PMLIQ.View.PMLIApp;
 import com.brainstorm.PMLIQ.View.dialogs.CrearAccesorio;
 import com.brainstorm.PMLIQ.View.dialogs.CrearEquipoAsociado;
 import com.brainstorm.PMLIQ.View.dialogs.CrearPlanMantenimiento;
+import java.awt.CheckboxGroup;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
@@ -16,12 +22,30 @@ import javax.swing.JFrame;
  * @author Silex RPR
  */
 public class crearEquipoPanel extends javax.swing.JPanel {
+    
+    private final int DESCRIPCIONBASICA = 0;
+    private final int DATOSTECNICOS = 1;
 
     /**
      * Creates new form crearEquipoPanel
      */
     public crearEquipoPanel() {
         initComponents();
+        
+        bGroupManual = new ButtonGroup();
+        bGroupManual.add(instalacionCheckBox);
+        bGroupManual.add(tecnicoCheckBox);
+        bGroupManual.add(usuarioCheckBox);
+        bGroupManual.add(labCheckBox);
+        
+        instalacionCheckBox.setSelected(true);
+        
+        bGroupUso = new ButtonGroup();
+        bGroupUso.add(docenciaCheckBox);
+        bGroupUso.add(investigacionCheckBox);
+        bGroupUso.add(extensionCheckBox);
+        
+        docenciaCheckBox.setSelected(true);
     }
 
     /**
@@ -41,45 +65,45 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         descripcionPanel = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        nombreTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        placaTextField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        claseTextField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jTextField4 = new javax.swing.JTextField();
+        tipoModeloComboBox = new javax.swing.JComboBox();
+        marcaTextField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        modeloTextField = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        serieTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
+        instalacionCheckBox = new javax.swing.JCheckBox();
+        tecnicoCheckBox = new javax.swing.JCheckBox();
+        usuarioCheckBox = new javax.swing.JCheckBox();
+        labCheckBox = new javax.swing.JCheckBox();
         jLabel10 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        codigoTextField = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        ubicacionTextField = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        siguienteDescripcionButton = new javax.swing.JButton();
-        guardarBoton = new javax.swing.JButton();
-        cancelarBoton = new javax.swing.JButton();
+        docenciaCheckBox = new javax.swing.JCheckBox();
+        investigacionCheckBox = new javax.swing.JCheckBox();
+        extensionCheckBox = new javax.swing.JCheckBox();
+        guardarBasicosButton = new javax.swing.JButton();
+        cancelarDescButton = new javax.swing.JButton();
         tareasPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        tareasTextArea = new javax.swing.JTextArea();
+        errorBasicaLabel = new javax.swing.JLabel();
         datosTecnicosScrollPane = new javax.swing.JScrollPane();
         datosTecnicosPanel = new javax.swing.JPanel();
         tituloPanel1 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         datosElectricosPanel = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        voltajeTextField = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
@@ -112,9 +136,9 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         requerimientosPanel2 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea4 = new javax.swing.JTextArea();
-        siguienteBoton1 = new javax.swing.JButton();
-        guardarBoton1 = new javax.swing.JButton();
+        guardarTecnicosButton = new javax.swing.JButton();
         cancelarBoton1 = new javax.swing.JButton();
+        errorTecnicosLabel = new javax.swing.JLabel();
         accesoriosScrollPane = new javax.swing.JScrollPane();
         accesoriosPanel = new javax.swing.JPanel();
         accionesPanel = new javax.swing.JPanel();
@@ -124,8 +148,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         filtroComboBox = new javax.swing.JComboBox();
         buscarTextField = new javax.swing.JTextField();
         separadorLabel = new javax.swing.JLabel();
-        siguienteBoton2 = new javax.swing.JButton();
-        guardarBoton2 = new javax.swing.JButton();
+        guardarAccesoriosButton = new javax.swing.JButton();
         cancelarBoton2 = new javax.swing.JButton();
         scrollListPanel = new javax.swing.JScrollPane();
         listaEquiposList = new javax.swing.JList();
@@ -138,8 +161,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         filtroComboBox1 = new javax.swing.JComboBox();
         buscarTextField1 = new javax.swing.JTextField();
         separadorLabel1 = new javax.swing.JLabel();
-        siguienteBoton3 = new javax.swing.JButton();
-        guardarBoton3 = new javax.swing.JButton();
+        guardarAsociadosButton = new javax.swing.JButton();
         cancelarBoton3 = new javax.swing.JButton();
         scrollListPanel1 = new javax.swing.JScrollPane();
         listaEquiposList2 = new javax.swing.JList();
@@ -152,8 +174,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         filtroComboBox2 = new javax.swing.JComboBox();
         buscarTextField2 = new javax.swing.JTextField();
         separadorLabel2 = new javax.swing.JLabel();
-        siguienteBoton4 = new javax.swing.JButton();
-        guardarBoton5 = new javax.swing.JButton();
+        guardarMantenimientoButton = new javax.swing.JButton();
         cancelarBoton5 = new javax.swing.JButton();
         scrollListPanel2 = new javax.swing.JScrollPane();
         listaEquiposList3 = new javax.swing.JList();
@@ -190,7 +211,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         jSpinner2 = new javax.swing.JSpinner();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        guardarBoton4 = new javax.swing.JButton();
+        guardarAdquisicionButton = new javax.swing.JButton();
         cancelarBoton4 = new javax.swing.JButton();
 
         jLabel1.setText("CREANDO UN NUEVO EQUIPO");
@@ -222,7 +243,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Tipo - Modelo");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Básico", "Especializado", "Cómputo" }));
+        tipoModeloComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Basico", "Especializado", "Computo" }));
 
         jLabel7.setText("Modelo");
 
@@ -232,13 +253,13 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         jLabel9.setText("Manuales");
 
-        jCheckBox1.setText("Instalacíon");
+        instalacionCheckBox.setText("Instalacion");
 
-        jCheckBox2.setText("Técnico");
+        tecnicoCheckBox.setText("Tecnico");
 
-        jCheckBox3.setText("De Usuario");
+        usuarioCheckBox.setText("De Usuario");
 
-        jCheckBox4.setText("Doc. Por Lab");
+        labCheckBox.setText("Doc. Por Lab");
 
         jLabel10.setText("Código Documentos");
 
@@ -246,11 +267,11 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         jLabel12.setText("Uso:");
 
-        jCheckBox5.setText("Docencia");
+        docenciaCheckBox.setText("Docencia");
 
-        jCheckBox6.setText("Investigacíon");
+        investigacionCheckBox.setText("Investigacion");
 
-        jCheckBox7.setText("Extensión");
+        extensionCheckBox.setText("Extension");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -268,34 +289,34 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(claseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(marcaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(modeloTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(24, 24, 24)
                                         .addComponent(jLabel8))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                         .addGap(92, 92, 92)
-                                        .addComponent(jCheckBox2)
+                                        .addComponent(tecnicoCheckBox)
                                         .addGap(0, 0, 0)
-                                        .addComponent(jCheckBox3)
+                                        .addComponent(usuarioCheckBox)
                                         .addGap(0, 0, 0)
-                                        .addComponent(jCheckBox4)
+                                        .addComponent(labCheckBox)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(jPanel3Layout.createSequentialGroup()
                                                 .addComponent(jLabel12)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jCheckBox5))
+                                                .addComponent(docenciaCheckBox))
                                             .addComponent(jLabel10)))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -303,15 +324,15 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(11, 11, 11)
-                                .addComponent(jCheckBox6)
+                                .addComponent(investigacionCheckBox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBox7)
+                                .addComponent(extensionCheckBox)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(placaTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tipoModeloComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap())))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,17 +341,17 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(jLabel9)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jCheckBox1))
+                                        .addComponent(instalacionCheckBox))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(jLabel11)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(ubicacionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(serieTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(codigoTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
@@ -339,40 +360,40 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(placaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(claseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tipoModeloComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(marcaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modeloTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(serieTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox4)
+                    .addComponent(instalacionCheckBox)
+                    .addComponent(tecnicoCheckBox)
+                    .addComponent(usuarioCheckBox)
+                    .addComponent(labCheckBox)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(codigoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ubicacionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
-                    .addComponent(jCheckBox5)
-                    .addComponent(jCheckBox6)
-                    .addComponent(jCheckBox7))
+                    .addComponent(docenciaCheckBox)
+                    .addComponent(investigacionCheckBox)
+                    .addComponent(extensionCheckBox))
                 .addGap(22, 22, 22))
         );
 
@@ -390,17 +411,20 @@ public class crearEquipoPanel extends javax.swing.JPanel {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        siguienteDescripcionButton.setText("Siguiente");
+        guardarBasicosButton.setText("Guardar");
+        guardarBasicosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarBasicosButtonActionPerformed(evt);
+            }
+        });
 
-        guardarBoton.setText("Guardar");
-
-        cancelarBoton.setText("Cancelar");
+        cancelarDescButton.setText("Cancelar");
 
         tareasPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Tareas/Determinaciones"));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        tareasTextArea.setColumns(20);
+        tareasTextArea.setRows(5);
+        jScrollPane1.setViewportView(tareasTextArea);
 
         javax.swing.GroupLayout tareasPanelLayout = new javax.swing.GroupLayout(tareasPanel);
         tareasPanel.setLayout(tareasPanelLayout);
@@ -418,24 +442,27 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        errorBasicaLabel.setForeground(java.awt.Color.red);
+
         javax.swing.GroupLayout descripcionBasicaPanelLayout = new javax.swing.GroupLayout(descripcionBasicaPanel);
         descripcionBasicaPanel.setLayout(descripcionBasicaPanelLayout);
         descripcionBasicaPanelLayout.setHorizontalGroup(
             descripcionBasicaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, descripcionBasicaPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(siguienteDescripcionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(guardarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cancelarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, descripcionBasicaPanelLayout.createSequentialGroup()
+            .addGroup(descripcionBasicaPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(descripcionBasicaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tituloPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(descripcionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tareasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(descripcionBasicaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tituloPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(descripcionPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(descripcionBasicaPanelLayout.createSequentialGroup()
+                        .addGroup(descripcionBasicaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, descripcionBasicaPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(guardarBasicosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cancelarDescButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tareasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(errorBasicaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         descripcionBasicaPanelLayout.setVerticalGroup(
             descripcionBasicaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -445,11 +472,12 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addComponent(descripcionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tareasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorBasicaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addGroup(descripcionBasicaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(siguienteDescripcionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(guardarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(guardarBasicosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelarDescButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -503,7 +531,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(voltajeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -528,7 +556,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(datosElectricosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(voltajeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
                     .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16)
@@ -689,11 +717,16 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addGap(0, 8, Short.MAX_VALUE))
         );
 
-        siguienteBoton1.setText("Siguiente");
-
-        guardarBoton1.setText("Guardar");
+        guardarTecnicosButton.setText("Guardar");
+        guardarTecnicosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarTecnicosButtonActionPerformed(evt);
+            }
+        });
 
         cancelarBoton1.setText("Cancelar");
+
+        errorTecnicosLabel.setForeground(java.awt.Color.red);
 
         javax.swing.GroupLayout datosTecnicosPanelLayout = new javax.swing.GroupLayout(datosTecnicosPanel);
         datosTecnicosPanel.setLayout(datosTecnicosPanelLayout);
@@ -701,12 +734,10 @@ public class crearEquipoPanel extends javax.swing.JPanel {
             datosTecnicosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(datosTecnicosPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(siguienteBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(guardarBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(guardarTecnicosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancelarBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5))
+                .addGap(8, 8, 8))
             .addGroup(datosTecnicosPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(datosTecnicosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -715,7 +746,9 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                     .addComponent(requerimientosPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(requerimientosPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(dimensionesPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(datosElectricosPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(datosElectricosPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(errorTecnicosLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
         datosTecnicosPanelLayout.setVerticalGroup(
             datosTecnicosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -732,10 +765,11 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addComponent(requerimientosPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(requerimientosPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(1, 1, 1)
+                .addComponent(errorTecnicosLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(datosTecnicosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(siguienteBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(guardarBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(guardarTecnicosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
@@ -816,9 +850,12 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addGap(15, 15, 15))
         );
 
-        siguienteBoton2.setText("Siguiente");
-
-        guardarBoton2.setText("Guardar");
+        guardarAccesoriosButton.setText("Guardar");
+        guardarAccesoriosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarAccesoriosButtonActionPerformed(evt);
+            }
+        });
 
         cancelarBoton2.setText("Cancelar");
 
@@ -841,9 +878,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(accesoriosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(accesoriosPanelLayout.createSequentialGroup()
-                                .addComponent(siguienteBoton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(guardarBoton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(guardarAccesoriosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cancelarBoton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(scrollListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -858,8 +893,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addComponent(scrollListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(accesoriosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(siguienteBoton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(guardarBoton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(guardarAccesoriosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarBoton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
@@ -933,18 +967,22 @@ public class crearEquipoPanel extends javax.swing.JPanel {
             accionesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(accionesPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(accionesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nuevoAccesorioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eliminarAccesorioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(accionesPanel1Layout.createSequentialGroup()
+                .addGroup(accionesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, accionesPanel1Layout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addComponent(buscarInternalPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(buscarInternalPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(accionesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(nuevoAccesorioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(eliminarAccesorioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(15, 15, 15))
         );
 
-        siguienteBoton3.setText("Siguiente");
-
-        guardarBoton3.setText("Guardar");
+        guardarAsociadosButton.setText("Guardar");
+        guardarAsociadosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarAsociadosButtonActionPerformed(evt);
+            }
+        });
 
         cancelarBoton3.setText("Cancelar");
 
@@ -967,9 +1005,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(equiposAsociadosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(equiposAsociadosPanelLayout.createSequentialGroup()
-                                .addComponent(siguienteBoton3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(guardarBoton3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(guardarAsociadosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cancelarBoton3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(scrollListPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -984,8 +1020,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(equiposAsociadosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelarBoton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(guardarBoton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(siguienteBoton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(guardarAsociadosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -1065,9 +1100,12 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addGap(15, 15, 15))
         );
 
-        siguienteBoton4.setText("Siguiente");
-
-        guardarBoton5.setText("Guardar");
+        guardarMantenimientoButton.setText("Guardar");
+        guardarMantenimientoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarMantenimientoButtonActionPerformed(evt);
+            }
+        });
 
         cancelarBoton5.setText("Cancelar");
 
@@ -1090,9 +1128,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(mantenimientoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(mantenimientoPanelLayout.createSequentialGroup()
-                                .addComponent(siguienteBoton4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(guardarBoton5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(guardarMantenimientoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cancelarBoton5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(scrollListPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -1107,8 +1143,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(mantenimientoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelarBoton5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(guardarBoton5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(siguienteBoton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(guardarMantenimientoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -1316,7 +1351,12 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        guardarBoton4.setText("Guardar");
+        guardarAdquisicionButton.setText("Guardar");
+        guardarAdquisicionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarAdquisicionButtonActionPerformed(evt);
+            }
+        });
 
         cancelarBoton4.setText("Cancelar");
 
@@ -1328,7 +1368,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addGroup(adquisicionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(adquisicionPanelLayout.createSequentialGroup()
-                        .addComponent(guardarBoton4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(guardarAdquisicionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cancelarBoton4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(adquisicionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -1348,7 +1388,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(adquisicionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(guardarBoton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(guardarAdquisicionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarBoton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
@@ -1410,6 +1450,94 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_eliminarMantenimientoButtonActionPerformed
 
+    private void guardarBasicosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBasicosButtonActionPerformed
+        guardarDatosEquipo();
+    }//GEN-LAST:event_guardarBasicosButtonActionPerformed
+
+    private void guardarTecnicosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarTecnicosButtonActionPerformed
+        guardarDatosEquipo();
+    }//GEN-LAST:event_guardarTecnicosButtonActionPerformed
+
+    private void guardarAccesoriosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarAccesoriosButtonActionPerformed
+        guardarDatosEquipo();
+    }//GEN-LAST:event_guardarAccesoriosButtonActionPerformed
+
+    private void guardarAsociadosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarAsociadosButtonActionPerformed
+        guardarDatosEquipo();
+    }//GEN-LAST:event_guardarAsociadosButtonActionPerformed
+
+    private void guardarMantenimientoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarMantenimientoButtonActionPerformed
+        guardarDatosEquipo();
+    }//GEN-LAST:event_guardarMantenimientoButtonActionPerformed
+
+    private void guardarAdquisicionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarAdquisicionButtonActionPerformed
+        guardarDatosEquipo();
+    }//GEN-LAST:event_guardarAdquisicionButtonActionPerformed
+
+    private void setCurrentErrorTab(List<String> resultados) {
+        for (int i = 0; i < resultados.size(); i++)
+        {
+            if ( !resultados.get(i).equals("") ) {
+                creacionEquipoTabPanel.setSelectedIndex(i);
+                return;
+            }
+        }
+    }
+    
+    public void guardarDatosEquipo() {
+        List<String> infoEquipo = getDatosBasicosEquipo();
+        List<String> datosTecnicosEquipo = getDatosTecnicosEquipo();
+ 
+        List<String> resultados = PMLIApp.getInstance().getAdmEquipos().crearEquipo(infoEquipo,
+                                                                        datosTecnicosEquipo);
+        errorBasicaLabel.setText(resultados.get(DESCRIPCIONBASICA));
+        errorTecnicosLabel.setText(resultados.get(DATOSTECNICOS));
+        
+        setCurrentErrorTab(resultados);
+    }
+    
+    public List<String> getDatosBasicosEquipo() {
+        List<String> strings = new ArrayList<String>();
+        
+        strings.add(nombreTextField.getText());
+        strings.add(placaTextField.getText());
+        strings.add(claseTextField.getText());
+        strings.add(tipoModeloComboBox.getSelectedItem().toString());
+        strings.add(marcaTextField.getText());
+        strings.add(modeloTextField.getText());
+        strings.add(serieTextField.getText());
+        strings.add(getSelectedButtonText(bGroupManual));
+        strings.add(codigoTextField.getText());
+        strings.add(ubicacionTextField.getText());
+        strings.add(getSelectedButtonText(bGroupUso));
+        strings.add(tareasTextArea.getText());
+        
+        return strings;
+    }
+
+    public List<String> getDatosTecnicosEquipo() {
+        List<String> strings = new ArrayList<String>();
+        
+        strings.add(voltajeTextField.getText());
+        
+        return strings;
+    }
+    
+    public String getSelectedButtonText(ButtonGroup buttonGroup) 
+    {
+        for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+
+            if (button.isSelected()) {
+                return button.getText();
+            }
+        }
+
+        return null;
+    }
+    
+    private ButtonGroup bGroupManual, bGroupUso;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel accesoriosPanel;
     private javax.swing.JScrollPane accesoriosScrollPane;
@@ -1425,12 +1553,14 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JTextField buscarTextField;
     private javax.swing.JTextField buscarTextField1;
     private javax.swing.JTextField buscarTextField2;
-    private javax.swing.JButton cancelarBoton;
     private javax.swing.JButton cancelarBoton1;
     private javax.swing.JButton cancelarBoton2;
     private javax.swing.JButton cancelarBoton3;
     private javax.swing.JButton cancelarBoton4;
     private javax.swing.JButton cancelarBoton5;
+    private javax.swing.JButton cancelarDescButton;
+    private javax.swing.JTextField claseTextField;
+    private javax.swing.JTextField codigoTextField;
     private javax.swing.JTabbedPane creacionEquipoTabPanel;
     private javax.swing.JPanel datosElectricosPanel;
     private javax.swing.JPanel datosTecnicosPanel;
@@ -1440,30 +1570,28 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JPanel descripcionPanel;
     private javax.swing.JPanel descripcionPanel1;
     private javax.swing.JPanel dimensionesPanel;
+    private javax.swing.JCheckBox docenciaCheckBox;
     private javax.swing.JButton eliminarAccesorioButton;
     private javax.swing.JButton eliminarAccesorioButton1;
     private javax.swing.JButton eliminarMantenimientoButton;
     private javax.swing.JPanel equiposAsociadosPanel;
     private javax.swing.JScrollPane equiposAsociadosScrollPane;
+    private javax.swing.JLabel errorBasicaLabel;
+    private javax.swing.JLabel errorTecnicosLabel;
+    private javax.swing.JCheckBox extensionCheckBox;
     private javax.swing.JComboBox filtroComboBox;
     private javax.swing.JComboBox filtroComboBox1;
     private javax.swing.JComboBox filtroComboBox2;
-    private javax.swing.JButton guardarBoton;
-    private javax.swing.JButton guardarBoton1;
-    private javax.swing.JButton guardarBoton2;
-    private javax.swing.JButton guardarBoton3;
-    private javax.swing.JButton guardarBoton4;
-    private javax.swing.JButton guardarBoton5;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
+    private javax.swing.JButton guardarAccesoriosButton;
+    private javax.swing.JButton guardarAdquisicionButton;
+    private javax.swing.JButton guardarAsociadosButton;
+    private javax.swing.JButton guardarBasicosButton;
+    private javax.swing.JButton guardarMantenimientoButton;
+    private javax.swing.JButton guardarTecnicosButton;
+    private javax.swing.JCheckBox instalacionCheckBox;
+    private javax.swing.JCheckBox investigacionCheckBox;
     private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JCheckBox jCheckBox9;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
     private com.toedter.calendar.JDateChooser jDateChooser1;
@@ -1515,10 +1643,8 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
@@ -1529,7 +1655,6 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField21;
     private javax.swing.JTextField jTextField22;
@@ -1538,21 +1663,19 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField26;
     private javax.swing.JTextField jTextField27;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JCheckBox labCheckBox;
     private javax.swing.JList listaEquiposList;
     private javax.swing.JList listaEquiposList2;
     private javax.swing.JList listaEquiposList3;
     private javax.swing.JPanel mantenimientoPanel;
     private javax.swing.JScrollPane mantenimientoScrollPane;
+    private javax.swing.JTextField marcaTextField;
+    private javax.swing.JTextField modeloTextField;
+    private javax.swing.JTextField nombreTextField;
     private javax.swing.JButton nuevoAccesorioButton;
     private javax.swing.JButton nuevoAccesorioButton1;
     private javax.swing.JButton nuevoMantenimientoButton;
+    private javax.swing.JTextField placaTextField;
     private javax.swing.JPanel requerimientosPanel;
     private javax.swing.JPanel requerimientosPanel2;
     private javax.swing.JScrollPane scrollListPanel;
@@ -1561,14 +1684,16 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JLabel separadorLabel;
     private javax.swing.JLabel separadorLabel1;
     private javax.swing.JLabel separadorLabel2;
-    private javax.swing.JButton siguienteBoton1;
-    private javax.swing.JButton siguienteBoton2;
-    private javax.swing.JButton siguienteBoton3;
-    private javax.swing.JButton siguienteBoton4;
-    private javax.swing.JButton siguienteDescripcionButton;
+    private javax.swing.JTextField serieTextField;
     private javax.swing.JPanel tareasPanel;
+    private javax.swing.JTextArea tareasTextArea;
+    private javax.swing.JCheckBox tecnicoCheckBox;
+    private javax.swing.JComboBox tipoModeloComboBox;
     private javax.swing.JPanel tituloPanel;
     private javax.swing.JPanel tituloPanel1;
     private javax.swing.JPanel tituloPanel2;
+    private javax.swing.JTextField ubicacionTextField;
+    private javax.swing.JCheckBox usuarioCheckBox;
+    private javax.swing.JTextField voltajeTextField;
     // End of variables declaration//GEN-END:variables
 }
