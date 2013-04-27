@@ -61,7 +61,7 @@ public abstract class Validacion {
         }
     }
     
-    public void formatoNumericoLong(String tipo, String aValidar) throws FormatoNumericoDoubleException {
+    public void formatoNumericoDouble(String tipo, String aValidar) throws FormatoNumericoDoubleException {
 	try {
             Double.parseDouble(aValidar);
 	} catch (NumberFormatException NFE) {

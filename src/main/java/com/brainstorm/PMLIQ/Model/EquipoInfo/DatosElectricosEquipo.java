@@ -12,6 +12,15 @@ import com.brainstorm.PMLIQ.Model.Enum.TipoElectrico;
  */
 public class DatosElectricosEquipo {
 
+    public DatosElectricosEquipo(String voltaje, String potencia, String corriente,
+                           String fases, String tipo) {
+        this.voltaje = Double.valueOf(voltaje);
+        this.potencia = Double.valueOf(potencia);
+        this.corriente = Double.valueOf(corriente);
+        this.fases = Double.valueOf(fases);
+        this.tipoElectrico = TipoElectrico.valueOf(tipo.toUpperCase());
+    }
+    
     public Double getVoltaje() {
         return voltaje;
     }

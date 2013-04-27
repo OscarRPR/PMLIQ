@@ -30,7 +30,25 @@ public class ValidacionDatosTecnicos extends Validacion{
         try
         {
             longitudString(vars.voltaje, strings.get(vars.VOLTAJE), vars.minVoltaje, vars.maxVoltaje);
-            formatoNumericoLong(vars.voltaje, strings.get(vars.VOLTAJE));
+            formatoNumericoDouble(vars.voltaje, strings.get(vars.VOLTAJE));
+            longitudString(vars.potencia, strings.get(vars.POTENCIA), vars.minPotencia, vars.maxPotencia);
+            formatoNumericoDouble(vars.potencia, strings.get(vars.POTENCIA));
+            longitudString(vars.corriente, strings.get(vars.CORRIENTE), vars.minCorriente, vars.maxCorriente);
+            formatoNumericoDouble(vars.corriente, strings.get(vars.CORRIENTE));
+            longitudString(vars.fases, strings.get(vars.FASES), vars.minFases, vars.maxFases);
+            formatoNumericoDouble(vars.fases, strings.get(vars.FASES));
+            longitudString(vars.alto, strings.get(vars.ALTO), vars.minAlto, vars.maxAlto);
+            formatoNumericoDouble(vars.alto, strings.get(vars.ALTO));
+            longitudString(vars.ancho, strings.get(vars.ANCHO), vars.minAncho, vars.maxAncho);
+            formatoNumericoDouble(vars.ancho, strings.get(vars.ANCHO));
+            longitudString(vars.profundo, strings.get(vars.PROFUNDO), vars.minProfundo, vars.maxProfundo);
+            formatoNumericoDouble(vars.profundo, strings.get(vars.PROFUNDO));
+            longitudString(vars.peso, strings.get(vars.PESO), vars.minPeso, vars.maxPeso);
+            formatoNumericoDouble(vars.peso, strings.get(vars.PESO));
+            longitudString(vars.ambiente, strings.get(vars.AMBIENTE), vars.minAmbiente, vars.maxAmbiente);
+            formatoNumericoDouble(vars.ambiente, strings.get(vars.AMBIENTE));
+            longitudString(vars.hr, strings.get(vars.HR), vars.minHr, vars.maxHr);
+            formatoNumericoDouble(vars.hr, strings.get(vars.HR));
         }
         catch(LongitudStringException ex) {
             resultado = crearErrorLongitudString(ex.getTipo(), ex.getMinimo(), ex.getMaximo());
@@ -39,15 +57,7 @@ public class ValidacionDatosTecnicos extends Validacion{
             resultado = crearErrorFormatoDouble(ex.getTipo());
             throw new ErrorValidacionException(resultado, ex.getCause());
         }
-        /*catch(FormatoAlfabeticoStringException ex) {
-            resultado = crearErrorFormatoAlfabeticoString(ex.getTipo());
-            throw new ErrorValidacionException(resultado, ex.getCause());
-        }*/
-        /*catch(FormatoAlfanumericoStringException ex) {
-             resultado = crearErrorFormatoAlfanumericoString(ex.getTipo());
-             throw new ErrorValidacionException(resultado, ex.getCause());
-        }*/
-        
+
         return resultado;
     }
 }

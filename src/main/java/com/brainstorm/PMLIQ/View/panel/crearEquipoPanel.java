@@ -92,7 +92,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         investigacionCheckBox = new javax.swing.JCheckBox();
         extensionCheckBox = new javax.swing.JCheckBox();
         guardarBasicosButton = new javax.swing.JButton();
-        cancelarDescButton = new javax.swing.JButton();
+        cancelarBasicaButton = new javax.swing.JButton();
         tareasPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tareasTextArea = new javax.swing.JTextArea();
@@ -105,39 +105,39 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         voltajeTextField = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        potenciaTextField = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        corrienteTextField = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        fasesTextField = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        tipoComboBox = new javax.swing.JComboBox();
         dimensionesPanel = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
+        altoTextField = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        jTextField14 = new javax.swing.JTextField();
+        anchoTextField = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
+        profundoTextField = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        jTextField16 = new javax.swing.JTextField();
+        pesoTextField = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox();
+        usoComboBox = new javax.swing.JComboBox();
         ambientePanel = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
-        jTextField17 = new javax.swing.JTextField();
+        ambienteTextField = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
-        jTextField18 = new javax.swing.JTextField();
+        hrTextField = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
-        jTextField19 = new javax.swing.JTextField();
+        otroTextField = new javax.swing.JTextField();
         requerimientosPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        requerimientosTextArea = new javax.swing.JTextArea();
         requerimientosPanel2 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
+        especificacionTextArea = new javax.swing.JTextArea();
         guardarTecnicosButton = new javax.swing.JButton();
-        cancelarBoton1 = new javax.swing.JButton();
+        cancelarTecnicosButton = new javax.swing.JButton();
         errorTecnicosLabel = new javax.swing.JLabel();
         accesoriosScrollPane = new javax.swing.JScrollPane();
         accesoriosPanel = new javax.swing.JPanel();
@@ -418,7 +418,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
             }
         });
 
-        cancelarDescButton.setText("Cancelar");
+        cancelarBasicaButton.setText("Cancelar");
 
         tareasPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Tareas/Determinaciones"));
 
@@ -459,7 +459,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(guardarBasicosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cancelarDescButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cancelarBasicaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(tareasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(errorBasicaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
@@ -477,7 +477,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addGroup(descripcionBasicaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarBasicosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelarDescButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cancelarBasicaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -516,10 +516,10 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         jLabel18.setText("Tipo");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Neutro", "Tierra" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        tipoComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Neutro", "Tierra" }));
+        tipoComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                tipoComboBoxActionPerformed(evt);
             }
         });
 
@@ -535,19 +535,19 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(potenciaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(corrienteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fasesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         datosElectricosPanelLayout.setVerticalGroup(
@@ -558,13 +558,13 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                     .addComponent(jLabel14)
                     .addComponent(voltajeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(potenciaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(corrienteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fasesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -580,10 +580,10 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         jLabel23.setText("Uso");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mesa", "Piso", "Uso En Campo" }));
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+        usoComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mesa", "Piso", "Campo" }));
+        usoComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
+                usoComboBoxActionPerformed(evt);
             }
         });
 
@@ -595,23 +595,23 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(altoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(anchoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(profundoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pesoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel23)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(usoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         dimensionesPanelLayout.setVerticalGroup(
@@ -620,15 +620,15 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(dimensionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(altoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(anchoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21)
-                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(profundoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22)
-                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pesoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -648,15 +648,15 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel24)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ambienteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hrTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel26)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField19)
+                .addComponent(otroTextField)
                 .addContainerGap())
         );
         ambientePanelLayout.setVerticalGroup(
@@ -665,19 +665,19 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(ambientePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
-                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ambienteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel25)
-                    .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hrTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel26)
-                    .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(otroTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
         requerimientosPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Requerimientos Adicionales"));
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        requerimientosTextArea.setColumns(20);
+        requerimientosTextArea.setRows(5);
+        jScrollPane2.setViewportView(requerimientosTextArea);
 
         javax.swing.GroupLayout requerimientosPanelLayout = new javax.swing.GroupLayout(requerimientosPanel);
         requerimientosPanel.setLayout(requerimientosPanelLayout);
@@ -697,9 +697,9 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         requerimientosPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Especificación de Medición (Para Equipos de Medición)"));
 
-        jTextArea4.setColumns(20);
-        jTextArea4.setRows(5);
-        jScrollPane4.setViewportView(jTextArea4);
+        especificacionTextArea.setColumns(20);
+        especificacionTextArea.setRows(5);
+        jScrollPane4.setViewportView(especificacionTextArea);
 
         javax.swing.GroupLayout requerimientosPanel2Layout = new javax.swing.GroupLayout(requerimientosPanel2);
         requerimientosPanel2.setLayout(requerimientosPanel2Layout);
@@ -724,7 +724,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
             }
         });
 
-        cancelarBoton1.setText("Cancelar");
+        cancelarTecnicosButton.setText("Cancelar");
 
         errorTecnicosLabel.setForeground(java.awt.Color.red);
 
@@ -736,7 +736,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(guardarTecnicosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cancelarBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cancelarTecnicosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8))
             .addGroup(datosTecnicosPanelLayout.createSequentialGroup()
                 .addContainerGap()
@@ -770,7 +770,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(datosTecnicosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarTecnicosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelarBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cancelarTecnicosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -1409,13 +1409,13 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+    private void usoComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usoComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
+    }//GEN-LAST:event_usoComboBoxActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void tipoComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_tipoComboBoxActionPerformed
 
     private void nuevoAccesorioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoAccesorioButtonActionPerformed
         CrearAccesorio crearAccesorio = new CrearAccesorio(PMLIApp.getInstance().getMainWindow(), true);
@@ -1519,6 +1519,20 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         List<String> strings = new ArrayList<String>();
         
         strings.add(voltajeTextField.getText());
+        strings.add(potenciaTextField.getText());
+        strings.add(corrienteTextField.getText());
+        strings.add(fasesTextField.getText());
+        strings.add(tipoComboBox.getSelectedItem().toString());
+        strings.add(altoTextField.getText());
+        strings.add(anchoTextField.getText());
+        strings.add(profundoTextField.getText());
+        strings.add(pesoTextField.getText());
+        strings.add(usoComboBox.getSelectedItem().toString());
+        strings.add(ambienteTextField.getText());
+        strings.add(hrTextField.getText());
+        strings.add(otroTextField.getText());
+        strings.add(requerimientosTextArea.getText());
+        strings.add(especificacionTextArea.getText());
         
         return strings;
     }
@@ -1546,21 +1560,25 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JPanel accionesPanel2;
     private javax.swing.JPanel adquisicionPanel;
     private javax.swing.JScrollPane adquisicionScrollPane;
+    private javax.swing.JTextField altoTextField;
     private javax.swing.JPanel ambientePanel;
+    private javax.swing.JTextField ambienteTextField;
+    private javax.swing.JTextField anchoTextField;
     private javax.swing.JPanel buscarInternalPanel;
     private javax.swing.JPanel buscarInternalPanel1;
     private javax.swing.JPanel buscarInternalPanel2;
     private javax.swing.JTextField buscarTextField;
     private javax.swing.JTextField buscarTextField1;
     private javax.swing.JTextField buscarTextField2;
-    private javax.swing.JButton cancelarBoton1;
+    private javax.swing.JButton cancelarBasicaButton;
     private javax.swing.JButton cancelarBoton2;
     private javax.swing.JButton cancelarBoton3;
     private javax.swing.JButton cancelarBoton4;
     private javax.swing.JButton cancelarBoton5;
-    private javax.swing.JButton cancelarDescButton;
+    private javax.swing.JButton cancelarTecnicosButton;
     private javax.swing.JTextField claseTextField;
     private javax.swing.JTextField codigoTextField;
+    private javax.swing.JTextField corrienteTextField;
     private javax.swing.JTabbedPane creacionEquipoTabPanel;
     private javax.swing.JPanel datosElectricosPanel;
     private javax.swing.JPanel datosTecnicosPanel;
@@ -1578,7 +1596,9 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane equiposAsociadosScrollPane;
     private javax.swing.JLabel errorBasicaLabel;
     private javax.swing.JLabel errorTecnicosLabel;
+    private javax.swing.JTextArea especificacionTextArea;
     private javax.swing.JCheckBox extensionCheckBox;
+    private javax.swing.JTextField fasesTextField;
     private javax.swing.JComboBox filtroComboBox;
     private javax.swing.JComboBox filtroComboBox1;
     private javax.swing.JComboBox filtroComboBox2;
@@ -1588,12 +1608,11 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JButton guardarBasicosButton;
     private javax.swing.JButton guardarMantenimientoButton;
     private javax.swing.JButton guardarTecnicosButton;
+    private javax.swing.JTextField hrTextField;
     private javax.swing.JCheckBox instalacionCheckBox;
     private javax.swing.JCheckBox investigacionCheckBox;
     private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JCheckBox jCheckBox9;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
@@ -1643,18 +1662,6 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField21;
     private javax.swing.JTextField jTextField22;
@@ -1675,9 +1682,14 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JButton nuevoAccesorioButton;
     private javax.swing.JButton nuevoAccesorioButton1;
     private javax.swing.JButton nuevoMantenimientoButton;
+    private javax.swing.JTextField otroTextField;
+    private javax.swing.JTextField pesoTextField;
     private javax.swing.JTextField placaTextField;
+    private javax.swing.JTextField potenciaTextField;
+    private javax.swing.JTextField profundoTextField;
     private javax.swing.JPanel requerimientosPanel;
     private javax.swing.JPanel requerimientosPanel2;
+    private javax.swing.JTextArea requerimientosTextArea;
     private javax.swing.JScrollPane scrollListPanel;
     private javax.swing.JScrollPane scrollListPanel1;
     private javax.swing.JScrollPane scrollListPanel2;
@@ -1688,11 +1700,13 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JPanel tareasPanel;
     private javax.swing.JTextArea tareasTextArea;
     private javax.swing.JCheckBox tecnicoCheckBox;
+    private javax.swing.JComboBox tipoComboBox;
     private javax.swing.JComboBox tipoModeloComboBox;
     private javax.swing.JPanel tituloPanel;
     private javax.swing.JPanel tituloPanel1;
     private javax.swing.JPanel tituloPanel2;
     private javax.swing.JTextField ubicacionTextField;
+    private javax.swing.JComboBox usoComboBox;
     private javax.swing.JCheckBox usuarioCheckBox;
     private javax.swing.JTextField voltajeTextField;
     // End of variables declaration//GEN-END:variables

@@ -4,6 +4,7 @@
  */
 package com.brainstorm.PMLIQ.Model;
 
+import com.brainstorm.PMLIQ.Control.ConstantesEquipos;
 import com.brainstorm.PMLIQ.Model.Enum.TipoEquipo;
 import com.brainstorm.PMLIQ.Model.Enum.TipoManual;
 import com.brainstorm.PMLIQ.Model.Enum.UsoEquipo;
@@ -23,6 +24,8 @@ import java.util.List;
 
 public class Equipo {
 
+    private ConstantesEquipos varsBas = new ConstantesEquipos();
+    
     public Equipo(String nombre, String placaInventario, String claseEquipo, String tipoEquipo, 
                   String marca, String modelo, String serieEquipo, String tipoManual,
                   String codigoDocumento, String ubicacionEnLaboratorio, String usoEquipo, 
@@ -39,6 +42,26 @@ public class Equipo {
         this.ubicacionEnLaboratorio = ubicacionEnLaboratorio;
         this.usoEquipo = UsoEquipo.valueOf(usoEquipo.toUpperCase());
         this.tareasEquipo = tareasEquipo;
+    }
+    
+    public Equipo(List<String> infoEquipo) {
+        this.nombre = infoEquipo.get(varsBas.NOMBRE);
+        this.placaInventario = infoEquipo.get(varsBas.PLACAINVENTARIO);
+        this.claseEquipo = infoEquipo.get(varsBas.CLASEEQUIPO);
+        this.marca = infoEquipo.get(varsBas.MARCA);
+        this.modelo = infoEquipo.get(varsBas.MODELO);
+        this.tipoEquipo = TipoEquipo.valueOf(infoEquipo.get(varsBas.TIPO).toUpperCase());
+        this.serieEquipo = infoEquipo.get(varsBas.SERIE);
+        this.codigoDocumento = infoEquipo.get(varsBas.CODIGO);
+        this.tipoManual = TipoManual.valueOf(infoEquipo.get(varsBas.MANUALES).toUpperCase());
+        this.ubicacionEnLaboratorio = infoEquipo.get(varsBas.UBICACION);
+        this.usoEquipo = UsoEquipo.valueOf(infoEquipo.get(varsBas.USO).toUpperCase());
+        this.tareasEquipo = infoEquipo.get(varsBas.TAREAS);
+    }
+    
+    public void agregarDatosTecnicos(List<String> datos) {
+        
+        datosTecnicosEquipo = new DatosTecnicosEquipo(datos);
     }
 
     public String getNombre() {
@@ -137,16 +160,16 @@ public class Equipo {
         this.tareasEquipo = tareasEquipo;
     }
 
-    String nombre, placaInventario, claseEquipo, marca, modelo;
-    TipoEquipo tipoEquipo;
-    String serieEquipo, codigoDocumento;
-    TipoManual tipoManual;
-    String ubicacionEnLaboratorio;
-    UsoEquipo usoEquipo;
-    String tareasEquipo;
+    private String nombre, placaInventario, claseEquipo, marca, modelo;
+    private TipoEquipo tipoEquipo;
+    private String serieEquipo, codigoDocumento;
+    private TipoManual tipoManual;
+    private String ubicacionEnLaboratorio;
+    private UsoEquipo usoEquipo;
+    private String tareasEquipo;
     
-    DatosTecnicosEquipo datosTecnicosEquipo;
-    ArrayList<Accesorio> accesorios = new ArrayList<Accesorio>();
-    ArrayList<EquipoAsociado> equiposAsociados = new ArrayList<EquipoAsociado>();
+    private DatosTecnicosEquipo datosTecnicosEquipo;
+    private List<Accesorio> accesorios = new ArrayList<Accesorio>();
+    private List<EquipoAsociado> equiposAsociados = new ArrayList<EquipoAsociado>();
       
 }

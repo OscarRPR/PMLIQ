@@ -19,7 +19,6 @@ import java.util.List;
  */
 public class AdministrarEquipos {
         
-    private ConstantesEquipos vars = new ConstantesEquipos();
     private Validacion validacion = new ValidacionEquipo();
     
     public List<String> crearEquipo(List<String> infoEquipo, List<String> datosTecnicos)
@@ -28,32 +27,21 @@ public class AdministrarEquipos {
         validaciones.add(validacionDatosEquipo(infoEquipo));
         validaciones.add(validacionDatosTecnicos(datosTecnicos));
         
-        if ( verificarResultadoValidaciones(validaciones) ) 
+        if ( datosFueronValidados(validaciones) ) 
         {
-            Equipo nuevoEquipo = new Equipo(infoEquipo.get(vars.NOMBRE),
-                                     infoEquipo.get(vars.PLACAINVENTARIO),
-                                     infoEquipo.get(vars.CLASEEQUIPO),
-                                     infoEquipo.get(vars.TIPO),
-                                     infoEquipo.get(vars.MARCA),
-                                     infoEquipo.get(vars.MODELO),
-                                     infoEquipo.get(vars.SERIE),
-                                     infoEquipo.get(vars.MANUALES),
-                                     infoEquipo.get(vars.CODIGO),
-                                     infoEquipo.get(vars.UBICACION),
-                                     infoEquipo.get(vars.USO),
-                                     infoEquipo.get(vars.TAREAS)
-                    );
-            //nuevoEquipo.agregarDatosTecnicos();  
+            Equipo nuevoEquipo = new Equipo(infoEquipo);       
+            nuevoEquipo.agregarDatosTecnicos(datosTecnicos);
+            
             PMLIApp.getInstance().getSistema().agregarEquipo(nuevoEquipo);
         }          
         return validaciones;
     }
     
-    private boolean verificarResultadoValidaciones(List<String> strings) 
+    private boolean datosFueronValidados(List<String> strings) 
     {
         for ( String s : strings )
         {
-            if ( s.equals("") ) 
+            if ( !s.equals("") ) 
             {
                 return false;
             }

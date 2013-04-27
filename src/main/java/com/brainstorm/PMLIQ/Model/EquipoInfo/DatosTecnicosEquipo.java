@@ -4,12 +4,37 @@
  */
 package com.brainstorm.PMLIQ.Model.EquipoInfo;
 
+import com.brainstorm.PMLIQ.Control.ConstantesDatosTecnicos;
+import java.util.List;
+
 /**
  *
  * @author Silex RPR
  */
 public class DatosTecnicosEquipo {
 
+    private ConstantesDatosTecnicos vars = new ConstantesDatosTecnicos();
+    
+    public DatosTecnicosEquipo(List<String> datosTecnicos) {
+        
+        datosElectricos = new DatosElectricosEquipo(datosTecnicos.get(vars.VOLTAJE),
+                                                    datosTecnicos.get(vars.POTENCIA),
+                                                    datosTecnicos.get(vars.CORRIENTE),
+                                                    datosTecnicos.get(vars.FASES),
+                                                    datosTecnicos.get(vars.TIPO));
+        dimensiones = new DimensionesEquipo(datosTecnicos.get(vars.ALTO),
+                                            datosTecnicos.get(vars.ANCHO),
+                                            datosTecnicos.get(vars.PROFUNDO),
+                                            datosTecnicos.get(vars.PESO),
+                                            datosTecnicos.get(vars.USO));
+        
+        this.temperaturaAmbiente = Double.parseDouble(datosTecnicos.get(vars.AMBIENTE));
+        this.HR = Double.parseDouble(datosTecnicos.get(vars.HR));
+        this.otraOpcion = datosTecnicos.get(vars.OTRO);
+        this.requerimientosAdicionales = datosTecnicos.get(vars.REQUERIMIENTOS);
+        this.especificacionMedicion = datosTecnicos.get(vars.ESPECIFICACION);
+    }
+    
     public DatosElectricosEquipo getDatosElectricos() {
         return datosElectricos;
     }
