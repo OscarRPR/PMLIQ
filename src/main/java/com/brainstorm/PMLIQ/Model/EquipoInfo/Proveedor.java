@@ -4,11 +4,33 @@
  */
 package com.brainstorm.PMLIQ.Model.EquipoInfo;
 
+import com.brainstorm.PMLIQ.Control.Constantes.ConstantesAdquisicionEquipo;
+import java.util.List;
+
 /**
  *
  * @author Silex RPR
  */
 public class Proveedor {
+    
+    private ConstantesAdquisicionEquipo vars = new ConstantesAdquisicionEquipo();
+    
+    public Proveedor(List<String> datos) {
+        this.fabricante = datos.get(vars.FABRICANTE);
+        this.proveedor = datos.get(vars.PROVEEDOR);
+        this.NIT = datos.get(vars.NIT);
+        this.contacto = datos.get(vars.CONTACTO);
+        this.telefono = datos.get(vars.TELEFONO);
+        this.direccion = datos.get(vars.DIRECCION);
+        this.email = datos.get(vars.EMAIL);
+        
+        formaAdquisicion = new FormaAdquisicion(datos.get(vars.TIPO), 
+                                                datos.get(vars.PRECIO), 
+                                                datos.get(vars.USO), 
+                                                datos.get(vars.ADQUISICION), 
+                                                datos.get(vars.SERVICIO),
+                                                datos.get(vars.VIDAESTIMADA) );
+    }
 
     public String getFabricante() {
         return fabricante;

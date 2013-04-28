@@ -4,8 +4,8 @@
  */
 package com.brainstorm.PMLIQ.Model.Validation;
 
-import com.brainstorm.PMLIQ.Control.ConstantesDatosTecnicos;
-import com.brainstorm.PMLIQ.Control.ConstantesEquipos;
+import com.brainstorm.PMLIQ.Control.Constantes.ConstantesDatosTecnicos;
+import com.brainstorm.PMLIQ.Control.Constantes.ConstantesEquipos;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.ErrorValidacionException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfabeticoStringException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfanumericoStringException;
@@ -24,7 +24,7 @@ public class ValidacionDatosTecnicos extends Validacion{
     private ConstantesDatosTecnicos vars = new ConstantesDatosTecnicos();
     
     @Override
-    public String validarString(List<String> strings) throws ErrorValidacionException
+    public String validarString(final List<String> strings) throws ErrorValidacionException
     {
         String resultado = "";
         try

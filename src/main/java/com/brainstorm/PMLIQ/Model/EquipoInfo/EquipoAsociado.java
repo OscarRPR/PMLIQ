@@ -4,12 +4,22 @@
  */
 package com.brainstorm.PMLIQ.Model.EquipoInfo;
 
+import com.brainstorm.PMLIQ.Control.Constantes.ConstantesEquipoAsociado;
+import java.util.List;
+
 /**
  *
  * @author Silex RPR
  */
 public class EquipoAsociado {
-
+    
+    private ConstantesEquipoAsociado vars = new ConstantesEquipoAsociado();
+    
+    public EquipoAsociado(final List<String> equipoAsociado) {
+       this.nombre = equipoAsociado.get(vars.NOMBRE);
+       this.placaInventario = equipoAsociado.get(vars.PLACA);
+    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -26,5 +36,5 @@ public class EquipoAsociado {
         this.placaInventario = placaInventario;
     }
     
-    String nombre, placaInventario;
+    private String nombre, placaInventario;
 }

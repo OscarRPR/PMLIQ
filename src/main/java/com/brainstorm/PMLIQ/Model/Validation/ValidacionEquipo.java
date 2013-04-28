@@ -4,7 +4,7 @@
  */
 package com.brainstorm.PMLIQ.Model.Validation;
 
-import com.brainstorm.PMLIQ.Control.ConstantesEquipos;
+import com.brainstorm.PMLIQ.Control.Constantes.ConstantesEquipos;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.ErrorValidacionException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfabeticoStringException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfanumericoStringException;
@@ -20,7 +20,7 @@ public class ValidacionEquipo extends Validacion{
     private ConstantesEquipos vars = new ConstantesEquipos();
     
     @Override
-    public String validarString(List<String> strings) throws ErrorValidacionException
+    public String validarString(final List<String> strings) throws ErrorValidacionException
     {
         String resultado = "";
         try

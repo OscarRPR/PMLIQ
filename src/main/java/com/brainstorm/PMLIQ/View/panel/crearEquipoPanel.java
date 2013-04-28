@@ -4,12 +4,16 @@
  */
 package com.brainstorm.PMLIQ.View.panel;
 
+import com.brainstorm.PMLIQ.Model.EquipoInfo.Accesorio;
+import com.brainstorm.PMLIQ.Model.EquipoInfo.EquipoAsociado;
 import com.brainstorm.PMLIQ.View.PMLIApp;
 import com.brainstorm.PMLIQ.View.dialogs.CrearAccesorio;
 import com.brainstorm.PMLIQ.View.dialogs.CrearEquipoAsociado;
 import com.brainstorm.PMLIQ.View.dialogs.CrearPlanMantenimiento;
 import java.awt.CheckboxGroup;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 import javax.swing.AbstractButton;
@@ -25,6 +29,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     
     private final int DESCRIPCIONBASICA = 0;
     private final int DATOSTECNICOS = 1;
+    private final int ADQUISICION = 2;
 
     /**
      * Creates new form crearEquipoPanel
@@ -46,6 +51,15 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         bGroupUso.add(extensionCheckBox);
         
         docenciaCheckBox.setSelected(true);
+        
+        bGroupForma = new ButtonGroup();
+        bGroupForma.add(compraCheckBox);
+        bGroupForma.add(donacionCheckBox);
+        
+        compraCheckBox.setSelected(true);
+        
+        adquisicionDateChooser.setDate(new Date());
+        servicioDateChooser.setDate(new Date());
     }
 
     /**
@@ -185,34 +199,35 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         descripcionPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
-        jTextField20 = new javax.swing.JTextField();
-        jTextField21 = new javax.swing.JTextField();
+        fabricanteTextField = new javax.swing.JTextField();
+        nitTextField = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
-        jTextField22 = new javax.swing.JTextField();
-        jTextField23 = new javax.swing.JTextField();
+        proveedorTextField = new javax.swing.JTextField();
+        contactoTextField = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
-        jTextField25 = new javax.swing.JTextField();
+        telefonoTextField = new javax.swing.JTextField();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        jTextField26 = new javax.swing.JTextField();
-        jTextField27 = new javax.swing.JTextField();
+        emailTextField = new javax.swing.JTextField();
+        direccionTextField = new javax.swing.JTextField();
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jCheckBox8 = new javax.swing.JCheckBox();
+        compraCheckBox = new javax.swing.JCheckBox();
         jLabel29 = new javax.swing.JLabel();
-        jTextField24 = new javax.swing.JTextField();
-        jCheckBox9 = new javax.swing.JCheckBox();
+        precioTextField = new javax.swing.JTextField();
+        donacionCheckBox = new javax.swing.JCheckBox();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        usoSpinner = new javax.swing.JSpinner();
+        vidaSpinner = new javax.swing.JSpinner();
+        adquisicionDateChooser = new com.toedter.calendar.JDateChooser();
+        servicioDateChooser = new com.toedter.calendar.JDateChooser();
         guardarAdquisicionButton = new javax.swing.JButton();
         cancelarBoton4 = new javax.swing.JButton();
+        errorAdquisicionLabel = new javax.swing.JLabel();
 
         jLabel1.setText("CREANDO UN NUEVO EQUIPO");
 
@@ -747,8 +762,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                     .addComponent(requerimientosPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(dimensionesPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(datosElectricosPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(errorTecnicosLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, 0))
+                    .addComponent(errorTecnicosLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         datosTecnicosPanelLayout.setVerticalGroup(
             datosTecnicosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1200,35 +1214,35 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(proveedorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
-                                .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(contactoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(54, 54, 54)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addComponent(jLabel40)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel33)
                                             .addComponent(jLabel39))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                            .addComponent(nitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(telefonoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel35)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(direccionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(fabricanteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
@@ -1237,30 +1251,30 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fabricanteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(proveedorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel39))
                         .addGap(22, 22, 22))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel34)
-                    .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(contactoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel33)
-                    .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(telefonoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel35)
-                    .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel40)
-                    .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(direccionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
 
@@ -1279,11 +1293,11 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Forma de Adquisición"));
 
-        jCheckBox8.setText("Compra");
+        compraCheckBox.setText("Compra");
 
         jLabel29.setText("Precio");
 
-        jCheckBox9.setText("Donación");
+        donacionCheckBox.setText("Donación");
 
         jLabel31.setText("Tiempo de Uso (Años)");
 
@@ -1303,29 +1317,29 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel32)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(adquisicionDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jCheckBox8)
+                        .addComponent(compraCheckBox)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel29)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(precioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jCheckBox9)
+                        .addComponent(donacionCheckBox)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel31)
                         .addGap(18, 18, 18)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(usoSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel36)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(servicioDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel37)
                         .addGap(18, 18, 18)
-                        .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(vidaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -1333,21 +1347,21 @@ public class crearEquipoPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox8)
+                    .addComponent(compraCheckBox)
                     .addComponent(jLabel29)
-                    .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox9)
+                    .addComponent(precioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(donacionCheckBox)
                     .addComponent(jLabel31)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usoSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel32)
                         .addComponent(jLabel36)
                         .addComponent(jLabel37)
-                        .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(vidaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(adquisicionDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(servicioDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -1360,22 +1374,26 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         cancelarBoton4.setText("Cancelar");
 
+        errorAdquisicionLabel.setForeground(java.awt.Color.red);
+
         javax.swing.GroupLayout adquisicionPanelLayout = new javax.swing.GroupLayout(adquisicionPanel);
         adquisicionPanel.setLayout(adquisicionPanelLayout);
         adquisicionPanelLayout.setHorizontalGroup(
             adquisicionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adquisicionPanelLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(adquisicionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(adquisicionPanelLayout.createSequentialGroup()
-                        .addComponent(guardarAdquisicionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cancelarBoton4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(adquisicionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(descripcionPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tituloPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(10, 10, 10))
+            .addGroup(adquisicionPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(adquisicionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(adquisicionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(adquisicionPanelLayout.createSequentialGroup()
+                            .addComponent(guardarAdquisicionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(cancelarBoton4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(adquisicionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(errorAdquisicionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(descripcionPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(tituloPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
         adquisicionPanelLayout.setVerticalGroup(
             adquisicionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1386,11 +1404,13 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addComponent(descripcionPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(2, 2, 2)
+                .addComponent(errorAdquisicionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(adquisicionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarAdquisicionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarBoton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
 
         adquisicionScrollPane.setViewportView(adquisicionPanel);
@@ -1418,7 +1438,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_tipoComboBoxActionPerformed
 
     private void nuevoAccesorioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoAccesorioButtonActionPerformed
-        CrearAccesorio crearAccesorio = new CrearAccesorio(PMLIApp.getInstance().getMainWindow(), true);
+        CrearAccesorio crearAccesorio = new CrearAccesorio(PMLIApp.getInstance().getMainWindow(), true, accesorios);
         
         crearAccesorio.setLocationRelativeTo(null);
         crearAccesorio.setVisible(true);
@@ -1429,7 +1449,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_eliminarAccesorioButtonActionPerformed
 
     private void nuevoAccesorioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoAccesorioButton1ActionPerformed
-        CrearEquipoAsociado crearEquipoAsociado = new CrearEquipoAsociado(PMLIApp.getInstance().getMainWindow(), true);
+        CrearEquipoAsociado crearEquipoAsociado = new CrearEquipoAsociado(PMLIApp.getInstance().getMainWindow(), true, equipos);
         
         crearEquipoAsociado.setLocationRelativeTo(null);
         crearEquipoAsociado.setVisible(true);
@@ -1487,11 +1507,14 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     public void guardarDatosEquipo() {
         List<String> infoEquipo = getDatosBasicosEquipo();
         List<String> datosTecnicosEquipo = getDatosTecnicosEquipo();
+        List<String> adquisicionEquipo = getDatosAdquisicionEquipo();
  
         List<String> resultados = PMLIApp.getInstance().getAdmEquipos().crearEquipo(infoEquipo,
-                                                                        datosTecnicosEquipo);
+                                                                        datosTecnicosEquipo,
+                                                                        adquisicionEquipo);
         errorBasicaLabel.setText(resultados.get(DESCRIPCIONBASICA));
         errorTecnicosLabel.setText(resultados.get(DATOSTECNICOS));
+        errorAdquisicionLabel.setText(resultados.get(ADQUISICION));
         
         setCurrentErrorTab(resultados);
     }
@@ -1537,6 +1560,27 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         return strings;
     }
     
+    public List<String> getDatosAdquisicionEquipo() {
+        List<String> strings = new ArrayList<String>();
+        SimpleDateFormat formateador = new SimpleDateFormat("dd-MM-yyyy");
+        
+        strings.add(fabricanteTextField.getText());
+        strings.add(proveedorTextField.getText());
+        strings.add(nitTextField.getText());
+        strings.add(contactoTextField.getText());
+        strings.add(telefonoTextField.getText());
+        strings.add(direccionTextField.getText());
+        strings.add(emailTextField.getText());
+        strings.add(getSelectedButtonText(bGroupForma));
+        strings.add(precioTextField.getText());
+        strings.add(usoSpinner.getValue().toString());
+        strings.add(formateador.format(adquisicionDateChooser.getDate()));
+        strings.add(formateador.format(servicioDateChooser.getDate()));
+        strings.add(vidaSpinner.getValue().toString());
+        
+        return strings;
+    }
+    
     public String getSelectedButtonText(ButtonGroup buttonGroup) 
     {
         for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
@@ -1550,7 +1594,10 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         return null;
     }
     
-    private ButtonGroup bGroupManual, bGroupUso;
+    
+    private List<Accesorio> accesorios = new ArrayList<Accesorio>();
+    private List<EquipoAsociado> equipos = new ArrayList<EquipoAsociado>();
+    private ButtonGroup bGroupManual, bGroupUso, bGroupForma;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel accesoriosPanel;
@@ -1558,6 +1605,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JPanel accionesPanel;
     private javax.swing.JPanel accionesPanel1;
     private javax.swing.JPanel accionesPanel2;
+    private com.toedter.calendar.JDateChooser adquisicionDateChooser;
     private javax.swing.JPanel adquisicionPanel;
     private javax.swing.JScrollPane adquisicionScrollPane;
     private javax.swing.JTextField altoTextField;
@@ -1578,6 +1626,8 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JButton cancelarTecnicosButton;
     private javax.swing.JTextField claseTextField;
     private javax.swing.JTextField codigoTextField;
+    private javax.swing.JCheckBox compraCheckBox;
+    private javax.swing.JTextField contactoTextField;
     private javax.swing.JTextField corrienteTextField;
     private javax.swing.JTabbedPane creacionEquipoTabPanel;
     private javax.swing.JPanel datosElectricosPanel;
@@ -1588,16 +1638,21 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JPanel descripcionPanel;
     private javax.swing.JPanel descripcionPanel1;
     private javax.swing.JPanel dimensionesPanel;
+    private javax.swing.JTextField direccionTextField;
     private javax.swing.JCheckBox docenciaCheckBox;
+    private javax.swing.JCheckBox donacionCheckBox;
     private javax.swing.JButton eliminarAccesorioButton;
     private javax.swing.JButton eliminarAccesorioButton1;
     private javax.swing.JButton eliminarMantenimientoButton;
+    private javax.swing.JTextField emailTextField;
     private javax.swing.JPanel equiposAsociadosPanel;
     private javax.swing.JScrollPane equiposAsociadosScrollPane;
+    private javax.swing.JLabel errorAdquisicionLabel;
     private javax.swing.JLabel errorBasicaLabel;
     private javax.swing.JLabel errorTecnicosLabel;
     private javax.swing.JTextArea especificacionTextArea;
     private javax.swing.JCheckBox extensionCheckBox;
+    private javax.swing.JTextField fabricanteTextField;
     private javax.swing.JTextField fasesTextField;
     private javax.swing.JComboBox filtroComboBox;
     private javax.swing.JComboBox filtroComboBox1;
@@ -1611,10 +1666,6 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JTextField hrTextField;
     private javax.swing.JCheckBox instalacionCheckBox;
     private javax.swing.JCheckBox investigacionCheckBox;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1660,16 +1711,6 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField23;
-    private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField26;
-    private javax.swing.JTextField jTextField27;
     private javax.swing.JCheckBox labCheckBox;
     private javax.swing.JList listaEquiposList;
     private javax.swing.JList listaEquiposList2;
@@ -1678,6 +1719,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane mantenimientoScrollPane;
     private javax.swing.JTextField marcaTextField;
     private javax.swing.JTextField modeloTextField;
+    private javax.swing.JTextField nitTextField;
     private javax.swing.JTextField nombreTextField;
     private javax.swing.JButton nuevoAccesorioButton;
     private javax.swing.JButton nuevoAccesorioButton1;
@@ -1686,7 +1728,9 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JTextField pesoTextField;
     private javax.swing.JTextField placaTextField;
     private javax.swing.JTextField potenciaTextField;
+    private javax.swing.JTextField precioTextField;
     private javax.swing.JTextField profundoTextField;
+    private javax.swing.JTextField proveedorTextField;
     private javax.swing.JPanel requerimientosPanel;
     private javax.swing.JPanel requerimientosPanel2;
     private javax.swing.JTextArea requerimientosTextArea;
@@ -1697,9 +1741,11 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JLabel separadorLabel1;
     private javax.swing.JLabel separadorLabel2;
     private javax.swing.JTextField serieTextField;
+    private com.toedter.calendar.JDateChooser servicioDateChooser;
     private javax.swing.JPanel tareasPanel;
     private javax.swing.JTextArea tareasTextArea;
     private javax.swing.JCheckBox tecnicoCheckBox;
+    private javax.swing.JTextField telefonoTextField;
     private javax.swing.JComboBox tipoComboBox;
     private javax.swing.JComboBox tipoModeloComboBox;
     private javax.swing.JPanel tituloPanel;
@@ -1707,7 +1753,9 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JPanel tituloPanel2;
     private javax.swing.JTextField ubicacionTextField;
     private javax.swing.JComboBox usoComboBox;
+    private javax.swing.JSpinner usoSpinner;
     private javax.swing.JCheckBox usuarioCheckBox;
+    private javax.swing.JSpinner vidaSpinner;
     private javax.swing.JTextField voltajeTextField;
     // End of variables declaration//GEN-END:variables
 }

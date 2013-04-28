@@ -11,6 +11,27 @@ import com.brainstorm.PMLIQ.Model.Datatypes.Fecha;
  * @author Silex RPR
  */
 public class FormaAdquisicion {
+    
+    private final String COMPRA = "Compra";
+    private final String DONACION = "Donación";
+    
+    public FormaAdquisicion(String tipo, String precio, String uso, String adquisicion,
+                            String servicio, String vidaEstimada) {
+        
+        compra = true;
+        donacion = false;
+        
+        if ( tipo.equals(DONACION) ){
+            compra = false;
+            donacion = true;
+        }
+        
+        this.valorCompra = precio;
+        this.tiempoUso = Integer.parseInt(uso);
+        this.fechaAdquisicion = new Fecha(adquisicion);
+        this.puestaEnServicio = new Fecha(servicio);
+        this.vidaUtil = Integer.parseInt(vidaEstimada);
+    }
 
     public boolean isCompra() {
         return compra;

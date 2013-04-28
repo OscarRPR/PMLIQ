@@ -4,7 +4,7 @@
  */
 package com.brainstorm.PMLIQ.Model.EquipoInfo;
 
-import com.brainstorm.PMLIQ.Control.ConstantesDatosTecnicos;
+import com.brainstorm.PMLIQ.Control.Constantes.ConstantesDatosTecnicos;
 import java.util.List;
 
 /**
