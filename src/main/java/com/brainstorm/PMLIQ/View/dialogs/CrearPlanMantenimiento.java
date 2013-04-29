@@ -4,7 +4,11 @@
  */
 package com.brainstorm.PMLIQ.View.dialogs;
 
+import com.brainstorm.PMLIQ.Model.EquipoInfo.Actividad;
+import com.brainstorm.PMLIQ.Model.EquipoInfo.PlanMantenimiento;
 import com.brainstorm.PMLIQ.View.PMLIApp;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,12 +19,14 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
     /**
      * Creates new form CrearPlanMantenimiento
      */
-    public CrearPlanMantenimiento(java.awt.Frame parent, boolean modal) {
+    public CrearPlanMantenimiento(java.awt.Frame parent, boolean modal, List<PlanMantenimiento> planes) {
         super(parent, modal);
         initComponents();
         
         setTitle("Añadiendo un plan de mantenimiento");
         setResizable(false);
+        
+        this.planes = planes;
 
     }
 
@@ -37,26 +43,27 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        nombreTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        tipoComboBox = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        codigoTextField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        responsableTextField = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jSpinner4 = new javax.swing.JSpinner();
+        maxRegistrosSpinner = new javax.swing.JSpinner();
         jLabel10 = new javax.swing.JLabel();
-        jSpinner5 = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
+        usoSpinner = new javax.swing.JSpinner();
+        guardarButton = new javax.swing.JButton();
         cancelarButton = new javax.swing.JButton();
         mantenimientoPanel = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         añadirChecklistButton = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        editarCheckListButton = new javax.swing.JButton();
+        eliminarChecklistButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        checkList = new javax.swing.JList();
+        errorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -68,7 +75,7 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
 
         jLabel3.setText("Tipo Plan");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Preventivo" }));
+        tipoComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Preventivo", "Calibracion" }));
 
         jLabel6.setText("Código");
 
@@ -88,27 +95,27 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(codigoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField3))
+                        .addComponent(responsableTextField))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(maxRegistrosSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jSpinner5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(usoSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -117,25 +124,30 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(codigoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(responsableTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maxRegistrosSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(jSpinner5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usoSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        jButton1.setText("Guardar");
+        guardarButton.setText("Guardar");
+        guardarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarButtonActionPerformed(evt);
+            }
+        });
 
         cancelarButton.setText("Cancelar");
         cancelarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -155,16 +167,11 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
             }
         });
 
-        jButton3.setText("O");
+        editarCheckListButton.setText("O");
 
-        jButton4.setText("-");
+        eliminarChecklistButton.setText("-");
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(checkList);
 
         javax.swing.GroupLayout mantenimientoPanelLayout = new javax.swing.GroupLayout(mantenimientoPanel);
         mantenimientoPanel.setLayout(mantenimientoPanelLayout);
@@ -178,9 +185,9 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(añadirChecklistButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(editarCheckListButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(eliminarChecklistButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         mantenimientoPanelLayout.setVerticalGroup(
@@ -192,12 +199,14 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
                         .addGroup(mantenimientoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(añadirChecklistButton)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4))
+                            .addComponent(editarCheckListButton)
+                            .addComponent(eliminarChecklistButton))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        errorLabel.setForeground(java.awt.Color.red);
 
         javax.swing.GroupLayout planPanelLayout = new javax.swing.GroupLayout(planPanel);
         planPanel.setLayout(planPanelLayout);
@@ -212,15 +221,16 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
                         .addGap(178, 178, 178))
                     .addGroup(planPanelLayout.createSequentialGroup()
                         .addGroup(planPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(errorLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(mantenimientoPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(11, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, planPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(guardarButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cancelarButton)
-                .addGap(14, 14, 14))
+                .addContainerGap())
         );
         planPanelLayout.setVerticalGroup(
             planPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,13 +239,15 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
                 .addComponent(jLabel1)
                 .addGap(26, 26, 26)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mantenimientoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(planPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(cancelarButton))
-                .addGap(20, 20, 20))
+                    .addComponent(cancelarButton)
+                    .addComponent(guardarButton))
+                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -263,6 +275,41 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
         crearElementoCheckList.setVisible(true);
     }//GEN-LAST:event_añadirChecklistButtonActionPerformed
 
+    private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
+        List<String> planEquipo = getDatosPlanMantenimiento();
+ 
+        String resultados = PMLIApp.getInstance().getAdmEquipos().validarDatosPlanMantenimiento(planEquipo);
+        errorLabel.setText(resultados);
+
+        if ( resultados.equals("") )
+        {
+            planes.add(PMLIApp.getInstance().getAdmEquipos().crearPlanMantenimiento(planEquipo, actividades));
+            this.dispose();
+        }
+    }//GEN-LAST:event_guardarButtonActionPerformed
+
+    private List<String> getDatosPlanMantenimiento() {
+        List<String> strings = new ArrayList<String>();
+
+        strings.add(nombreTextField.getText());
+        strings.add(codigoTextField.getText());
+        strings.add(tipoComboBox.getSelectedItem().toString());
+        strings.add(responsableTextField.getText());
+        strings.add(maxRegistrosSpinner.getValue().toString());
+        strings.add(usoSpinner.getValue().toString());
+
+        String resultadoLista = "";
+        if (  checkList.getModel().getSize() > 0 )
+        {
+            resultadoLista = "Tiene informacion";
+        }
+        
+        strings.add(resultadoLista);
+        
+        return strings;
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -293,7 +340,7 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CrearPlanMantenimiento dialog = new CrearPlanMantenimiento(new javax.swing.JFrame(), true);
+                CrearPlanMantenimiento dialog = new CrearPlanMantenimiento(new javax.swing.JFrame(), true, new ArrayList<PlanMantenimiento>());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -304,13 +351,19 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
             }
         });
     }
+    
+    private List<PlanMantenimiento> planes = new ArrayList<PlanMantenimiento>();
+    private List<Actividad> actividades = new ArrayList<Actividad>();
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton añadirChecklistButton;
     private javax.swing.JButton cancelarButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JList checkList;
+    private javax.swing.JTextField codigoTextField;
+    private javax.swing.JButton editarCheckListButton;
+    private javax.swing.JButton eliminarChecklistButton;
+    private javax.swing.JLabel errorLabel;
+    private javax.swing.JButton guardarButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -319,15 +372,14 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner4;
-    private javax.swing.JSpinner jSpinner5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel mantenimientoPanel;
+    private javax.swing.JSpinner maxRegistrosSpinner;
+    private javax.swing.JTextField nombreTextField;
     private javax.swing.JPanel planPanel;
+    private javax.swing.JTextField responsableTextField;
+    private javax.swing.JComboBox tipoComboBox;
+    private javax.swing.JSpinner usoSpinner;
     // End of variables declaration//GEN-END:variables
 }

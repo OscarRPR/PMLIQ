@@ -27,24 +27,6 @@ public class Equipo {
 
     private ConstantesEquipos varsBas = new ConstantesEquipos();
     
-    public Equipo(String nombre, String placaInventario, String claseEquipo, String tipoEquipo, 
-                  String marca, String modelo, String serieEquipo, String tipoManual,
-                  String codigoDocumento, String ubicacionEnLaboratorio, String usoEquipo, 
-                  String tareasEquipo) {
-        this.nombre = nombre;
-        this.placaInventario = placaInventario;
-        this.claseEquipo = claseEquipo;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.tipoEquipo = TipoEquipo.valueOf(tipoEquipo.toUpperCase());
-        this.serieEquipo = serieEquipo;
-        this.codigoDocumento = codigoDocumento;
-        this.tipoManual = TipoManual.valueOf(tipoManual.toUpperCase());
-        this.ubicacionEnLaboratorio = ubicacionEnLaboratorio;
-        this.usoEquipo = UsoEquipo.valueOf(usoEquipo.toUpperCase());
-        this.tareasEquipo = tareasEquipo;
-    }
-    
     public Equipo(List<String> infoEquipo) {
         this.nombre = infoEquipo.get(varsBas.NOMBRE);
         this.placaInventario = infoEquipo.get(varsBas.PLACAINVENTARIO);
@@ -64,6 +46,14 @@ public class Equipo {
         datosTecnicosEquipo = new DatosTecnicosEquipo(datos);
     }
 
+    public void agregarAccesorios(List<Accesorio> accesorios) {
+        this.accesorios = accesorios;
+    }
+    
+    public void agregarEquiposAsociados(List<EquipoAsociado> equipos) {
+        this.equiposAsociados = equipos;
+    }
+    
     public void agregarDatosAdquisicion(List<String> datos) {
         metodoAdquisicion = new Proveedor(datos);
     }

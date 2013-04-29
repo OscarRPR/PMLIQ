@@ -9,6 +9,7 @@ import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfabeticoStringE
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfanumericoStringException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoNumericoDoubleException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoNumericoStringException;
+import com.brainstorm.PMLIQ.Model.Validation.Exceptions.LongitudListaException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.LongitudStringException;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -84,6 +85,13 @@ public abstract class Validacion {
         }
     }    
     
+    public void longitudLista(String tipo, String aValidar) throws LongitudListaException {
+        if ( aValidar.equals("") )
+        {
+            throw new LongitudListaException(tipo);
+        }
+    }
+    
     protected String crearErrorLongitudString(String tipo, int minimo, int maximo) 
     {
         return tipo + " debe tener una longitud mínima de " + minimo + " caracteres y "
@@ -108,5 +116,10 @@ public abstract class Validacion {
     protected String crearErrorFormatoDouble(String tipo) 
     {
         return tipo + " debe ser un valor numerico de tipo entero o decimal.";
+    }
+    
+    protected String crearErrorLongitudLista(String tipo) 
+    {
+        return tipo + " debe poseer como minimo un registro en su lista.";
     }
 }

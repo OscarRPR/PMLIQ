@@ -6,6 +6,7 @@ package com.brainstorm.PMLIQ.View.panel;
 
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Accesorio;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.EquipoAsociado;
+import com.brainstorm.PMLIQ.Model.EquipoInfo.PlanMantenimiento;
 import com.brainstorm.PMLIQ.View.PMLIApp;
 import com.brainstorm.PMLIQ.View.dialogs.CrearAccesorio;
 import com.brainstorm.PMLIQ.View.dialogs.CrearEquipoAsociado;
@@ -29,7 +30,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     
     private final int DESCRIPCIONBASICA = 0;
     private final int DATOSTECNICOS = 1;
-    private final int ADQUISICION = 2;
+    private final int ADQUISICION = 3;
 
     /**
      * Creates new form crearEquipoPanel
@@ -1460,7 +1461,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_eliminarAccesorioButton1ActionPerformed
 
     private void nuevoMantenimientoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoMantenimientoButtonActionPerformed
-        CrearPlanMantenimiento crearPlanMantenimiento = new CrearPlanMantenimiento(PMLIApp.getInstance().getMainWindow(), true);
+        CrearPlanMantenimiento crearPlanMantenimiento = new CrearPlanMantenimiento(PMLIApp.getInstance().getMainWindow(), true, planes);
         
         crearPlanMantenimiento.setLocationRelativeTo(null);
         crearPlanMantenimiento.setVisible(true);
@@ -1511,6 +1512,8 @@ public class crearEquipoPanel extends javax.swing.JPanel {
  
         List<String> resultados = PMLIApp.getInstance().getAdmEquipos().crearEquipo(infoEquipo,
                                                                         datosTecnicosEquipo,
+                                                                        accesorios,
+                                                                        equipos,
                                                                         adquisicionEquipo);
         errorBasicaLabel.setText(resultados.get(DESCRIPCIONBASICA));
         errorTecnicosLabel.setText(resultados.get(DATOSTECNICOS));
@@ -1597,6 +1600,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     
     private List<Accesorio> accesorios = new ArrayList<Accesorio>();
     private List<EquipoAsociado> equipos = new ArrayList<EquipoAsociado>();
+    private List<PlanMantenimiento> planes = new ArrayList<PlanMantenimiento>();
     private ButtonGroup bGroupManual, bGroupUso, bGroupForma;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

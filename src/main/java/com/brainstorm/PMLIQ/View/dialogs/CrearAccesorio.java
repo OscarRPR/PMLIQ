@@ -9,6 +9,7 @@ import com.brainstorm.PMLIQ.View.PMLIApp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 
 /**
@@ -188,7 +189,8 @@ public class CrearAccesorio extends javax.swing.JDialog {
     public static void main(String args[]) {
         JFrame.setDefaultLookAndFeelDecorated(true);
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable()*/Runnable doWorkRunnable = new Runnable() {
+            @Override
             public void run() {
                 SubstanceLookAndFeel.setSkin("org.pushingpixels.substance.api.skin.SaharaSkin");
                 CrearAccesorio dialog = new CrearAccesorio(new javax.swing.JFrame(), true, new ArrayList<Accesorio>());
@@ -200,7 +202,9 @@ public class CrearAccesorio extends javax.swing.JDialog {
                 });
                 dialog.setVisible(true);
             }
-        });
+        };
+        
+         SwingUtilities.invokeLater(doWorkRunnable);
     }
     
     private List<Accesorio> accesorios = new ArrayList<Accesorio>();
