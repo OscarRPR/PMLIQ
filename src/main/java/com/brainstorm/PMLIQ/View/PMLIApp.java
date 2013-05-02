@@ -5,6 +5,7 @@
 package com.brainstorm.PMLIQ.View;
 
 import com.brainstorm.PMLIQ.Control.AdministrarEquipos;
+import com.brainstorm.PMLIQ.Control.AdministrarFabricantes;
 import com.brainstorm.PMLIQ.Model.Sistema;
 import com.brainstorm.PMLIQ.View.ventana.MainWindow;
 import java.util.logging.Level;
@@ -25,12 +26,16 @@ public class PMLIApp {
     private Sistema sistema;
     
     private AdministrarEquipos admEquipos;
+    private AdministrarFabricantes admFabricantes;
     
     private PMLIApp()
     {
         admEquipos = new AdministrarEquipos();
+        admFabricantes = new AdministrarFabricantes();
+        
         sistema = new Sistema();
         sistema.inicializaEquipos();
+        sistema.inicializaFabricantes();
     }
     
     public static void main(String[] args) {
@@ -84,8 +89,14 @@ public class PMLIApp {
     public AdministrarEquipos getAdmEquipos() {
         return admEquipos;
     }
-    
-    
-    
+
+    public AdministrarFabricantes getAdmFabricantes() {
+        return admFabricantes;
+    }
+
+    public void setAdmFabricantes(AdministrarFabricantes admFabricantes) {
+        this.admFabricantes = admFabricantes;
+    }
+ 
     private static PMLIApp m_this;
 }

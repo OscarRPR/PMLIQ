@@ -9,9 +9,11 @@ import com.brainstorm.PMLIQ.Model.EquipoInfo.Accesorio;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Actividad;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.EquipoAsociado;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.PlanMantenimiento;
+import com.brainstorm.PMLIQ.Model.Inventario.Item;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.ErrorValidacionException;
 import com.brainstorm.PMLIQ.Model.Validation.Validacion;
 import com.brainstorm.PMLIQ.Model.Validation.ValidacionAccesorioEquipo;
+import com.brainstorm.PMLIQ.Model.Validation.ValidacionActividadChecklist;
 import com.brainstorm.PMLIQ.Model.Validation.ValidacionAdquisicionEquipo;
 import com.brainstorm.PMLIQ.Model.Validation.ValidacionDatosTecnicos;
 import com.brainstorm.PMLIQ.Model.Validation.ValidacionEquipo;
@@ -29,18 +31,20 @@ public class AdministrarEquipos {
     
     private final String validacionAccesorio = "";
     private final String validacionEquipoAsociado = "";
+    private final String validacionPlanMantenimiento = "";
         
     private Validacion validacion = new ValidacionEquipo();
     
     public List<String> crearEquipo(List<String> infoEquipo, List<String> datosTecnicos,
                                     List<Accesorio> accesorios, List<EquipoAsociado> equipos,
-                                    List<String> adquisicion)
+                                    List<PlanMantenimiento> planes, List<String> adquisicion)
     {
         List<String> validaciones = new ArrayList<String>();
         validaciones.add(validacionDatosEquipo(infoEquipo));
         validaciones.add(validacionDatosTecnicos(datosTecnicos));
         validaciones.add(validacionAccesorio);
         validaciones.add(validacionEquipoAsociado);
+        validaciones.add(validacionPlanMantenimiento);
         validaciones.add(validacionAdquisicionEquipo(adquisicion));
         
         if ( datosFueronValidados(validaciones) ) 
@@ -49,10 +53,12 @@ public class AdministrarEquipos {
             nuevoEquipo.agregarDatosTecnicos(datosTecnicos);
             nuevoEquipo.agregarAccesorios(accesorios);
             nuevoEquipo.agregarEquiposAsociados(equipos);
+            nuevoEquipo.agregarPlanesDeMantenimiento(planes);
             nuevoEquipo.agregarDatosAdquisicion(adquisicion);
-            
+
             PMLIApp.getInstance().getSistema().agregarEquipo(nuevoEquipo);
-        }          
+        }   
+        
         return validaciones;
     }
     
@@ -66,6 +72,10 @@ public class AdministrarEquipos {
     
     public String validarDatosPlanMantenimiento(List<String> plan) {
         return validacionPlanMantenimiento(plan);
+    }
+    
+    public String validarDatosActividadChecklist(List<String> actividad, List<String> strings) {
+        return validacionDatos(new ValidacionActividadChecklist(), actividad, strings);
     }
 
     public Accesorio crearAccesorio(List<String> accesorioEquipo) {
@@ -83,6 +93,11 @@ public class AdministrarEquipos {
         return nuevoPlan;
     }
     
+    public Actividad crearActividadChecklist(List<String> plan, List<Item> partes) {
+        Actividad nuevaActividad = new Actividad(plan, partes);
+        return nuevaActividad;
+    }
+    
     private boolean datosFueronValidados(List<String> strings) 
     {
         for ( String s : strings )
@@ -93,6 +108,22 @@ public class AdministrarEquipos {
             }
         }
         return true;
+    }
+    
+    private String validacionDatos(Validacion tipoValidacion, List<String> strings, List<String> repetidos) {
+        String resultadoValidacion;
+        validacion = tipoValidacion;
+        
+        try 
+        {
+            resultadoValidacion = validacion.validarString(strings);
+            resultadoValidacion = validacion.validarValorRepetidoString(strings, repetidos);
+        }
+        catch(ErrorValidacionException ex) {
+            resultadoValidacion = ex.getMessage();
+        }
+
+        return resultadoValidacion;        
     }
 
     private String validacionDatosEquipo(List<String> strings)

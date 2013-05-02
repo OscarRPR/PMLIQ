@@ -11,6 +11,7 @@ import com.brainstorm.PMLIQ.Model.Enum.UsoEquipo;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Accesorio;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.DatosTecnicosEquipo;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.EquipoAsociado;
+import com.brainstorm.PMLIQ.Model.EquipoInfo.PlanMantenimiento;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Proveedor;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.LongitudStringException;
 import com.brainstorm.PMLIQ.Model.Validation.Validacion;
@@ -55,7 +56,11 @@ public class Equipo {
     }
     
     public void agregarDatosAdquisicion(List<String> datos) {
-        metodoAdquisicion = new Proveedor(datos);
+        this.metodoAdquisicion = new Proveedor(datos);
+    }
+    
+    public void agregarPlanesDeMantenimiento(List<PlanMantenimiento> planes) {
+        this.planes = planes;
     }
     
     public String getNombre() {
@@ -165,6 +170,6 @@ public class Equipo {
     private DatosTecnicosEquipo datosTecnicosEquipo;
     private List<Accesorio> accesorios = new ArrayList<Accesorio>();
     private List<EquipoAsociado> equiposAsociados = new ArrayList<EquipoAsociado>();
+    private List<PlanMantenimiento> planes = new ArrayList<PlanMantenimiento>();
     private Proveedor metodoAdquisicion;
-      
 }

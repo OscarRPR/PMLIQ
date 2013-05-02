@@ -4,6 +4,7 @@
  */
 package com.brainstorm.PMLIQ.Model.Validation;
 
+import com.brainstorm.PMLIQ.Model.Validation.Exceptions.ErrorDatosRepetidosStringException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.ErrorValidacionException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfabeticoStringException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfanumericoStringException;
@@ -22,6 +23,10 @@ import java.util.regex.Pattern;
 public abstract class Validacion {
     
     public String validarString(final List<String> strings) throws ErrorValidacionException {
+        return null;
+    }
+    
+    public String validarValorRepetidoString(final List<String> strings, final List<String> repetidos) throws ErrorValidacionException {
         return null;
     }
 
@@ -50,7 +55,7 @@ public abstract class Validacion {
     
     public void formatoAlfanumericoString(String tipo, String aValidar) throws FormatoAlfanumericoStringException 
     {
-        Pattern patternNombre = Pattern.compile("[^A-Za-zñáéíóú0123456789 ]");
+        Pattern patternNombre = Pattern.compile("[^A-Za-zñáéíóú0123456789\n ]");
         Matcher matcherNombre = patternNombre.matcher(aValidar);
 
 	boolean esCadena = false;
@@ -92,6 +97,15 @@ public abstract class Validacion {
         }
     }
     
+    public void datoRepetido(String tipo, String nombre, List<String> repetidos) throws ErrorDatosRepetidosStringException {
+        for(String s : repetidos) {
+                if (s.equals(nombre))
+                {
+                    throw new ErrorDatosRepetidosStringException(tipo);
+                }
+            }
+    }
+    
     protected String crearErrorLongitudString(String tipo, int minimo, int maximo) 
     {
         return tipo + " debe tener una longitud mínima de " + minimo + " caracteres y "
@@ -121,5 +135,10 @@ public abstract class Validacion {
     protected String crearErrorLongitudLista(String tipo) 
     {
         return tipo + " debe poseer como minimo un registro en su lista.";
+    }
+    
+    protected String crearErrorDatoRepetidoString(String tipo) 
+    {
+        return tipo + " ya existe en la lista. No se admiten valores repetidos.";
     }
 }

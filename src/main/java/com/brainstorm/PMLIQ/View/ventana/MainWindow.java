@@ -4,6 +4,9 @@
  */
 package com.brainstorm.PMLIQ.View.ventana;
 
+import com.brainstorm.PMLIQ.View.PMLIApp;
+import com.brainstorm.PMLIQ.View.dialogs.CrearEquipoAsociado;
+import com.brainstorm.PMLIQ.View.dialogs.CrearFabricanteDialog;
 import com.brainstorm.PMLIQ.View.panel.crearEquipoPanel;
 import com.brainstorm.PMLIQ.View.panel.crearItemInventarioPanel;
 import java.util.logging.Level;
@@ -62,6 +65,17 @@ public class MainWindow extends javax.swing.JFrame {
         verCVPDFButton1 = new javax.swing.JButton();
         listaScrollPanel1 = new javax.swing.JScrollPane();
         listaEquiposList1 = new javax.swing.JList();
+        fabricantesPanel = new javax.swing.JPanel();
+        buscarInventarioPanel1 = new javax.swing.JPanel();
+        buscarInternalPanel2 = new javax.swing.JPanel();
+        filtroComboBox2 = new javax.swing.JComboBox();
+        buscarTextField2 = new javax.swing.JTextField();
+        separadorLabel2 = new javax.swing.JLabel();
+        accionesPanel2 = new javax.swing.JPanel();
+        nuevoFabricanteButton = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
+        listaScrollPanel2 = new javax.swing.JScrollPane();
+        listaEquiposList2 = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -169,11 +183,6 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        listaEquiposList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         listaScrollPanel.setViewportView(listaEquiposList);
 
         javax.swing.GroupLayout hojasPanelLayout = new javax.swing.GroupLayout(hojasPanel);
@@ -288,11 +297,6 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        listaEquiposList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         listaScrollPanel1.setViewportView(listaEquiposList1);
 
         javax.swing.GroupLayout inventarioPanelLayout = new javax.swing.GroupLayout(inventarioPanel);
@@ -323,6 +327,122 @@ public class MainWindow extends javax.swing.JFrame {
         );
 
         appTabPanel.addTab("Inventario", inventarioPanel);
+
+        buscarInternalPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR"));
+
+        filtroComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        buscarTextField2.setForeground(new java.awt.Color(255, 153, 0));
+        buscarTextField2.setText("Buscar");
+        buscarTextField2.setDisabledTextColor(new java.awt.Color(255, 204, 0));
+
+        separadorLabel2.setText(" :");
+
+        javax.swing.GroupLayout buscarInternalPanel2Layout = new javax.swing.GroupLayout(buscarInternalPanel2);
+        buscarInternalPanel2.setLayout(buscarInternalPanel2Layout);
+        buscarInternalPanel2Layout.setHorizontalGroup(
+            buscarInternalPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buscarInternalPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(filtroComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(separadorLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buscarTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                .addGap(16, 16, 16))
+        );
+        buscarInternalPanel2Layout.setVerticalGroup(
+            buscarInternalPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buscarInternalPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(buscarInternalPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(filtroComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(separadorLabel2))
+                .addGap(25, 25, 25))
+        );
+
+        javax.swing.GroupLayout buscarInventarioPanel1Layout = new javax.swing.GroupLayout(buscarInventarioPanel1);
+        buscarInventarioPanel1.setLayout(buscarInventarioPanel1Layout);
+        buscarInventarioPanel1Layout.setHorizontalGroup(
+            buscarInventarioPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buscarInventarioPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(buscarInternalPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        buscarInventarioPanel1Layout.setVerticalGroup(
+            buscarInventarioPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buscarInventarioPanel1Layout.createSequentialGroup()
+                .addComponent(buscarInternalPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+        );
+
+        nuevoFabricanteButton.setText("Nuevo");
+        nuevoFabricanteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoFabricanteButtonActionPerformed(evt);
+            }
+        });
+
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout accionesPanel2Layout = new javax.swing.GroupLayout(accionesPanel2);
+        accionesPanel2.setLayout(accionesPanel2Layout);
+        accionesPanel2Layout.setHorizontalGroup(
+            accionesPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(accionesPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(nuevoFabricanteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        accionesPanel2Layout.setVerticalGroup(
+            accionesPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(accionesPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(accionesPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nuevoFabricanteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        listaScrollPanel2.setViewportView(listaEquiposList2);
+
+        javax.swing.GroupLayout fabricantesPanelLayout = new javax.swing.GroupLayout(fabricantesPanel);
+        fabricantesPanel.setLayout(fabricantesPanelLayout);
+        fabricantesPanelLayout.setHorizontalGroup(
+            fabricantesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fabricantesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(fabricantesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(fabricantesPanelLayout.createSequentialGroup()
+                        .addComponent(buscarInventarioPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(accionesPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(listaScrollPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        fabricantesPanelLayout.setVerticalGroup(
+            fabricantesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fabricantesPanelLayout.createSequentialGroup()
+                .addGroup(fabricantesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(fabricantesPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(buscarInventarioPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(accionesPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(listaScrollPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 41, Short.MAX_VALUE))
+        );
+
+        appTabPanel.addTab("Fabricantes", fabricantesPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -364,6 +484,18 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_verCVPDFButton1ActionPerformed
 
+    private void nuevoFabricanteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoFabricanteButtonActionPerformed
+        CrearFabricanteDialog crearFabricante = new CrearFabricanteDialog(PMLIApp.getInstance().getMainWindow(), true,
+                                                                          PMLIApp.getInstance().getSistema().getFabricantes());
+        
+        crearFabricante.setLocationRelativeTo(null);
+        crearFabricante.setVisible(true);
+    }//GEN-LAST:event_nuevoFabricanteButtonActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -379,28 +511,39 @@ public class MainWindow extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Eliminar;
     private javax.swing.JPanel accionesPanel;
     private javax.swing.JPanel accionesPanel1;
+    private javax.swing.JPanel accionesPanel2;
     private javax.swing.JTabbedPane appTabPanel;
     private javax.swing.JPanel buscarInternalPanel;
     private javax.swing.JPanel buscarInternalPanel1;
+    private javax.swing.JPanel buscarInternalPanel2;
     private javax.swing.JPanel buscarInventarioPanel;
+    private javax.swing.JPanel buscarInventarioPanel1;
     private javax.swing.JPanel buscarPanel;
     private javax.swing.JTextField buscarTextField;
     private javax.swing.JTextField buscarTextField1;
+    private javax.swing.JTextField buscarTextField2;
+    private javax.swing.JPanel fabricantesPanel;
     private javax.swing.JComboBox filtroComboBox;
     private javax.swing.JComboBox filtroComboBox1;
+    private javax.swing.JComboBox filtroComboBox2;
     private javax.swing.JPanel hojasPanel;
     private javax.swing.JPanel homePanel;
     private javax.swing.JPanel inventarioPanel;
     private javax.swing.JList listaEquiposList;
     private javax.swing.JList listaEquiposList1;
+    private javax.swing.JList listaEquiposList2;
     private javax.swing.JScrollPane listaScrollPanel;
     private javax.swing.JScrollPane listaScrollPanel1;
+    private javax.swing.JScrollPane listaScrollPanel2;
     private javax.swing.JButton nuevoEquipoButton;
+    private javax.swing.JButton nuevoFabricanteButton;
     private javax.swing.JButton nuevoItemButton;
     private javax.swing.JLabel separadorLabel;
     private javax.swing.JLabel separadorLabel1;
+    private javax.swing.JLabel separadorLabel2;
     private javax.swing.JButton verCVPDFButton;
     private javax.swing.JButton verCVPDFButton1;
     private javax.swing.JButton verCVPDFButton2;

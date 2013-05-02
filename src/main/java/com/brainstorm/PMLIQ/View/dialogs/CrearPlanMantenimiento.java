@@ -7,8 +7,12 @@ package com.brainstorm.PMLIQ.View.dialogs;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Actividad;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.PlanMantenimiento;
 import com.brainstorm.PMLIQ.View.PMLIApp;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 
 /**
  *
@@ -21,13 +25,13 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
      */
     public CrearPlanMantenimiento(java.awt.Frame parent, boolean modal, List<PlanMantenimiento> planes) {
         super(parent, modal);
+        
         initComponents();
         
         setTitle("Añadiendo un plan de mantenimiento");
         setResizable(false);
         
         this.planes = planes;
-
     }
 
     /**
@@ -66,6 +70,22 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
         errorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        planPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                planPanelComponentShown(evt);
+            }
+        });
+        planPanel.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                planPanelFocusGained(evt);
+            }
+        });
+        planPanel.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                planPanelPropertyChange(evt);
+            }
+        });
 
         jLabel1.setText("CREANDO PLAN DE MANTENIMIENTO");
 
@@ -170,7 +190,17 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
         editarCheckListButton.setText("O");
 
         eliminarChecklistButton.setText("-");
+        eliminarChecklistButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarChecklistButtonActionPerformed(evt);
+            }
+        });
 
+        checkList.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                checkListComponentShown(evt);
+            }
+        });
         jScrollPane1.setViewportView(checkList);
 
         javax.swing.GroupLayout mantenimientoPanelLayout = new javax.swing.GroupLayout(mantenimientoPanel);
@@ -269,7 +299,13 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelarButtonActionPerformed
 
     private void añadirChecklistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirChecklistButtonActionPerformed
-        CrearElementoCheckList crearElementoCheckList = new CrearElementoCheckList(PMLIApp.getInstance().getMainWindow(), true);
+        CrearElementoCheckList crearElementoCheckList = new CrearElementoCheckList(PMLIApp.getInstance().getMainWindow(), true, actividades);
+        crearElementoCheckList.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                updateListModel();
+            }
+        });
         
         crearElementoCheckList.setLocationRelativeTo(null);
         crearElementoCheckList.setVisible(true);
@@ -288,6 +324,40 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_guardarButtonActionPerformed
 
+    private void planPanelFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_planPanelFocusGained
+
+    }//GEN-LAST:event_planPanelFocusGained
+
+    private void planPanelPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_planPanelPropertyChange
+
+    }//GEN-LAST:event_planPanelPropertyChange
+
+    private void checkListComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_checkListComponentShown
+        
+    }//GEN-LAST:event_checkListComponentShown
+
+    private void planPanelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_planPanelComponentShown
+        
+    }//GEN-LAST:event_planPanelComponentShown
+
+    private void eliminarChecklistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarChecklistButtonActionPerformed
+        int indiceSeleccion = checkList.getSelectedIndex();
+        if ( indiceSeleccion != -1 ) {
+            checkList.remove(indiceSeleccion);
+            actividades.remove(indiceSeleccion);
+            updateListModel();
+        }
+    }//GEN-LAST:event_eliminarChecklistButtonActionPerformed
+
+    private void updateListModel() {
+        checklistModel.clear();
+        for(Actividad a : actividades) {
+            checklistModel.addElement(a.getNombre());
+        }
+        
+        checkList.setModel(checklistModel);
+    }
+    
     private List<String> getDatosPlanMantenimiento() {
         List<String> strings = new ArrayList<String>();
 
@@ -354,6 +424,7 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
     
     private List<PlanMantenimiento> planes = new ArrayList<PlanMantenimiento>();
     private List<Actividad> actividades = new ArrayList<Actividad>();
+    private DefaultListModel checklistModel = new DefaultListModel();
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton añadirChecklistButton;

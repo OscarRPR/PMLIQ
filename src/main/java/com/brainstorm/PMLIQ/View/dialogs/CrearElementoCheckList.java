@@ -4,6 +4,12 @@
  */
 package com.brainstorm.PMLIQ.View.dialogs;
 
+import com.brainstorm.PMLIQ.Model.EquipoInfo.Actividad;
+import com.brainstorm.PMLIQ.Model.Inventario.Item;
+import com.brainstorm.PMLIQ.View.PMLIApp;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Silex RPR
@@ -11,14 +17,16 @@ package com.brainstorm.PMLIQ.View.dialogs;
 public class CrearElementoCheckList extends javax.swing.JDialog {
 
     /**
-     * Creates new form CrearElementoCheckList
+     * Creates new form ModificarElementoCheckList
      */
-    public CrearElementoCheckList(java.awt.Frame parent, boolean modal) {
+    public CrearElementoCheckList(java.awt.Frame parent, boolean modal, List<Actividad> listaActividades) {
         super(parent, modal);
         initComponents();
         
         setTitle("Añadiendo una actividad al checklist");
         setResizable(false);
+        
+        this.actividades = listaActividades;
     }
 
     /**
@@ -57,7 +65,7 @@ public class CrearElementoCheckList extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("CREANDO ELEMENTO DE CHECKLIST");
+        jLabel1.setText("MODIFICAR ELEMENTO DE CHECKLIST");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Descripción"));
 
@@ -78,7 +86,7 @@ public class CrearElementoCheckList extends javax.swing.JDialog {
         jLabel7.setText("Partes");
 
         partesCheckList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "Item 1" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -192,6 +200,11 @@ public class CrearElementoCheckList extends javax.swing.JDialog {
         );
 
         guardarButton.setText("Guardar");
+        guardarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarButtonActionPerformed(evt);
+            }
+        });
 
         cancelarButton.setText("Cancelar");
         cancelarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -255,6 +268,52 @@ public class CrearElementoCheckList extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_cancelarButtonActionPerformed
 
+    private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
+        List<String> actividad = getDatosActividadChecklist();
+        List<String> nombresActividades = getNombresActividades();
+        
+        String resultados = PMLIApp.getInstance().getAdmEquipos().validarDatosActividadChecklist(actividad, nombresActividades);
+        
+        errorLabel.setText(resultados);
+
+        if ( resultados.equals("") )
+        {
+            actividades.add(PMLIApp.getInstance().getAdmEquipos().crearActividadChecklist(actividad, items));
+            this.dispose();
+        }
+    }//GEN-LAST:event_guardarButtonActionPerformed
+
+    private  List<String> getNombresActividades() {
+        List<String> nombres = new ArrayList<String>();
+        
+        for(Actividad a : actividades) {
+            nombres.add(a.getNombre());
+        }
+        
+        return nombres;
+    }
+    
+    private List<String> getDatosActividadChecklist() {
+        List<String> strings = new ArrayList<String>();
+
+        strings.add(nombreTextField.getText());
+        strings.add(tipoComboBox.getSelectedItem().toString());
+
+        String resultadoLista = "";
+        if (  partesCheckList.getModel().getSize() > 0 )
+        {
+            resultadoLista = "Tiene informacion";
+        }
+        strings.add(resultadoLista);
+        strings.add(procesoTextArea.getText());
+        strings.add(frecuenciaSpinner.getValue().toString());
+        strings.add(frecuenciaComboBox.getSelectedItem().toString());
+        strings.add(verificarSpinner.getValue().toString());
+        strings.add(verificarComboBox.getSelectedItem().toString());
+                
+        return strings;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -285,7 +344,7 @@ public class CrearElementoCheckList extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CrearElementoCheckList dialog = new CrearElementoCheckList(new javax.swing.JFrame(), true);
+                CrearElementoCheckList dialog = new CrearElementoCheckList(new javax.swing.JFrame(), true, new ArrayList<Actividad>());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -296,6 +355,10 @@ public class CrearElementoCheckList extends javax.swing.JDialog {
             }
         });
     }
+    
+    private List<Actividad> actividades = new ArrayList<Actividad>();
+    private List<Item> items = new ArrayList<Item>();
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarButton;
     private javax.swing.JButton cancelarButton;

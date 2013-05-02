@@ -875,11 +875,6 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         cancelarBoton2.setText("Cancelar");
 
         listaEquiposList.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        listaEquiposList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         scrollListPanel.setViewportView(listaEquiposList);
 
         javax.swing.GroupLayout accesoriosPanelLayout = new javax.swing.GroupLayout(accesoriosPanel);
@@ -1002,11 +997,6 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         cancelarBoton3.setText("Cancelar");
 
         listaEquiposList2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        listaEquiposList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         scrollListPanel1.setViewportView(listaEquiposList2);
 
         javax.swing.GroupLayout equiposAsociadosPanelLayout = new javax.swing.GroupLayout(equiposAsociadosPanel);
@@ -1125,11 +1115,6 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         cancelarBoton5.setText("Cancelar");
 
         listaEquiposList3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        listaEquiposList3.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         scrollListPanel2.setViewportView(listaEquiposList3);
 
         javax.swing.GroupLayout mantenimientoPanelLayout = new javax.swing.GroupLayout(mantenimientoPanel);
@@ -1514,6 +1499,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                                                                         datosTecnicosEquipo,
                                                                         accesorios,
                                                                         equipos,
+                                                                        planes,
                                                                         adquisicionEquipo);
         errorBasicaLabel.setText(resultados.get(DESCRIPCIONBASICA));
         errorTecnicosLabel.setText(resultados.get(DATOSTECNICOS));

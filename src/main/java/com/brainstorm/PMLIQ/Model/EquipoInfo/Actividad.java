@@ -4,6 +4,7 @@
  */
 package com.brainstorm.PMLIQ.Model.EquipoInfo;
 
+import com.brainstorm.PMLIQ.Control.Constantes.ConstantesActividadChecklist;
 import com.brainstorm.PMLIQ.Model.Enum.TimeStamp;
 import com.brainstorm.PMLIQ.Model.Enum.TipoActividad;
 import com.brainstorm.PMLIQ.Model.Inventario.Item;
@@ -14,6 +15,19 @@ import java.util.List;
  * @author Silex RPR
  */
 public class Actividad {
+
+    private ConstantesActividadChecklist vars = new ConstantesActividadChecklist();
+    
+    public Actividad(List<String> datos, List<Item> partes) {
+        this.nombre = datos.get(vars.NOMBRE);
+        this.tipoActividad = TipoActividad.valueOf(datos.get(vars.TIPO).toUpperCase());
+        this.partesAsociadas = partes;
+        this.proceso = datos.get(vars.PROCESO);
+        this.frecuenciaTarea = Integer.parseInt(datos.get(vars.FRECUENCIA));
+        this.frecuencia = TimeStamp.valueOf(datos.get(vars.FRECUENCIATIEMPO).toUpperCase());
+        this.verificarInventario = Integer.parseInt(datos.get(vars.VERIFICAR));
+        this.verificar = TimeStamp.valueOf(datos.get(vars.VERIFICARTIEMPO).toUpperCase());
+    }
 
     public String getNombre() {
         return nombre;
