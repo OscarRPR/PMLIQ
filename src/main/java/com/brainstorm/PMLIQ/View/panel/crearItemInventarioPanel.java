@@ -4,8 +4,14 @@
  */
 package com.brainstorm.PMLIQ.View.panel;
 
+import com.brainstorm.PMLIQ.View.panel.list.fabricantesListaPanel;
+import com.brainstorm.PMLIQ.Model.Fabricante.Fabricante;
+import com.brainstorm.PMLIQ.Model.Inventario.Item;
 import com.brainstorm.PMLIQ.View.PMLIApp;
 import com.brainstorm.PMLIQ.View.dialogs.ObtenerInformacionFabricante;
+import static com.brainstorm.PMLIQ.View.ventana.MainWindow.ITEMSTAB;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,11 +19,17 @@ import com.brainstorm.PMLIQ.View.dialogs.ObtenerInformacionFabricante;
  */
 public class crearItemInventarioPanel extends javax.swing.JPanel {
 
+    private final int DESCRIPCIONBASICA = 0;
+    
     /**
      * Creates new form crearItemInventarioPanel
      */
-    public crearItemInventarioPanel() {
+    public crearItemInventarioPanel(List<Item> items) {
         initComponents();
+        
+        this.items = items;
+        
+        fillManufacturersComboBox();
     }
 
     /**
@@ -52,13 +64,14 @@ public class crearItemInventarioPanel extends javax.swing.JPanel {
         minimaSpinner = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        frecuenciaMaximoComboBox = new javax.swing.JComboBox();
+        tiempoMaximoTipoComboBox = new javax.swing.JComboBox();
         tiempoMaximoSpinner = new javax.swing.JSpinner();
         jLabel9 = new javax.swing.JLabel();
-        tiempoMaximoSpinner1 = new javax.swing.JSpinner();
-        tiempoMaximoSpinner2 = new javax.swing.JSpinner();
-        frecuenciaMaximoComboBox1 = new javax.swing.JComboBox();
-        frecuenciaMaximoComboBox2 = new javax.swing.JComboBox();
+        frecuenciaMinimaSpinner = new javax.swing.JSpinner();
+        frecuenciaMaximaSpinner = new javax.swing.JSpinner();
+        frecuenciaMinimaTipoComboBox = new javax.swing.JComboBox();
+        frecuenciaMaximaTipoComboBox = new javax.swing.JComboBox();
+        errorLabel = new javax.swing.JLabel();
 
         jLabel4.setText("CREANDO UN NUEVO ITEM PARA INVENTARIO");
 
@@ -95,8 +108,6 @@ public class crearItemInventarioPanel extends javax.swing.JPanel {
                 informacionFabricanteButtonActionPerformed(evt);
             }
         });
-
-        fabricantesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -179,13 +190,13 @@ public class crearItemInventarioPanel extends javax.swing.JPanel {
 
         jLabel8.setText("Tiempo Maximo de Item en Inventario");
 
-        frecuenciaMaximoComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Horas", "Dias", "Semanas", "Meses", "Años" }));
+        tiempoMaximoTipoComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Horas", "Dias", "Semanas", "Meses", "Años" }));
 
         jLabel9.setText("Frecuencia de la Alarma");
 
-        frecuenciaMaximoComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Horas", "Dias", "Semanas", "Meses", "Años" }));
+        frecuenciaMinimaTipoComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Horas", "Dias", "Semanas", "Meses", "Años" }));
 
-        frecuenciaMaximoComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Horas", "Dias", "Semanas", "Meses", "Años" }));
+        frecuenciaMaximaTipoComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Horas", "Dias", "Semanas", "Meses", "Años" }));
 
         javax.swing.GroupLayout notificacionesPanelLayout = new javax.swing.GroupLayout(notificacionesPanel);
         notificacionesPanel.setLayout(notificacionesPanelLayout);
@@ -203,20 +214,20 @@ public class crearItemInventarioPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(notificacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, notificacionesPanelLayout.createSequentialGroup()
-                        .addComponent(frecuenciaMaximoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tiempoMaximoTipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel9))
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(notificacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(notificacionesPanelLayout.createSequentialGroup()
-                        .addComponent(tiempoMaximoSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(frecuenciaMaximaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(frecuenciaMaximoComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(frecuenciaMaximaTipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(notificacionesPanelLayout.createSequentialGroup()
-                        .addComponent(tiempoMaximoSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(frecuenciaMinimaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(frecuenciaMaximoComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(frecuenciaMinimaTipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(52, 52, 52))
         );
         notificacionesPanelLayout.setVerticalGroup(
@@ -227,18 +238,20 @@ public class crearItemInventarioPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(minimaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(tiempoMaximoSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(frecuenciaMaximoComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(frecuenciaMinimaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(frecuenciaMinimaTipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(notificacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(frecuenciaMaximoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tiempoMaximoTipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tiempoMaximoSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(tiempoMaximoSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(frecuenciaMaximoComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(frecuenciaMaximaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(frecuenciaMaximaTipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
+
+        errorLabel.setForeground(java.awt.Color.red);
 
         javax.swing.GroupLayout descripcionBasicaPanel1Layout = new javax.swing.GroupLayout(descripcionBasicaPanel1);
         descripcionBasicaPanel1.setLayout(descripcionBasicaPanel1Layout);
@@ -246,16 +259,16 @@ public class crearItemInventarioPanel extends javax.swing.JPanel {
             descripcionBasicaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(descripcionBasicaPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(descripcionBasicaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(descripcionBasicaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(descripcionBasicaPanel1Layout.createSequentialGroup()
                         .addComponent(guardarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cancelarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(descripcionBasicaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(tituloPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(notificacionesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(descripcionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(5, 5, 5))
+                    .addComponent(tituloPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(notificacionesPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(descripcionPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         descripcionBasicaPanel1Layout.setVerticalGroup(
             descripcionBasicaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,7 +278,9 @@ public class crearItemInventarioPanel extends javax.swing.JPanel {
                 .addComponent(descripcionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(notificacionesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(descripcionBasicaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -289,26 +304,85 @@ public class crearItemInventarioPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void informacionFabricanteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_informacionFabricanteButtonActionPerformed
-        ObtenerInformacionFabricante infoFabricante = new ObtenerInformacionFabricante(PMLIApp.getInstance().getMainWindow(), true);
+        ObtenerInformacionFabricante infoFabricante = new ObtenerInformacionFabricante(PMLIApp.getInstance().getMainWindow(), true,
+                                                                                       fabricantesComboBox.getSelectedItem().toString());
         
         infoFabricante.setLocationRelativeTo(null);
         infoFabricante.setVisible(true);
     }//GEN-LAST:event_informacionFabricanteButtonActionPerformed
 
     private void guardarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBotonActionPerformed
-        // TODO add your handling code here:
+        List<String> infoItem = getDatosItem();
+        List<String> nombresItems = getNombresItems();
+ 
+        List<String> resultados = PMLIApp.getInstance().getAdmItems().crearItem(infoItem, nombresItems);
+        errorLabel.setText(resultados.get(DESCRIPCIONBASICA));
+
+        for (String s : resultados) {
+            if (s.equals("")) {
+                disposePanel();
+                break;
+            }
+        }
     }//GEN-LAST:event_guardarBotonActionPerformed
 
+    private void disposePanel() {
+        setVisible(false);
+        removeAll();
+        PMLIApp.getInstance().getMainWindow().getAppTabPanel().setComponentAt(ITEMSTAB, new fabricantesListaPanel());
+    }
+    
+    private void fillManufacturersComboBox() {
+        List<Fabricante> fabricantes = PMLIApp.getInstance().getSistema().getFabricantes();
+
+        for (Fabricante f : fabricantes) {
+            fabricantesComboBox.addItem(f.getNombre());
+        }
+
+    }
+    
+    private  List<String> getNombresItems() {
+        List<String> nombres = new ArrayList<String>();
+        
+        for(Item item : items) {
+            nombres.add(item.getNombre());
+        }
+        
+        return nombres;
+    }
+    
+    private List<String> getDatosItem() {
+        List<String> strings = new ArrayList<String>();
+
+        strings.add(nombreTextField.getText());
+        strings.add(placaTextField.getText());
+        strings.add(fabricantesComboBox.getSelectedItem().toString());
+        strings.add(inicialSpinner.getValue().toString());
+        strings.add(minimaSpinner.getValue().toString());
+        strings.add(frecuenciaMinimaSpinner.getValue().toString());
+        strings.add(frecuenciaMinimaTipoComboBox.getSelectedItem().toString().toUpperCase());
+        strings.add(tiempoMaximoSpinner.getValue().toString());
+        strings.add(tiempoMaximoTipoComboBox.getSelectedItem().toString().toUpperCase());
+        strings.add(frecuenciaMaximaSpinner.getValue().toString());
+        strings.add(frecuenciaMaximaTipoComboBox.getSelectedItem().toString().toUpperCase());
+        
+        return strings;
+    }
+    
+    private List<Item> items = new ArrayList<Item>();
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelarBoton;
     private javax.swing.JTabbedPane creacionItemTabPanel;
     private javax.swing.JPanel descripcionBasicaPanel1;
     private javax.swing.JScrollPane descripcionBasicaScrollPane1;
     private javax.swing.JPanel descripcionPanel;
+    private javax.swing.JLabel errorLabel;
     private javax.swing.JComboBox fabricantesComboBox;
-    private javax.swing.JComboBox frecuenciaMaximoComboBox;
-    private javax.swing.JComboBox frecuenciaMaximoComboBox1;
-    private javax.swing.JComboBox frecuenciaMaximoComboBox2;
+    private javax.swing.JSpinner frecuenciaMaximaSpinner;
+    private javax.swing.JComboBox frecuenciaMaximaTipoComboBox;
+    private javax.swing.JSpinner frecuenciaMinimaSpinner;
+    private javax.swing.JComboBox frecuenciaMinimaTipoComboBox;
     private javax.swing.JButton guardarBoton;
     private javax.swing.JButton informacionFabricanteButton;
     private javax.swing.JSpinner inicialSpinner;
@@ -327,8 +401,7 @@ public class crearItemInventarioPanel extends javax.swing.JPanel {
     private javax.swing.JPanel notificacionesPanel;
     private javax.swing.JTextField placaTextField;
     private javax.swing.JSpinner tiempoMaximoSpinner;
-    private javax.swing.JSpinner tiempoMaximoSpinner1;
-    private javax.swing.JSpinner tiempoMaximoSpinner2;
+    private javax.swing.JComboBox tiempoMaximoTipoComboBox;
     private javax.swing.JPanel tituloPanel3;
     // End of variables declaration//GEN-END:variables
 }

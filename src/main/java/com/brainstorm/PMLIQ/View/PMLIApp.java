@@ -6,6 +6,7 @@ package com.brainstorm.PMLIQ.View;
 
 import com.brainstorm.PMLIQ.Control.AdministrarEquipos;
 import com.brainstorm.PMLIQ.Control.AdministrarFabricantes;
+import com.brainstorm.PMLIQ.Control.AdministrarItems;
 import com.brainstorm.PMLIQ.Model.Sistema;
 import com.brainstorm.PMLIQ.View.ventana.MainWindow;
 import java.util.logging.Level;
@@ -22,20 +23,23 @@ import org.pushingpixels.substance.api.SubstanceLookAndFeel;
  */
 public class PMLIApp {
 
-    private JFrame mainWindow;
+    private MainWindow mainWindow;
     private Sistema sistema;
     
     private AdministrarEquipos admEquipos;
     private AdministrarFabricantes admFabricantes;
+    private AdministrarItems admItems;
     
     private PMLIApp()
     {
         admEquipos = new AdministrarEquipos();
         admFabricantes = new AdministrarFabricantes();
+        admItems = new AdministrarItems();
         
         sistema = new Sistema();
         sistema.inicializaEquipos();
         sistema.inicializaFabricantes();
+        sistema.inicializaInventario();
     }
     
     public static void main(String[] args) {
@@ -81,7 +85,7 @@ public class PMLIApp {
         return sistema;
     }
     
-    public JFrame getMainWindow()
+    public MainWindow getMainWindow()
     {
         return mainWindow;
     }
@@ -97,6 +101,15 @@ public class PMLIApp {
     public void setAdmFabricantes(AdministrarFabricantes admFabricantes) {
         this.admFabricantes = admFabricantes;
     }
+
+    public AdministrarItems getAdmItems() {
+        return admItems;
+    }
+
+    public void setAdmItems(AdministrarItems admItems) {
+        this.admItems = admItems;
+    }
+
  
     private static PMLIApp m_this;
 }

@@ -12,6 +12,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 import javax.swing.ListModel;
 
 /**
@@ -299,7 +300,7 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelarButtonActionPerformed
 
     private void añadirChecklistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirChecklistButtonActionPerformed
-        CrearElementoCheckList crearElementoCheckList = new CrearElementoCheckList(PMLIApp.getInstance().getMainWindow(), true, actividades);
+        CrearElementoCheckList crearElementoCheckList = new CrearElementoCheckList((JFrame)PMLIApp.getInstance().getMainWindow(), true, actividades);
         crearElementoCheckList.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {

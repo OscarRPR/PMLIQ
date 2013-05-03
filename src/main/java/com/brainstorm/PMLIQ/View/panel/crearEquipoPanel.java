@@ -1424,7 +1424,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_tipoComboBoxActionPerformed
 
     private void nuevoAccesorioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoAccesorioButtonActionPerformed
-        CrearAccesorio crearAccesorio = new CrearAccesorio(PMLIApp.getInstance().getMainWindow(), true, accesorios);
+        CrearAccesorio crearAccesorio = new CrearAccesorio((JFrame)PMLIApp.getInstance().getMainWindow(), true, accesorios);
         
         crearAccesorio.setLocationRelativeTo(null);
         crearAccesorio.setVisible(true);
@@ -1435,7 +1435,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_eliminarAccesorioButtonActionPerformed
 
     private void nuevoAccesorioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoAccesorioButton1ActionPerformed
-        CrearEquipoAsociado crearEquipoAsociado = new CrearEquipoAsociado(PMLIApp.getInstance().getMainWindow(), true, equipos);
+        CrearEquipoAsociado crearEquipoAsociado = new CrearEquipoAsociado((JFrame)PMLIApp.getInstance().getMainWindow(), true, equipos);
         
         crearEquipoAsociado.setLocationRelativeTo(null);
         crearEquipoAsociado.setVisible(true);
@@ -1446,7 +1446,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_eliminarAccesorioButton1ActionPerformed
 
     private void nuevoMantenimientoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoMantenimientoButtonActionPerformed
-        CrearPlanMantenimiento crearPlanMantenimiento = new CrearPlanMantenimiento(PMLIApp.getInstance().getMainWindow(), true, planes);
+        CrearPlanMantenimiento crearPlanMantenimiento = new CrearPlanMantenimiento((JFrame)PMLIApp.getInstance().getMainWindow(), true, planes);
         
         crearPlanMantenimiento.setLocationRelativeTo(null);
         crearPlanMantenimiento.setVisible(true);

@@ -30,6 +30,10 @@ public class Sistema {
         fabricantes = new ArrayList<Fabricante>();
     }
     
+    public void inicializaInventario() {
+        inventario = new ArrayList<Item>();
+    }   
+    
     public void agregarEquipo(Equipo equipo) {
         equipos.add(equipo);
     }
@@ -40,6 +44,10 @@ public class Sistema {
 
     public void setEquipos(List<Equipo> equipos) {
         this.equipos = equipos;
+    }
+    
+    public void agregarItem(Item item) {
+        this.inventario.add(item);
     }
 
     public List<Item> getInventario() {
@@ -60,5 +68,25 @@ public class Sistema {
 
     public void setFabricantes(List<Fabricante> fabricantes) {
         this.fabricantes = fabricantes;
+    }
+    
+    public Item getItem(String nombre) {
+        for (Item item : inventario) {
+            if (item.getNombre().equals(nombre)) {
+                return item;
+            }
+        }
+        
+        return null;
+    }
+    
+    public Fabricante getFabricante(String nombre) {
+        for (Fabricante f : fabricantes) {
+            if (f.getNombre().equals(nombre)) {
+                return f;
+            }
+        }
+        
+        return null;
     }
 }

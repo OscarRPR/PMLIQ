@@ -19,6 +19,7 @@ public class Fabricante {
         this.nombre = datos.get(vars.NOMBRE);
         this.informacion = datos.get(vars.INFORMACION);
         this.contacto = datos.get(vars.CONTACTO);
+        this.direccion = datos.get(vars.DIRECCION);
         this.telefonoUno = datos.get(vars.TELEFONOUNO);
         this.telefonoDos = datos.get(vars.TELEFONODOS);
         this.correo = datos.get(vars.CORREO);
@@ -48,6 +49,14 @@ public class Fabricante {
         this.contacto = contacto;
     }
 
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
     public String getTelefonoUno() {
         return telefonoUno;
     }
@@ -72,6 +81,6 @@ public class Fabricante {
         this.correo = correo;
     }
     
-    private String nombre, informacion, contacto;
+    private String nombre, informacion, contacto, direccion;
     private String telefonoUno, telefonoDos, correo;       
 }
