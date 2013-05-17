@@ -4,9 +4,18 @@
  */
 package com.brainstorm.PMLIQ.View.panel.list;
 
+import com.brainstorm.PMLIQ.Model.Fabricante.Fabricante;
+import com.brainstorm.PMLIQ.Model.Inventario.Item;
 import com.brainstorm.PMLIQ.View.PMLIApp;
 import com.brainstorm.PMLIQ.View.panel.crearFabricantePanel;
 import com.brainstorm.PMLIQ.View.panel.crearItemInventarioPanel;
+import java.awt.Color;
+import java.awt.Component;
+import java.util.List;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -19,6 +28,29 @@ public class ItemsListaPanel extends javax.swing.JPanel {
      */
     public ItemsListaPanel() {
         initComponents();
+        
+        itemsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        itemsList.setCellRenderer(new DefaultListCellRenderer() { // Setting the DefaultListCellRenderer
+ 
+            @Override
+            public Component getListCellRendererComponent(JList list, Object value, int index,
+                    boolean isSelected, boolean cellHasFocus) {
+                Item item = ( Item )value;  // Using value we are getting the object in JList
+                
+                setText( item.getNombre() );  // Setting the text
+                
+                if(isSelected){
+                    this.setBackground(new Color(200, 200, 255));
+                }
+                else{
+                    this.setBackground(new Color(255, 255, 255));
+                }
+                
+                return this;
+            }
+        });
+
+        updateListModel();
     }
 
     /**
@@ -40,7 +72,7 @@ public class ItemsListaPanel extends javax.swing.JPanel {
         nuevoItemButton = new javax.swing.JButton();
         verCVPDFButton1 = new javax.swing.JButton();
         listaScrollPanel1 = new javax.swing.JScrollPane();
-        listaEquiposList1 = new javax.swing.JList();
+        itemsList = new javax.swing.JList();
 
         buscarInternalPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR"));
 
@@ -127,7 +159,7 @@ public class ItemsListaPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        listaScrollPanel1.setViewportView(listaEquiposList1);
+        listaScrollPanel1.setViewportView(itemsList);
 
         javax.swing.GroupLayout inventarioPanelLayout = new javax.swing.GroupLayout(inventarioPanel);
         inventarioPanel.setLayout(inventarioPanelLayout);
@@ -152,8 +184,8 @@ public class ItemsListaPanel extends javax.swing.JPanel {
                         .addComponent(buscarInventarioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(accionesPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(listaScrollPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 41, Short.MAX_VALUE))
+                .addComponent(listaScrollPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -190,6 +222,20 @@ public class ItemsListaPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_verCVPDFButton1ActionPerformed
 
+    private void updateListModel() {
+        
+        List<Item> listaItems = PMLIApp.getInstance().getSistema().getInventario();
+        
+        itemsModel.clear();
+        for(Item i : listaItems) {
+            itemsModel.addElement(i);
+        }
+        
+        itemsList.setModel(itemsModel);
+    }
+    
+    private DefaultListModel itemsModel = new DefaultListModel();
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel accionesPanel1;
     private javax.swing.JPanel buscarInternalPanel1;
@@ -197,7 +243,7 @@ public class ItemsListaPanel extends javax.swing.JPanel {
     private javax.swing.JTextField buscarTextField1;
     private javax.swing.JComboBox filtroComboBox1;
     private javax.swing.JPanel inventarioPanel;
-    private javax.swing.JList listaEquiposList1;
+    private javax.swing.JList itemsList;
     private javax.swing.JScrollPane listaScrollPanel1;
     private javax.swing.JButton nuevoItemButton;
     private javax.swing.JLabel separadorLabel1;

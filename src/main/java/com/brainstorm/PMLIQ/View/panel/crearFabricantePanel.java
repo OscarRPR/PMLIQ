@@ -95,6 +95,16 @@ public class crearFabricantePanel extends javax.swing.JPanel {
 
         jLabel6.setText("Dirección");
 
+        nombreTextField.setText("aaaaaaaaaaaaaaaaaaaaa");
+
+        contactoTextField.setText("dddddddddddddddddddd");
+
+        direccionTextField.setText("qqqqqqqqqqqqqqqq");
+
+        telefonoUnoTextField.setText("22222222");
+
+        correoTextField.setText("vbvvvvvvvvvvvvvvvvvvvvv");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -155,6 +165,7 @@ public class crearFabricantePanel extends javax.swing.JPanel {
 
         informacionTextArea.setColumns(20);
         informacionTextArea.setRows(5);
+        informacionTextArea.setText("xcccccccccccccccccccccccccccccccccassssssssssss");
         jScrollPane1.setViewportView(informacionTextArea);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);

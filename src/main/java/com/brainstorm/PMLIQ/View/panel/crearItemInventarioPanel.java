@@ -9,6 +9,7 @@ import com.brainstorm.PMLIQ.Model.Fabricante.Fabricante;
 import com.brainstorm.PMLIQ.Model.Inventario.Item;
 import com.brainstorm.PMLIQ.View.PMLIApp;
 import com.brainstorm.PMLIQ.View.dialogs.ObtenerInformacionFabricante;
+import com.brainstorm.PMLIQ.View.panel.list.ItemsListaPanel;
 import static com.brainstorm.PMLIQ.View.ventana.MainWindow.ITEMSTAB;
 import java.util.ArrayList;
 import java.util.List;
@@ -96,7 +97,16 @@ public class crearItemInventarioPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Nombre");
 
+        nombreTextField.setText("wwwwwwwww");
+        nombreTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreTextFieldActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("Placa De Inventario");
+
+        placaTextField.setText("aaaaaaaaa");
 
         jLabel6.setText("Fabricante");
 
@@ -181,6 +191,11 @@ public class crearItemInventarioPanel extends javax.swing.JPanel {
         });
 
         cancelarBoton.setText("Cancelar");
+        cancelarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarBotonActionPerformed(evt);
+            }
+        });
 
         notificacionesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Notificaciones/Alarmas"));
 
@@ -326,10 +341,18 @@ public class crearItemInventarioPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_guardarBotonActionPerformed
 
+    private void cancelarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBotonActionPerformed
+        disposePanel();
+    }//GEN-LAST:event_cancelarBotonActionPerformed
+
+    private void nombreTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombreTextFieldActionPerformed
+
     private void disposePanel() {
         setVisible(false);
         removeAll();
-        PMLIApp.getInstance().getMainWindow().getAppTabPanel().setComponentAt(ITEMSTAB, new fabricantesListaPanel());
+        PMLIApp.getInstance().getMainWindow().getAppTabPanel().setComponentAt(ITEMSTAB, new ItemsListaPanel());
     }
     
     private void fillManufacturersComboBox() {

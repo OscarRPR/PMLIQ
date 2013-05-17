@@ -9,6 +9,7 @@ import com.brainstorm.PMLIQ.View.dialogs.CrearEquipoAsociado;
 import com.brainstorm.PMLIQ.View.panel.crearEquipoPanel;
 import com.brainstorm.PMLIQ.View.panel.crearFabricantePanel;
 import com.brainstorm.PMLIQ.View.panel.crearItemInventarioPanel;
+import com.brainstorm.PMLIQ.View.panel.list.EquiposListaPanel;
 import com.brainstorm.PMLIQ.View.panel.list.ItemsListaPanel;
 import com.brainstorm.PMLIQ.View.panel.list.fabricantesListaPanel;
 import java.util.logging.Level;
@@ -27,6 +28,7 @@ import org.pushingpixels.substance.api.SubstanceLookAndFeel;
  */
 public class MainWindow extends javax.swing.JFrame {
     
+    public static int EQUIPOSTAB = 1;
     public static int ITEMSTAB = 2;
     public static int FABRICANTESTAB = 3;
     /**
@@ -35,6 +37,7 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         initComponents();
         
+        appTabPanel.setComponentAt(EQUIPOSTAB, new EquiposListaPanel());
         appTabPanel.setComponentAt(ITEMSTAB, new ItemsListaPanel());
         appTabPanel.setComponentAt(FABRICANTESTAB, new fabricantesListaPanel());
     }
@@ -51,17 +54,6 @@ public class MainWindow extends javax.swing.JFrame {
         appTabPanel = new javax.swing.JTabbedPane();
         homePanel = new javax.swing.JPanel();
         hojasPanel = new javax.swing.JPanel();
-        buscarPanel = new javax.swing.JPanel();
-        buscarInternalPanel = new javax.swing.JPanel();
-        filtroComboBox = new javax.swing.JComboBox();
-        buscarTextField = new javax.swing.JTextField();
-        separadorLabel = new javax.swing.JLabel();
-        accionesPanel = new javax.swing.JPanel();
-        nuevoEquipoButton = new javax.swing.JButton();
-        verCVPDFButton = new javax.swing.JButton();
-        verCVPDFButton2 = new javax.swing.JButton();
-        listaScrollPanel = new javax.swing.JScrollPane();
-        listaEquiposList = new javax.swing.JList();
         inventarioPanel = new javax.swing.JPanel();
         fabricantesPanel = new javax.swing.JPanel();
 
@@ -85,117 +77,15 @@ public class MainWindow extends javax.swing.JFrame {
 
         hojasPanel.setPreferredSize(new java.awt.Dimension(800, 600));
 
-        buscarInternalPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR"));
-
-        filtroComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        buscarTextField.setForeground(new java.awt.Color(255, 153, 0));
-        buscarTextField.setText("Buscar");
-        buscarTextField.setDisabledTextColor(new java.awt.Color(255, 204, 0));
-
-        separadorLabel.setText(" :");
-
-        javax.swing.GroupLayout buscarInternalPanelLayout = new javax.swing.GroupLayout(buscarInternalPanel);
-        buscarInternalPanel.setLayout(buscarInternalPanelLayout);
-        buscarInternalPanelLayout.setHorizontalGroup(
-            buscarInternalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buscarInternalPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(filtroComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(separadorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buscarTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                .addGap(16, 16, 16))
-        );
-        buscarInternalPanelLayout.setVerticalGroup(
-            buscarInternalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buscarInternalPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(buscarInternalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(filtroComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscarTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(separadorLabel))
-                .addGap(25, 25, 25))
-        );
-
-        javax.swing.GroupLayout buscarPanelLayout = new javax.swing.GroupLayout(buscarPanel);
-        buscarPanel.setLayout(buscarPanelLayout);
-        buscarPanelLayout.setHorizontalGroup(
-            buscarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buscarPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(buscarInternalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        buscarPanelLayout.setVerticalGroup(
-            buscarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buscarPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buscarInternalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-        );
-
-        nuevoEquipoButton.setText("Nuevo");
-        nuevoEquipoButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevoEquipoButtonActionPerformed(evt);
-            }
-        });
-
-        verCVPDFButton.setText("Ver En PDF");
-
-        verCVPDFButton2.setText("Ver Historial Mantenimiento");
-
-        javax.swing.GroupLayout accionesPanelLayout = new javax.swing.GroupLayout(accionesPanel);
-        accionesPanel.setLayout(accionesPanelLayout);
-        accionesPanelLayout.setHorizontalGroup(
-            accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(accionesPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(nuevoEquipoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(verCVPDFButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(verCVPDFButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        accionesPanelLayout.setVerticalGroup(
-            accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(accionesPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(verCVPDFButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nuevoEquipoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(verCVPDFButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        listaScrollPanel.setViewportView(listaEquiposList);
-
         javax.swing.GroupLayout hojasPanelLayout = new javax.swing.GroupLayout(hojasPanel);
         hojasPanel.setLayout(hojasPanelLayout);
         hojasPanelLayout.setHorizontalGroup(
             hojasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(hojasPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(hojasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(listaScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(hojasPanelLayout.createSequentialGroup()
-                        .addComponent(buscarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(accionesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+            .addGap(0, 795, Short.MAX_VALUE)
         );
         hojasPanelLayout.setVerticalGroup(
             hojasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(hojasPanelLayout.createSequentialGroup()
-                .addGroup(hojasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buscarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(accionesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(listaScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+            .addGap(0, 550, Short.MAX_VALUE)
         );
 
         appTabPanel.addTab("Equipos", hojasPanel);
@@ -246,14 +136,6 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nuevoEquipoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoEquipoButtonActionPerformed
-        hojasPanel.setVisible(false);
-        hojasPanel.removeAll();
-        hojasPanel = new crearEquipoPanel();
- 
-        appTabPanel.setComponentAt(1, hojasPanel); 
-    }//GEN-LAST:event_nuevoEquipoButtonActionPerformed
-
     public JTabbedPane getAppTabPanel() {
         return appTabPanel;
     }
@@ -278,21 +160,10 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel accionesPanel;
     private javax.swing.JTabbedPane appTabPanel;
-    private javax.swing.JPanel buscarInternalPanel;
-    private javax.swing.JPanel buscarPanel;
-    private javax.swing.JTextField buscarTextField;
     private javax.swing.JPanel fabricantesPanel;
-    private javax.swing.JComboBox filtroComboBox;
     private javax.swing.JPanel hojasPanel;
     private javax.swing.JPanel homePanel;
     private javax.swing.JPanel inventarioPanel;
-    private javax.swing.JList listaEquiposList;
-    private javax.swing.JScrollPane listaScrollPanel;
-    private javax.swing.JButton nuevoEquipoButton;
-    private javax.swing.JLabel separadorLabel;
-    private javax.swing.JButton verCVPDFButton;
-    private javax.swing.JButton verCVPDFButton2;
     // End of variables declaration//GEN-END:variables
 }

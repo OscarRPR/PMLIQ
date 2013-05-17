@@ -4,9 +4,19 @@
  */
 package com.brainstorm.PMLIQ.View.panel.list;
 
+import com.brainstorm.PMLIQ.Model.EquipoInfo.Actividad;
+import com.brainstorm.PMLIQ.Model.Fabricante.Fabricante;
 import com.brainstorm.PMLIQ.View.PMLIApp;
+import com.brainstorm.PMLIQ.View.listrenderers.ListRendererFabricante;
 import com.brainstorm.PMLIQ.View.panel.crearFabricantePanel;
+import java.awt.Color;
+import java.awt.Component;
+import java.util.List;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JTabbedPane;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -19,8 +29,32 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
      */
     public fabricantesListaPanel() {
         initComponents();
+        
+        fabricantesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        fabricantesList.setCellRenderer(new DefaultListCellRenderer() { // Setting the DefaultListCellRenderer
+ 
+            @Override
+            public Component getListCellRendererComponent(JList list, Object value, int index,
+                    boolean isSelected, boolean cellHasFocus) {
+                Fabricante fabricante = ( Fabricante )value;  // Using value we are getting the object in JList
+                
+                setText( fabricante.getNombre() );  // Setting the text
+                
+                if(isSelected){
+                    this.setBackground(new Color(200, 200, 255));
+                }
+                else{
+                    this.setBackground(new Color(255, 255, 255));
+                }
+                
+                return this;
+            }
+        });
+
+        updateListModel();
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,8 +73,8 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
         accionesPanel2 = new javax.swing.JPanel();
         nuevoFabricanteButton = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
-        listaScrollPanel2 = new javax.swing.JScrollPane();
-        listaEquiposList2 = new javax.swing.JList();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        fabricantesList = new javax.swing.JList();
 
         buscarInternalPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR"));
 
@@ -111,7 +145,7 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
         accionesPanel2Layout.setHorizontalGroup(
             accionesPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(accionesPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addComponent(nuevoFabricanteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,7 +161,7 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        listaScrollPanel2.setViewportView(listaEquiposList2);
+        jScrollPane1.setViewportView(fabricantesList);
 
         javax.swing.GroupLayout fabricantesPanelLayout = new javax.swing.GroupLayout(fabricantesPanel);
         fabricantesPanel.setLayout(fabricantesPanelLayout);
@@ -135,12 +169,12 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
             fabricantesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fabricantesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(fabricantesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(fabricantesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1)
                     .addGroup(fabricantesPanelLayout.createSequentialGroup()
                         .addComponent(buscarInventarioPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(accionesPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(listaScrollPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(accionesPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         fabricantesPanelLayout.setVerticalGroup(
@@ -152,8 +186,8 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
                         .addComponent(buscarInventarioPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(accionesPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(listaScrollPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 41, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -191,16 +225,30 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_EliminarActionPerformed
 
+    private void updateListModel() {
+        
+        List<Fabricante> listaFabricantes = PMLIApp.getInstance().getSistema().getFabricantes();
+        
+        fabricantesModel.clear();
+        for(Fabricante f : listaFabricantes) {
+            fabricantesModel.addElement(f);
+        }
+        
+        fabricantesList.setModel(fabricantesModel);
+    }
+    
+    private DefaultListModel fabricantesModel = new DefaultListModel();
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Eliminar;
     private javax.swing.JPanel accionesPanel2;
     private javax.swing.JPanel buscarInternalPanel2;
     private javax.swing.JPanel buscarInventarioPanel1;
     private javax.swing.JTextField buscarTextField2;
+    private javax.swing.JList fabricantesList;
     private javax.swing.JPanel fabricantesPanel;
     private javax.swing.JComboBox filtroComboBox2;
-    private javax.swing.JList listaEquiposList2;
-    private javax.swing.JScrollPane listaScrollPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton nuevoFabricanteButton;
     private javax.swing.JLabel separadorLabel2;
     // End of variables declaration//GEN-END:variables

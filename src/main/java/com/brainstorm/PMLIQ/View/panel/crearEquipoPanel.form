@@ -311,6 +311,9 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="nombreTextField">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="cccccccccccc"/>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel3">
                           <Properties>
@@ -318,6 +321,9 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="placaTextField">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="wwwwwwwww"/>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel4">
                           <Properties>
@@ -325,6 +331,9 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="claseTextField">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="aaaaaaaaaaaa"/>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel5">
                           <Properties>
@@ -343,6 +352,9 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="marcaTextField">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="aaaaaaaaa"/>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel7">
                           <Properties>
@@ -350,6 +362,9 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="modeloTextField">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="wwwwwww"/>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel8">
                           <Properties>
@@ -357,6 +372,9 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="serieTextField">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="232323"/>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel6">
                           <Properties>
@@ -394,6 +412,9 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="codigoTextField">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="23212121"/>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel11">
                           <Properties>
@@ -401,6 +422,9 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="ubicacionTextField">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="asdsadsadsad"/>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel12">
                           <Properties>
@@ -438,6 +462,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cancelar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarBasicaButtonActionPerformed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JPanel" name="tareasPanel">
                   <Properties>
@@ -656,6 +683,9 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="voltajeTextField">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="2"/>
+                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel15">
                       <Properties>
@@ -663,6 +693,9 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="potenciaTextField">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="3"/>
+                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel16">
                       <Properties>
@@ -670,6 +703,9 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="corrienteTextField">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="1"/>
+                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel17">
                       <Properties>
@@ -677,6 +713,9 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="fasesTextField">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="2"/>
+                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel18">
                       <Properties>
@@ -763,6 +802,9 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="altoTextField">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="8"/>
+                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel20">
                       <Properties>
@@ -770,6 +812,9 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="anchoTextField">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="8"/>
+                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel21">
                       <Properties>
@@ -777,6 +822,9 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="profundoTextField">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="5"/>
+                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel22">
                       <Properties>
@@ -784,6 +832,12 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="pesoTextField">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="6"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pesoTextFieldActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel23">
                       <Properties>
@@ -859,6 +913,9 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="ambienteTextField">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="6"/>
+                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel25">
                       <Properties>
@@ -866,6 +923,9 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="hrTextField">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="4"/>
+                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel26">
                       <Properties>
@@ -980,6 +1040,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cancelar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarTecnicosButtonActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="errorTecnicosLabel">
                   <Properties>
@@ -1017,7 +1080,7 @@
                                       <Group type="102" attributes="0">
                                           <Component id="guardarAccesoriosButton" min="-2" pref="85" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="cancelarBoton2" min="-2" pref="85" max="-2" attributes="0"/>
+                                          <Component id="cancelarAccesoriosBoton" min="-2" pref="85" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="scrollListPanel" min="-2" pref="746" max="-2" attributes="0"/>
                                   </Group>
@@ -1037,7 +1100,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="guardarAccesoriosButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                              <Component id="cancelarBoton2" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                              <Component id="cancelarAccesoriosBoton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
@@ -1171,16 +1234,19 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarAccesoriosButtonActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="cancelarBoton2">
+                <Component class="javax.swing.JButton" name="cancelarAccesoriosBoton">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cancelar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarAccesoriosBotonActionPerformed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="scrollListPanel">
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JList" name="listaEquiposList">
+                    <Component class="javax.swing.JList" name="accesoriosList">
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -1223,7 +1289,7 @@
                                       <Group type="102" attributes="0">
                                           <Component id="guardarAsociadosButton" min="-2" pref="85" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="cancelarBoton3" min="-2" pref="85" max="-2" attributes="0"/>
+                                          <Component id="cancelarAsociadosBoton" min="-2" pref="85" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="scrollListPanel1" min="-2" pref="746" max="-2" attributes="0"/>
                                   </Group>
@@ -1241,7 +1307,7 @@
                           <Component id="scrollListPanel1" min="-2" pref="292" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="cancelarBoton3" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                              <Component id="cancelarAsociadosBoton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                               <Component id="guardarAsociadosButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -1380,16 +1446,19 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarAsociadosButtonActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="cancelarBoton3">
+                <Component class="javax.swing.JButton" name="cancelarAsociadosBoton">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cancelar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarAsociadosBotonActionPerformed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="scrollListPanel1">
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JList" name="listaEquiposList2">
+                    <Component class="javax.swing.JList" name="equiposList">
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -1432,7 +1501,7 @@
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="guardarMantenimientoButton" min="-2" pref="85" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="cancelarBoton5" min="-2" pref="85" max="-2" attributes="0"/>
+                                          <Component id="cancelarMantenimientoBoton" min="-2" pref="85" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="scrollListPanel2" alignment="1" min="-2" pref="746" max="-2" attributes="0"/>
                                   </Group>
@@ -1450,7 +1519,7 @@
                           <Component id="scrollListPanel2" min="-2" pref="292" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="cancelarBoton5" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                              <Component id="cancelarMantenimientoBoton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                               <Component id="guardarMantenimientoButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -1585,16 +1654,19 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarMantenimientoButtonActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="cancelarBoton5">
+                <Component class="javax.swing.JButton" name="cancelarMantenimientoBoton">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cancelar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarMantenimientoBotonActionPerformed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="scrollListPanel2">
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JList" name="listaEquiposList3">
+                    <Component class="javax.swing.JList" name="mantenimientoList">
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -1635,7 +1707,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="guardarAdquisicionButton" min="-2" pref="85" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="cancelarBoton4" min="-2" pref="85" max="-2" attributes="0"/>
+                                      <Component id="cancelarAdquisicionBoton" min="-2" pref="85" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="errorAdquisicionLabel" max="32767" attributes="0"/>
@@ -1663,7 +1735,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="guardarAdquisicionButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                              <Component id="cancelarBoton4" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                              <Component id="cancelarAdquisicionBoton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1838,8 +1910,17 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="fabricanteTextField">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="bbbbbbbbbb"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fabricanteTextFieldActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JTextField" name="nitTextField">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="232323323"/>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel30">
                           <Properties>
@@ -1847,8 +1928,14 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="proveedorTextField">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="cvbvbvbvb"/>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="contactoTextField">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="fdgfgdfgfdgdfgdfgfdg"/>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel33">
                           <Properties>
@@ -1856,6 +1943,9 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="telefonoTextField">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="545465656"/>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel34">
                           <Properties>
@@ -1868,8 +1958,14 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="emailTextField">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="fgdfgdfgfdg"/>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="direccionTextField">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="fdgdfgdfgfdgf"/>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel39">
                           <Properties>
@@ -1976,6 +2072,9 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="precioTextField">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="23423434"/>
+                      </Properties>
                     </Component>
                     <Component class="javax.swing.JCheckBox" name="donacionCheckBox">
                       <Properties>
@@ -2020,10 +2119,13 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarAdquisicionButtonActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="cancelarBoton4">
+                <Component class="javax.swing.JButton" name="cancelarAdquisicionBoton">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cancelar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarAdquisicionBotonActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="errorAdquisicionLabel">
                   <Properties>

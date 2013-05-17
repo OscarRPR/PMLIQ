@@ -20,7 +20,7 @@ public class PlanMantenimiento {
     public PlanMantenimiento(List<String> datos, List<Actividad> actividades) {
         this.nombre = datos.get(vars.NOMBRE);
         this.codigo = datos.get(vars.CODIGO);
-        this.tipoPlan = TipoPlan.valueOf(datos.get(vars.TIPOPLAN));
+        this.tipoPlan = TipoPlan.valueOf(datos.get(vars.TIPOPLAN).toUpperCase());
         this.responsable = datos.get(vars.RESPONSABLE);
         this.maximoRegistros = Integer.parseInt(datos.get(vars.MAXREGISTROS));
         this.frecuenciaUso = Integer.parseInt(datos.get(vars.USOSEMANAL));

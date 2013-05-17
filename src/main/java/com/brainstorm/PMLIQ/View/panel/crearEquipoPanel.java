@@ -4,6 +4,7 @@
  */
 package com.brainstorm.PMLIQ.View.panel;
 
+import com.brainstorm.PMLIQ.Model.Equipo;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Accesorio;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.EquipoAsociado;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.PlanMantenimiento;
@@ -11,7 +12,10 @@ import com.brainstorm.PMLIQ.View.PMLIApp;
 import com.brainstorm.PMLIQ.View.dialogs.CrearAccesorio;
 import com.brainstorm.PMLIQ.View.dialogs.CrearEquipoAsociado;
 import com.brainstorm.PMLIQ.View.dialogs.CrearPlanMantenimiento;
+import com.brainstorm.PMLIQ.View.panel.list.EquiposListaPanel;
 import java.awt.CheckboxGroup;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,14 +23,19 @@ import java.util.Enumeration;
 import java.util.List;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.ListSelectionModel;
 
 /**
  *
  * @author Silex RPR
  */
 public class crearEquipoPanel extends javax.swing.JPanel {
+    
+    private final int EQUIPOSTAB = 1;
     
     private final int DESCRIPCIONBASICA = 0;
     private final int DATOSTECNICOS = 1;
@@ -61,6 +70,14 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         
         adquisicionDateChooser.setDate(new Date());
         servicioDateChooser.setDate(new Date());
+        
+        accesoriosList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
+        equiposList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
+        mantenimientoList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
+        
+        updateAccesorioListModel();
+        updateEquiposAsociadosListModel();
+        updateMantenimientoListModel();
     }
 
     /**
@@ -164,9 +181,9 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         buscarTextField = new javax.swing.JTextField();
         separadorLabel = new javax.swing.JLabel();
         guardarAccesoriosButton = new javax.swing.JButton();
-        cancelarBoton2 = new javax.swing.JButton();
+        cancelarAccesoriosBoton = new javax.swing.JButton();
         scrollListPanel = new javax.swing.JScrollPane();
-        listaEquiposList = new javax.swing.JList();
+        accesoriosList = new javax.swing.JList();
         equiposAsociadosScrollPane = new javax.swing.JScrollPane();
         equiposAsociadosPanel = new javax.swing.JPanel();
         accionesPanel1 = new javax.swing.JPanel();
@@ -177,9 +194,9 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         buscarTextField1 = new javax.swing.JTextField();
         separadorLabel1 = new javax.swing.JLabel();
         guardarAsociadosButton = new javax.swing.JButton();
-        cancelarBoton3 = new javax.swing.JButton();
+        cancelarAsociadosBoton = new javax.swing.JButton();
         scrollListPanel1 = new javax.swing.JScrollPane();
-        listaEquiposList2 = new javax.swing.JList();
+        equiposList = new javax.swing.JList();
         mantenimientoScrollPane = new javax.swing.JScrollPane();
         mantenimientoPanel = new javax.swing.JPanel();
         accionesPanel2 = new javax.swing.JPanel();
@@ -190,9 +207,9 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         buscarTextField2 = new javax.swing.JTextField();
         separadorLabel2 = new javax.swing.JLabel();
         guardarMantenimientoButton = new javax.swing.JButton();
-        cancelarBoton5 = new javax.swing.JButton();
+        cancelarMantenimientoBoton = new javax.swing.JButton();
         scrollListPanel2 = new javax.swing.JScrollPane();
-        listaEquiposList3 = new javax.swing.JList();
+        mantenimientoList = new javax.swing.JList();
         adquisicionScrollPane = new javax.swing.JScrollPane();
         adquisicionPanel = new javax.swing.JPanel();
         tituloPanel2 = new javax.swing.JPanel();
@@ -227,7 +244,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         adquisicionDateChooser = new com.toedter.calendar.JDateChooser();
         servicioDateChooser = new com.toedter.calendar.JDateChooser();
         guardarAdquisicionButton = new javax.swing.JButton();
-        cancelarBoton4 = new javax.swing.JButton();
+        cancelarAdquisicionBoton = new javax.swing.JButton();
         errorAdquisicionLabel = new javax.swing.JLabel();
 
         jLabel1.setText("CREANDO UN NUEVO EQUIPO");
@@ -253,17 +270,29 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Nombre");
 
+        nombreTextField.setText("cccccccccccc");
+
         jLabel3.setText("Placa De Inventario");
 
+        placaTextField.setText("wwwwwwwww");
+
         jLabel4.setText("Clase");
+
+        claseTextField.setText("aaaaaaaaaaaa");
 
         jLabel5.setText("Tipo - Modelo");
 
         tipoModeloComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Basico", "Especializado", "Computo" }));
 
+        marcaTextField.setText("aaaaaaaaa");
+
         jLabel7.setText("Modelo");
 
+        modeloTextField.setText("wwwwwww");
+
         jLabel8.setText("Serie");
+
+        serieTextField.setText("232323");
 
         jLabel6.setText("Marca");
 
@@ -279,7 +308,11 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         jLabel10.setText("Código Documentos");
 
+        codigoTextField.setText("23212121");
+
         jLabel11.setText("Ubicación En Laboratorio");
+
+        ubicacionTextField.setText("asdsadsadsad");
 
         jLabel12.setText("Uso:");
 
@@ -435,6 +468,11 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         });
 
         cancelarBasicaButton.setText("Cancelar");
+        cancelarBasicaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarBasicaButtonActionPerformed(evt);
+            }
+        });
 
         tareasPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Tareas/Determinaciones"));
 
@@ -524,11 +562,19 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         jLabel14.setText("Voltaje (V)");
 
+        voltajeTextField.setText("2");
+
         jLabel15.setText("Potencia (W)");
+
+        potenciaTextField.setText("3");
 
         jLabel16.setText("Corriente (A)");
 
+        corrienteTextField.setText("1");
+
         jLabel17.setText("Fases");
+
+        fasesTextField.setText("2");
 
         jLabel18.setText("Tipo");
 
@@ -588,11 +634,24 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         jLabel19.setText("Alto (m)");
 
+        altoTextField.setText("8");
+
         jLabel20.setText("Ancho (m)");
+
+        anchoTextField.setText("8");
 
         jLabel21.setText("Profundo (m)");
 
+        profundoTextField.setText("5");
+
         jLabel22.setText("Peso (Kg)");
+
+        pesoTextField.setText("6");
+        pesoTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesoTextFieldActionPerformed(evt);
+            }
+        });
 
         jLabel23.setText("Uso");
 
@@ -652,7 +711,11 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         jLabel24.setText("T. Ambiente (ºC)");
 
+        ambienteTextField.setText("6");
+
         jLabel25.setText("HR (%)");
+
+        hrTextField.setText("4");
 
         jLabel26.setText("Otro");
 
@@ -741,6 +804,11 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         });
 
         cancelarTecnicosButton.setText("Cancelar");
+        cancelarTecnicosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarTecnicosButtonActionPerformed(evt);
+            }
+        });
 
         errorTecnicosLabel.setForeground(java.awt.Color.red);
 
@@ -872,10 +940,15 @@ public class crearEquipoPanel extends javax.swing.JPanel {
             }
         });
 
-        cancelarBoton2.setText("Cancelar");
+        cancelarAccesoriosBoton.setText("Cancelar");
+        cancelarAccesoriosBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarAccesoriosBotonActionPerformed(evt);
+            }
+        });
 
-        listaEquiposList.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        scrollListPanel.setViewportView(listaEquiposList);
+        accesoriosList.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        scrollListPanel.setViewportView(accesoriosList);
 
         javax.swing.GroupLayout accesoriosPanelLayout = new javax.swing.GroupLayout(accesoriosPanel);
         accesoriosPanel.setLayout(accesoriosPanelLayout);
@@ -890,7 +963,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                             .addGroup(accesoriosPanelLayout.createSequentialGroup()
                                 .addComponent(guardarAccesoriosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cancelarBoton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cancelarAccesoriosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(scrollListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 0, 0))
         );
@@ -904,7 +977,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(accesoriosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarAccesoriosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelarBoton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cancelarAccesoriosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -994,10 +1067,15 @@ public class crearEquipoPanel extends javax.swing.JPanel {
             }
         });
 
-        cancelarBoton3.setText("Cancelar");
+        cancelarAsociadosBoton.setText("Cancelar");
+        cancelarAsociadosBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarAsociadosBotonActionPerformed(evt);
+            }
+        });
 
-        listaEquiposList2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        scrollListPanel1.setViewportView(listaEquiposList2);
+        equiposList.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        scrollListPanel1.setViewportView(equiposList);
 
         javax.swing.GroupLayout equiposAsociadosPanelLayout = new javax.swing.GroupLayout(equiposAsociadosPanel);
         equiposAsociadosPanel.setLayout(equiposAsociadosPanelLayout);
@@ -1012,7 +1090,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                             .addGroup(equiposAsociadosPanelLayout.createSequentialGroup()
                                 .addComponent(guardarAsociadosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cancelarBoton3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cancelarAsociadosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(scrollListPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
@@ -1024,7 +1102,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addComponent(scrollListPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(equiposAsociadosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelarBoton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelarAsociadosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(guardarAsociadosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
@@ -1112,10 +1190,15 @@ public class crearEquipoPanel extends javax.swing.JPanel {
             }
         });
 
-        cancelarBoton5.setText("Cancelar");
+        cancelarMantenimientoBoton.setText("Cancelar");
+        cancelarMantenimientoBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarMantenimientoBotonActionPerformed(evt);
+            }
+        });
 
-        listaEquiposList3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        scrollListPanel2.setViewportView(listaEquiposList3);
+        mantenimientoList.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        scrollListPanel2.setViewportView(mantenimientoList);
 
         javax.swing.GroupLayout mantenimientoPanelLayout = new javax.swing.GroupLayout(mantenimientoPanel);
         mantenimientoPanel.setLayout(mantenimientoPanelLayout);
@@ -1130,7 +1213,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                             .addGroup(mantenimientoPanelLayout.createSequentialGroup()
                                 .addComponent(guardarMantenimientoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cancelarBoton5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cancelarMantenimientoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(scrollListPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
@@ -1142,7 +1225,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addComponent(scrollListPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(mantenimientoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelarBoton5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelarMantenimientoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(guardarMantenimientoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
@@ -1174,13 +1257,32 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         jLabel28.setText("Fabricante");
 
+        fabricanteTextField.setText("bbbbbbbbbb");
+        fabricanteTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fabricanteTextFieldActionPerformed(evt);
+            }
+        });
+
+        nitTextField.setText("232323323");
+
         jLabel30.setText("Proveedor");
 
+        proveedorTextField.setText("cvbvbvbvb");
+
+        contactoTextField.setText("fdgfgdfgfdgdfgdfgfdg");
+
         jLabel33.setText("Telefono");
+
+        telefonoTextField.setText("545465656");
 
         jLabel34.setText("Contacto");
 
         jLabel35.setText("Dirección");
+
+        emailTextField.setText("fgdfgdfgfdg");
+
+        direccionTextField.setText("fdgdfgdfgfdgf");
 
         jLabel39.setText("NIT");
 
@@ -1283,6 +1385,8 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         jLabel29.setText("Precio");
 
+        precioTextField.setText("23423434");
+
         donacionCheckBox.setText("Donación");
 
         jLabel31.setText("Tiempo de Uso (Años)");
@@ -1358,7 +1462,12 @@ public class crearEquipoPanel extends javax.swing.JPanel {
             }
         });
 
-        cancelarBoton4.setText("Cancelar");
+        cancelarAdquisicionBoton.setText("Cancelar");
+        cancelarAdquisicionBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarAdquisicionBotonActionPerformed(evt);
+            }
+        });
 
         errorAdquisicionLabel.setForeground(java.awt.Color.red);
 
@@ -1373,7 +1482,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                         .addGroup(adquisicionPanelLayout.createSequentialGroup()
                             .addComponent(guardarAdquisicionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(cancelarBoton4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cancelarAdquisicionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(adquisicionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(errorAdquisicionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(descripcionPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1395,7 +1504,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(adquisicionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarAdquisicionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelarBoton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cancelarAdquisicionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1426,6 +1535,13 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private void nuevoAccesorioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoAccesorioButtonActionPerformed
         CrearAccesorio crearAccesorio = new CrearAccesorio((JFrame)PMLIApp.getInstance().getMainWindow(), true, accesorios);
         
+        crearAccesorio.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    updateAccesorioListModel();
+                }
+        });
+        
         crearAccesorio.setLocationRelativeTo(null);
         crearAccesorio.setVisible(true);
     }//GEN-LAST:event_nuevoAccesorioButtonActionPerformed
@@ -1437,6 +1553,13 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private void nuevoAccesorioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoAccesorioButton1ActionPerformed
         CrearEquipoAsociado crearEquipoAsociado = new CrearEquipoAsociado((JFrame)PMLIApp.getInstance().getMainWindow(), true, equipos);
         
+        crearEquipoAsociado.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    updateEquiposAsociadosListModel();
+                }
+        });
+        
         crearEquipoAsociado.setLocationRelativeTo(null);
         crearEquipoAsociado.setVisible(true);
     }//GEN-LAST:event_nuevoAccesorioButton1ActionPerformed
@@ -1447,6 +1570,13 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
     private void nuevoMantenimientoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoMantenimientoButtonActionPerformed
         CrearPlanMantenimiento crearPlanMantenimiento = new CrearPlanMantenimiento((JFrame)PMLIApp.getInstance().getMainWindow(), true, planes);
+        
+        crearPlanMantenimiento.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    updateMantenimientoListModel();
+                }
+        });
         
         crearPlanMantenimiento.setLocationRelativeTo(null);
         crearPlanMantenimiento.setVisible(true);
@@ -1480,6 +1610,44 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         guardarDatosEquipo();
     }//GEN-LAST:event_guardarAdquisicionButtonActionPerformed
 
+    private void cancelarBasicaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBasicaButtonActionPerformed
+        disposePanel();
+    }//GEN-LAST:event_cancelarBasicaButtonActionPerformed
+
+    private void fabricanteTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fabricanteTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fabricanteTextFieldActionPerformed
+
+    private void pesoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesoTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pesoTextFieldActionPerformed
+
+    private void cancelarTecnicosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarTecnicosButtonActionPerformed
+        disposePanel();
+    }//GEN-LAST:event_cancelarTecnicosButtonActionPerformed
+
+    private void cancelarAccesoriosBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarAccesoriosBotonActionPerformed
+        disposePanel();
+    }//GEN-LAST:event_cancelarAccesoriosBotonActionPerformed
+
+    private void cancelarAsociadosBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarAsociadosBotonActionPerformed
+        disposePanel();
+    }//GEN-LAST:event_cancelarAsociadosBotonActionPerformed
+
+    private void cancelarAdquisicionBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarAdquisicionBotonActionPerformed
+        disposePanel();
+    }//GEN-LAST:event_cancelarAdquisicionBotonActionPerformed
+
+    private void cancelarMantenimientoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarMantenimientoBotonActionPerformed
+        disposePanel();
+    }//GEN-LAST:event_cancelarMantenimientoBotonActionPerformed
+
+    private void disposePanel() {
+        setVisible(false);
+        removeAll();
+        PMLIApp.getInstance().getMainWindow().getAppTabPanel().setComponentAt(EQUIPOSTAB, new EquiposListaPanel());
+    }
+    
     private void setCurrentErrorTab(List<String> resultados) {
         for (int i = 0; i < resultados.size(); i++)
         {
@@ -1506,6 +1674,18 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         errorAdquisicionLabel.setText(resultados.get(ADQUISICION));
         
         setCurrentErrorTab(resultados);
+        
+        boolean hasFinishedCreation = true;
+        for (String s : resultados) {
+            if (!s.equals("")) {
+                hasFinishedCreation = false;
+                break;
+            }
+        }
+        
+        if ( hasFinishedCreation) {
+            disposePanel();
+        }
     }
     
     public List<String> getDatosBasicosEquipo() {
@@ -1583,6 +1763,39 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         return null;
     }
     
+    private void updateAccesorioListModel() {
+
+        accesoriosModel.clear();
+        for(Accesorio a : accesorios) {
+            accesoriosModel.addElement(a.getNombre());
+        }
+        
+        accesoriosList.setModel(accesoriosModel);
+    }
+    
+    private void updateEquiposAsociadosListModel() {
+
+        equiposModel.clear();
+        for(EquipoAsociado e : equipos) {
+            equiposModel.addElement(e.getNombre());
+        }
+        
+        equiposList.setModel(equiposModel);
+    }
+    
+    private void updateMantenimientoListModel() {
+
+        planesModel.clear();
+        for(PlanMantenimiento p : planes) {
+            planesModel.addElement(p.getNombre());
+        }
+        
+        mantenimientoList.setModel(planesModel);
+    }
+    
+    private DefaultListModel accesoriosModel = new DefaultListModel();
+    private DefaultListModel equiposModel = new DefaultListModel();
+    private DefaultListModel planesModel = new DefaultListModel();
     
     private List<Accesorio> accesorios = new ArrayList<Accesorio>();
     private List<EquipoAsociado> equipos = new ArrayList<EquipoAsociado>();
@@ -1590,6 +1803,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private ButtonGroup bGroupManual, bGroupUso, bGroupForma;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList accesoriosList;
     private javax.swing.JPanel accesoriosPanel;
     private javax.swing.JScrollPane accesoriosScrollPane;
     private javax.swing.JPanel accionesPanel;
@@ -1608,11 +1822,11 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JTextField buscarTextField;
     private javax.swing.JTextField buscarTextField1;
     private javax.swing.JTextField buscarTextField2;
+    private javax.swing.JButton cancelarAccesoriosBoton;
+    private javax.swing.JButton cancelarAdquisicionBoton;
+    private javax.swing.JButton cancelarAsociadosBoton;
     private javax.swing.JButton cancelarBasicaButton;
-    private javax.swing.JButton cancelarBoton2;
-    private javax.swing.JButton cancelarBoton3;
-    private javax.swing.JButton cancelarBoton4;
-    private javax.swing.JButton cancelarBoton5;
+    private javax.swing.JButton cancelarMantenimientoBoton;
     private javax.swing.JButton cancelarTecnicosButton;
     private javax.swing.JTextField claseTextField;
     private javax.swing.JTextField codigoTextField;
@@ -1637,6 +1851,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JTextField emailTextField;
     private javax.swing.JPanel equiposAsociadosPanel;
     private javax.swing.JScrollPane equiposAsociadosScrollPane;
+    private javax.swing.JList equiposList;
     private javax.swing.JLabel errorAdquisicionLabel;
     private javax.swing.JLabel errorBasicaLabel;
     private javax.swing.JLabel errorTecnicosLabel;
@@ -1702,9 +1917,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JCheckBox labCheckBox;
-    private javax.swing.JList listaEquiposList;
-    private javax.swing.JList listaEquiposList2;
-    private javax.swing.JList listaEquiposList3;
+    private javax.swing.JList mantenimientoList;
     private javax.swing.JPanel mantenimientoPanel;
     private javax.swing.JScrollPane mantenimientoScrollPane;
     private javax.swing.JTextField marcaTextField;
