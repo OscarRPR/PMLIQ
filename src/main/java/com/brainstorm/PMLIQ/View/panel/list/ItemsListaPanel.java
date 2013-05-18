@@ -16,6 +16,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -29,27 +30,16 @@ public class ItemsListaPanel extends javax.swing.JPanel {
     public ItemsListaPanel() {
         initComponents();
         
-        itemsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        itemsList.setCellRenderer(new DefaultListCellRenderer() { // Setting the DefaultListCellRenderer
- 
-            @Override
-            public Component getListCellRendererComponent(JList list, Object value, int index,
-                    boolean isSelected, boolean cellHasFocus) {
-                Item item = ( Item )value;  // Using value we are getting the object in JList
-                
-                setText( item.getNombre() );  // Setting the text
-                
-                if(isSelected){
-                    this.setBackground(new Color(200, 200, 255));
-                }
-                else{
-                    this.setBackground(new Color(255, 255, 255));
-                }
-                
-                return this;
-            }
-        });
+        listaTable.setModel(itemsModel);
+        listaTable.setColumnSelectionAllowed(false);
+        listaTable.setRowSelectionAllowed(true);
 
+        itemsModel.addColumn("Nombre");
+        itemsModel.addColumn("Placa de Inventario");
+        itemsModel.addColumn("Cantidad Disponible");
+        
+        listaTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
         updateListModel();
     }
 
@@ -71,8 +61,8 @@ public class ItemsListaPanel extends javax.swing.JPanel {
         accionesPanel1 = new javax.swing.JPanel();
         nuevoItemButton = new javax.swing.JButton();
         verCVPDFButton1 = new javax.swing.JButton();
-        listaScrollPanel1 = new javax.swing.JScrollPane();
-        itemsList = new javax.swing.JList();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listaTable = new javax.swing.JTable();
 
         buscarInternalPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR"));
 
@@ -143,7 +133,7 @@ public class ItemsListaPanel extends javax.swing.JPanel {
         accionesPanel1Layout.setHorizontalGroup(
             accionesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(accionesPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addComponent(nuevoItemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(verCVPDFButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -152,14 +142,14 @@ public class ItemsListaPanel extends javax.swing.JPanel {
         accionesPanel1Layout.setVerticalGroup(
             accionesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(accionesPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(accionesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nuevoItemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(verCVPDFButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        listaScrollPanel1.setViewportView(itemsList);
+        listaTable.setRowSelectionAllowed(false);
+        jScrollPane2.setViewportView(listaTable);
 
         javax.swing.GroupLayout inventarioPanelLayout = new javax.swing.GroupLayout(inventarioPanel);
         inventarioPanel.setLayout(inventarioPanelLayout);
@@ -167,46 +157,42 @@ public class ItemsListaPanel extends javax.swing.JPanel {
             inventarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inventarioPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(inventarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(inventarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(inventarioPanelLayout.createSequentialGroup()
                         .addComponent(buscarInventarioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(accionesPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(listaScrollPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addComponent(accionesPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 10, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
+                .addContainerGap())
         );
         inventarioPanelLayout.setVerticalGroup(
             inventarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inventarioPanelLayout.createSequentialGroup()
-                .addGroup(inventarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 0, 0)
+                .addGroup(inventarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buscarInventarioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(inventarioPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(buscarInventarioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(accionesPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(accionesPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(4, 4, 4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(listaScrollPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 39, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 91, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(inventarioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(inventarioPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(inventarioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(inventarioPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -225,16 +211,20 @@ public class ItemsListaPanel extends javax.swing.JPanel {
     private void updateListModel() {
         
         List<Item> listaItems = PMLIApp.getInstance().getSistema().getInventario();
-        
-        itemsModel.clear();
+
         for(Item i : listaItems) {
-            itemsModel.addElement(i);
+            itemsModel.addRow(new Object[] { i.getNombre(), i.getPlacaInventario(), i.getCantidadInicial()} );
         }
         
-        itemsList.setModel(itemsModel);
+        listaTable.setModel(itemsModel);
     }
     
-    private DefaultListModel itemsModel = new DefaultListModel();
+    private DefaultTableModel itemsModel = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel accionesPanel1;
@@ -243,8 +233,8 @@ public class ItemsListaPanel extends javax.swing.JPanel {
     private javax.swing.JTextField buscarTextField1;
     private javax.swing.JComboBox filtroComboBox1;
     private javax.swing.JPanel inventarioPanel;
-    private javax.swing.JList itemsList;
-    private javax.swing.JScrollPane listaScrollPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable listaTable;
     private javax.swing.JButton nuevoItemButton;
     private javax.swing.JLabel separadorLabel1;
     private javax.swing.JButton verCVPDFButton1;

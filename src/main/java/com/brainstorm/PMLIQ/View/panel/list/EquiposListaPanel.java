@@ -15,6 +15,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -28,29 +29,19 @@ public class EquiposListaPanel extends javax.swing.JPanel {
     public EquiposListaPanel() {
         initComponents();
         
-        equiposList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        equiposList.setCellRenderer(new DefaultListCellRenderer() { // Setting the DefaultListCellRenderer
- 
-            @Override
-            public Component getListCellRendererComponent(JList list, Object value, int index,
-                    boolean isSelected, boolean cellHasFocus) {
-                Equipo equipo = ( Equipo )value;  // Using value we are getting the object in JList
-                
-                setText( equipo.getNombre() );  // Setting the text
-                
-                if(isSelected){
-                    this.setBackground(new Color(200, 200, 255));
-                }
-                else{
-                    this.setBackground(new Color(255, 255, 255));
-                }
-                
-                return this;
-            }
-        });
+        listaTable.setModel(equiposModel);
+        listaTable.setColumnSelectionAllowed(false);
+        listaTable.setRowSelectionAllowed(true);
 
-        updateListModel();
+        equiposModel.addColumn("Nombre");
+        equiposModel.addColumn("Placa de Inventario");
+        equiposModel.addColumn("Tipo de Equipo");
+        equiposModel.addColumn("Uso de Equipo");
+        equiposModel.addColumn("Ubicación");
         
+        listaTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        updateListModel();
     }
 
     /**
@@ -72,8 +63,8 @@ public class EquiposListaPanel extends javax.swing.JPanel {
         nuevoEquipoButton = new javax.swing.JButton();
         verCVPDFButton = new javax.swing.JButton();
         verCVPDFButton2 = new javax.swing.JButton();
-        listaScrollPanel = new javax.swing.JScrollPane();
-        equiposList = new javax.swing.JList();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listaTable = new javax.swing.JTable();
 
         hojasPanel.setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -163,7 +154,8 @@ public class EquiposListaPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        listaScrollPanel.setViewportView(equiposList);
+        listaTable.setRowSelectionAllowed(false);
+        jScrollPane2.setViewportView(listaTable);
 
         javax.swing.GroupLayout hojasPanelLayout = new javax.swing.GroupLayout(hojasPanel);
         hojasPanel.setLayout(hojasPanelLayout);
@@ -172,12 +164,13 @@ public class EquiposListaPanel extends javax.swing.JPanel {
             .addGroup(hojasPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(hojasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(listaScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(hojasPanelLayout.createSequentialGroup()
                         .addComponent(buscarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(accionesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addComponent(accionesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 9, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
+                .addContainerGap())
         );
         hojasPanelLayout.setVerticalGroup(
             hojasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,8 +179,8 @@ public class EquiposListaPanel extends javax.swing.JPanel {
                     .addComponent(buscarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(accionesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(listaScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -223,27 +216,30 @@ public class EquiposListaPanel extends javax.swing.JPanel {
     private void updateListModel() {
         
         List<Equipo> listaEquipos = PMLIApp.getInstance().getSistema().getEquipos();
-        
-        equiposModel.clear();
+
         for(Equipo e : listaEquipos) {
-            equiposModel.addElement(e);
+            equiposModel.addRow(new Object[] {e.getNombre(), e.getPlacaInventario(), e.getTipoEquipo().toString(),
+                                              e.getUsoEquipo().toString(), e.getUbicacionEnLaboratorio()});
         }
-        
-        equiposList.setModel(equiposModel);
+
+        listaTable.setModel(equiposModel);
     }
     
-    private DefaultListModel equiposModel = new DefaultListModel();
-    
-    
+    private DefaultTableModel equiposModel = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel accionesPanel;
     private javax.swing.JPanel buscarInternalPanel;
     private javax.swing.JPanel buscarPanel;
     private javax.swing.JTextField buscarTextField;
-    private javax.swing.JList equiposList;
     private javax.swing.JComboBox filtroComboBox;
     private javax.swing.JPanel hojasPanel;
-    private javax.swing.JScrollPane listaScrollPanel;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable listaTable;
     private javax.swing.JButton nuevoEquipoButton;
     private javax.swing.JLabel separadorLabel;
     private javax.swing.JButton verCVPDFButton;

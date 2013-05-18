@@ -17,6 +17,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JTabbedPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -30,7 +31,18 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
     public fabricantesListaPanel() {
         initComponents();
         
-        fabricantesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listaTable.setModel(fabricantesModel);
+        listaTable.setColumnSelectionAllowed(false);
+        listaTable.setRowSelectionAllowed(true);
+
+        fabricantesModel.addColumn("Nombre");
+        fabricantesModel.addColumn("Contacto");
+        fabricantesModel.addColumn("Telefono");
+        fabricantesModel.addColumn("Correo Electronico");
+
+        listaTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        /*fabricantesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         fabricantesList.setCellRenderer(new DefaultListCellRenderer() { // Setting the DefaultListCellRenderer
  
             @Override
@@ -38,7 +50,7 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
                     boolean isSelected, boolean cellHasFocus) {
                 Fabricante fabricante = ( Fabricante )value;  // Using value we are getting the object in JList
                 
-                setText( fabricante.getNombre() );  // Setting the text
+                setText( fabricante.toString() );  // Setting the text
                 
                 if(isSelected){
                     this.setBackground(new Color(200, 200, 255));
@@ -49,7 +61,7 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
                 
                 return this;
             }
-        });
+        });*/
 
         updateListModel();
     }
@@ -73,8 +85,8 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
         accionesPanel2 = new javax.swing.JPanel();
         nuevoFabricanteButton = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        fabricantesList = new javax.swing.JList();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listaTable = new javax.swing.JTable();
 
         buscarInternalPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR"));
 
@@ -161,7 +173,8 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane1.setViewportView(fabricantesList);
+        listaTable.setRowSelectionAllowed(false);
+        jScrollPane2.setViewportView(listaTable);
 
         javax.swing.GroupLayout fabricantesPanelLayout = new javax.swing.GroupLayout(fabricantesPanel);
         fabricantesPanel.setLayout(fabricantesPanelLayout);
@@ -169,8 +182,8 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
             fabricantesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fabricantesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(fabricantesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1)
+                .addGroup(fabricantesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2)
                     .addGroup(fabricantesPanelLayout.createSequentialGroup()
                         .addComponent(buscarInventarioPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -186,8 +199,8 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
                         .addComponent(buscarInventarioPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(accionesPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 39, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 114, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -203,7 +216,7 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGap(0, 577, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -229,15 +242,19 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
         
         List<Fabricante> listaFabricantes = PMLIApp.getInstance().getSistema().getFabricantes();
         
-        fabricantesModel.clear();
         for(Fabricante f : listaFabricantes) {
-            fabricantesModel.addElement(f);
+            fabricantesModel.addRow(new Object[] {f.getNombre(),f.getContacto(), f.getTelefonoUno(), f.getCorreo()});
         }
         
-        fabricantesList.setModel(fabricantesModel);
+        listaTable.setModel(fabricantesModel);
     }
     
-    private DefaultListModel fabricantesModel = new DefaultListModel();
+    private DefaultTableModel fabricantesModel = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Eliminar;
@@ -245,10 +262,10 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
     private javax.swing.JPanel buscarInternalPanel2;
     private javax.swing.JPanel buscarInventarioPanel1;
     private javax.swing.JTextField buscarTextField2;
-    private javax.swing.JList fabricantesList;
     private javax.swing.JPanel fabricantesPanel;
     private javax.swing.JComboBox filtroComboBox2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable listaTable;
     private javax.swing.JButton nuevoFabricanteButton;
     private javax.swing.JLabel separadorLabel2;
     // End of variables declaration//GEN-END:variables

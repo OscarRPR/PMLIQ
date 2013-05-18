@@ -28,6 +28,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -39,7 +40,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     
     private final int DESCRIPCIONBASICA = 0;
     private final int DATOSTECNICOS = 1;
-    private final int ADQUISICION = 3;
+    private final int ADQUISICION = 5;
 
     /**
      * Creates new form crearEquipoPanel
@@ -71,9 +72,34 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         adquisicionDateChooser.setDate(new Date());
         servicioDateChooser.setDate(new Date());
         
-        accesoriosList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
-        equiposList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
-        mantenimientoList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
+        accesoriosTable.setModel(accesoriosModel);
+        accesoriosTable.setColumnSelectionAllowed(false);
+        accesoriosTable.setRowSelectionAllowed(true);
+
+        accesoriosModel.addColumn("Nombre");
+        accesoriosModel.addColumn("Marca");
+        accesoriosModel.addColumn("Cantidad Disponible");
+        
+        accesoriosTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        equiposTable.setModel(accesoriosModel);
+        equiposTable.setColumnSelectionAllowed(false);
+        equiposTable.setRowSelectionAllowed(true);
+
+        equiposModel.addColumn("Nombre");
+        equiposModel.addColumn("Placa de Inventario");
+        
+        equiposTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
+        
+        mantenimientoTable.setModel(accesoriosModel);
+        mantenimientoTable.setColumnSelectionAllowed(false);
+        mantenimientoTable.setRowSelectionAllowed(true);
+
+        mantenimientoModel.addColumn("Nombre");
+        mantenimientoModel.addColumn("Responsable");
+        mantenimientoModel.addColumn("Tipo de Plan");
+        
+        mantenimientoTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
         
         updateAccesorioListModel();
         updateEquiposAsociadosListModel();
@@ -182,8 +208,8 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         separadorLabel = new javax.swing.JLabel();
         guardarAccesoriosButton = new javax.swing.JButton();
         cancelarAccesoriosBoton = new javax.swing.JButton();
-        scrollListPanel = new javax.swing.JScrollPane();
-        accesoriosList = new javax.swing.JList();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        accesoriosTable = new javax.swing.JTable();
         equiposAsociadosScrollPane = new javax.swing.JScrollPane();
         equiposAsociadosPanel = new javax.swing.JPanel();
         accionesPanel1 = new javax.swing.JPanel();
@@ -193,10 +219,10 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         filtroComboBox1 = new javax.swing.JComboBox();
         buscarTextField1 = new javax.swing.JTextField();
         separadorLabel1 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        equiposTable = new javax.swing.JTable();
         guardarAsociadosButton = new javax.swing.JButton();
         cancelarAsociadosBoton = new javax.swing.JButton();
-        scrollListPanel1 = new javax.swing.JScrollPane();
-        equiposList = new javax.swing.JList();
         mantenimientoScrollPane = new javax.swing.JScrollPane();
         mantenimientoPanel = new javax.swing.JPanel();
         accionesPanel2 = new javax.swing.JPanel();
@@ -208,8 +234,8 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         separadorLabel2 = new javax.swing.JLabel();
         guardarMantenimientoButton = new javax.swing.JButton();
         cancelarMantenimientoBoton = new javax.swing.JButton();
-        scrollListPanel2 = new javax.swing.JScrollPane();
-        mantenimientoList = new javax.swing.JList();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        mantenimientoTable = new javax.swing.JTable();
         adquisicionScrollPane = new javax.swing.JScrollPane();
         adquisicionPanel = new javax.swing.JPanel();
         tituloPanel2 = new javax.swing.JPanel();
@@ -817,21 +843,22 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         datosTecnicosPanelLayout.setHorizontalGroup(
             datosTecnicosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(datosTecnicosPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(guardarTecnicosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cancelarTecnicosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8))
-            .addGroup(datosTecnicosPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(datosTecnicosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(tituloPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ambientePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(requerimientosPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(requerimientosPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dimensionesPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(datosElectricosPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(errorTecnicosLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(5, 5, 5)
+                .addGroup(datosTecnicosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(datosTecnicosPanelLayout.createSequentialGroup()
+                        .addComponent(guardarTecnicosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cancelarTecnicosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11))
+                    .addGroup(datosTecnicosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(tituloPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ambientePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(requerimientosPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(requerimientosPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dimensionesPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(datosElectricosPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(errorTecnicosLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(0, 0, 0))
         );
         datosTecnicosPanelLayout.setVerticalGroup(
             datosTecnicosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -854,7 +881,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addGroup(datosTecnicosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarTecnicosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarTecnicosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         datosTecnicosScrollPane.setViewportView(datosTecnicosPanel);
@@ -895,7 +922,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separadorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buscarTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                .addComponent(buscarTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                 .addGap(16, 16, 16))
         );
         buscarInternalPanelLayout.setVerticalGroup(
@@ -947,24 +974,24 @@ public class crearEquipoPanel extends javax.swing.JPanel {
             }
         });
 
-        accesoriosList.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        scrollListPanel.setViewportView(accesoriosList);
+        accesoriosTable.setRowSelectionAllowed(false);
+        jScrollPane3.setViewportView(accesoriosTable);
 
         javax.swing.GroupLayout accesoriosPanelLayout = new javax.swing.GroupLayout(accesoriosPanel);
         accesoriosPanel.setLayout(accesoriosPanelLayout);
         accesoriosPanelLayout.setHorizontalGroup(
             accesoriosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(accesoriosPanelLayout.createSequentialGroup()
+                .addGap(576, 576, 576)
+                .addComponent(guardarAccesoriosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cancelarAccesoriosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 24, Short.MAX_VALUE))
+            .addGroup(accesoriosPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(accesoriosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(accionesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, accesoriosPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(accesoriosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(accesoriosPanelLayout.createSequentialGroup()
-                                .addComponent(guardarAccesoriosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cancelarAccesoriosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(scrollListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane3)
+                    .addComponent(accionesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
         accesoriosPanelLayout.setVerticalGroup(
@@ -973,8 +1000,8 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(accionesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addGroup(accesoriosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarAccesoriosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarAccesoriosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1019,7 +1046,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separadorLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buscarTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                .addComponent(buscarTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
                 .addGap(16, 16, 16))
         );
         buscarInternalPanel1Layout.setVerticalGroup(
@@ -1033,17 +1060,23 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addGap(25, 25, 25))
         );
 
+        equiposTable.setRowSelectionAllowed(false);
+        jScrollPane5.setViewportView(equiposTable);
+
         javax.swing.GroupLayout accionesPanel1Layout = new javax.swing.GroupLayout(accionesPanel1);
         accionesPanel1.setLayout(accionesPanel1Layout);
         accionesPanel1Layout.setHorizontalGroup(
             accionesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(accionesPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(buscarInternalPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nuevoAccesorioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(eliminarAccesorioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(accionesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+                    .addGroup(accionesPanel1Layout.createSequentialGroup()
+                        .addComponent(buscarInternalPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nuevoAccesorioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(eliminarAccesorioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         accionesPanel1Layout.setVerticalGroup(
@@ -1057,7 +1090,9 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                     .addGroup(accionesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(nuevoAccesorioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(eliminarAccesorioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(15, 15, 15))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         guardarAsociadosButton.setText("Guardar");
@@ -1074,37 +1109,29 @@ public class crearEquipoPanel extends javax.swing.JPanel {
             }
         });
 
-        equiposList.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        scrollListPanel1.setViewportView(equiposList);
-
         javax.swing.GroupLayout equiposAsociadosPanelLayout = new javax.swing.GroupLayout(equiposAsociadosPanel);
         equiposAsociadosPanel.setLayout(equiposAsociadosPanelLayout);
         equiposAsociadosPanelLayout.setHorizontalGroup(
             equiposAsociadosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(equiposAsociadosPanelLayout.createSequentialGroup()
-                .addGroup(equiposAsociadosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(accionesPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(equiposAsociadosPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(equiposAsociadosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(equiposAsociadosPanelLayout.createSequentialGroup()
-                                .addComponent(guardarAsociadosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cancelarAsociadosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(scrollListPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addComponent(accionesPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, equiposAsociadosPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(guardarAsociadosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cancelarAsociadosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
         equiposAsociadosPanelLayout.setVerticalGroup(
             equiposAsociadosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, equiposAsociadosPanelLayout.createSequentialGroup()
                 .addComponent(accionesPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollListPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(equiposAsociadosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelarAsociadosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(guardarAsociadosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                    .addComponent(guardarAsociadosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelarAsociadosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0))
         );
 
         equiposAsociadosScrollPane.setViewportView(equiposAsociadosPanel);
@@ -1197,8 +1224,8 @@ public class crearEquipoPanel extends javax.swing.JPanel {
             }
         });
 
-        mantenimientoList.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        scrollListPanel2.setViewportView(mantenimientoList);
+        mantenimientoTable.setRowSelectionAllowed(false);
+        jScrollPane6.setViewportView(mantenimientoTable);
 
         javax.swing.GroupLayout mantenimientoPanelLayout = new javax.swing.GroupLayout(mantenimientoPanel);
         mantenimientoPanel.setLayout(mantenimientoPanelLayout);
@@ -1214,20 +1241,20 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                                 .addComponent(guardarMantenimientoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cancelarMantenimientoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(scrollListPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 0, 0))
         );
         mantenimientoPanelLayout.setVerticalGroup(
             mantenimientoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mantenimientoPanelLayout.createSequentialGroup()
                 .addComponent(accionesPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollListPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(mantenimientoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelarMantenimientoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(guardarMantenimientoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(mantenimientoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(guardarMantenimientoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelarMantenimientoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         mantenimientoScrollPane.setViewportView(mantenimientoPanel);
@@ -1505,7 +1532,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                 .addGroup(adquisicionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarAdquisicionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarAdquisicionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
 
         adquisicionScrollPane.setViewportView(adquisicionPanel);
@@ -1516,11 +1543,11 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(creacionEquipoTabPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(creacionEquipoTabPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(creacionEquipoTabPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
+            .addComponent(creacionEquipoTabPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1765,37 +1792,51 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     
     private void updateAccesorioListModel() {
 
-        accesoriosModel.clear();
         for(Accesorio a : accesorios) {
-            accesoriosModel.addElement(a.getNombre());
+            accesoriosModel.addRow(new Object[] { a.getNombre(), a.getMarca(), a.getCantidad() });
         }
-        
-        accesoriosList.setModel(accesoriosModel);
+
+        accesoriosTable.setModel(accesoriosModel);
     }
     
     private void updateEquiposAsociadosListModel() {
 
-        equiposModel.clear();
         for(EquipoAsociado e : equipos) {
-            equiposModel.addElement(e.getNombre());
+            equiposModel.addRow(new Object[] {e.getNombre(), e.getPlacaInventario()});
         }
         
-        equiposList.setModel(equiposModel);
+        equiposTable.setModel(equiposModel);
     }
     
     private void updateMantenimientoListModel() {
 
-        planesModel.clear();
         for(PlanMantenimiento p : planes) {
-            planesModel.addElement(p.getNombre());
+            mantenimientoModel.addRow(new Object[] {p.getNombre(), p.getResponsable(), p.getTipoPlan()});
         }
         
-        mantenimientoList.setModel(planesModel);
+        mantenimientoTable.setModel(mantenimientoModel);
     }
     
-    private DefaultListModel accesoriosModel = new DefaultListModel();
-    private DefaultListModel equiposModel = new DefaultListModel();
-    private DefaultListModel planesModel = new DefaultListModel();
+    private DefaultTableModel accesoriosModel = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+    
+    private DefaultTableModel equiposModel = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+    
+    private DefaultTableModel mantenimientoModel = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
     
     private List<Accesorio> accesorios = new ArrayList<Accesorio>();
     private List<EquipoAsociado> equipos = new ArrayList<EquipoAsociado>();
@@ -1803,9 +1844,9 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private ButtonGroup bGroupManual, bGroupUso, bGroupForma;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList accesoriosList;
     private javax.swing.JPanel accesoriosPanel;
     private javax.swing.JScrollPane accesoriosScrollPane;
+    private javax.swing.JTable accesoriosTable;
     private javax.swing.JPanel accionesPanel;
     private javax.swing.JPanel accionesPanel1;
     private javax.swing.JPanel accionesPanel2;
@@ -1851,7 +1892,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JTextField emailTextField;
     private javax.swing.JPanel equiposAsociadosPanel;
     private javax.swing.JScrollPane equiposAsociadosScrollPane;
-    private javax.swing.JList equiposList;
+    private javax.swing.JTable equiposTable;
     private javax.swing.JLabel errorAdquisicionLabel;
     private javax.swing.JLabel errorBasicaLabel;
     private javax.swing.JLabel errorTecnicosLabel;
@@ -1915,11 +1956,14 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JCheckBox labCheckBox;
-    private javax.swing.JList mantenimientoList;
     private javax.swing.JPanel mantenimientoPanel;
     private javax.swing.JScrollPane mantenimientoScrollPane;
+    private javax.swing.JTable mantenimientoTable;
     private javax.swing.JTextField marcaTextField;
     private javax.swing.JTextField modeloTextField;
     private javax.swing.JTextField nitTextField;
@@ -1937,9 +1981,6 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JPanel requerimientosPanel;
     private javax.swing.JPanel requerimientosPanel2;
     private javax.swing.JTextArea requerimientosTextArea;
-    private javax.swing.JScrollPane scrollListPanel;
-    private javax.swing.JScrollPane scrollListPanel1;
-    private javax.swing.JScrollPane scrollListPanel2;
     private javax.swing.JLabel separadorLabel;
     private javax.swing.JLabel separadorLabel1;
     private javax.swing.JLabel separadorLabel2;
