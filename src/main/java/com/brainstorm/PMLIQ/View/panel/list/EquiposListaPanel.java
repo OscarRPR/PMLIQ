@@ -242,9 +242,7 @@ public class EquiposListaPanel extends javax.swing.JPanel {
                    Logger.getLogger(EquiposListaPanel.class.getName()).log(Level.SEVERE, null, ex);
                }
            }
-       }
-
-       else
+       } else
        {
           JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "La hoja de vida se genero correctamente y se encuentra en PDF. \n"
                     + "en la carpeta del programa.", "Error Lector PDF", JOptionPane.INFORMATION_MESSAGE);
@@ -253,6 +251,12 @@ public class EquiposListaPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_verCVPDFButtonActionPerformed
 
     private void updateListModel() {
+        
+        if (equiposModel.getRowCount() > 0) {
+            for (int i = equiposModel.getRowCount() - 1; i > -1; i--) {
+                equiposModel.removeRow(i);
+            }
+        }
         
         List<Equipo> listaEquipos = PMLIApp.getInstance().getSistema().getEquipos();
 

@@ -5,6 +5,7 @@
 package com.brainstorm.PMLIQ.Model.Validation;
 
 import com.brainstorm.PMLIQ.Control.Constantes.ConstantesEquipos;
+import com.brainstorm.PMLIQ.Model.Validation.Exceptions.ErrorDatosRepetidosStringException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.ErrorValidacionException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfabeticoStringException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfanumericoStringException;
@@ -58,4 +59,19 @@ public class ValidacionEquipo extends Validacion{
         return resultado;
     }
     
+    
+    @Override
+    public String validarValorRepetidoString(final List<String> strings, final List<String> repetidos) throws ErrorValidacionException {
+        String nombre = strings.get(vars.NOMBRE);
+        String resultado = "";
+        
+        try {
+            datoRepetido(vars.nombre, nombre, repetidos);
+        } catch (ErrorDatosRepetidosStringException ex) {
+            resultado = crearErrorDatoRepetidoString(ex.getTipo());
+            throw new ErrorValidacionException(resultado, ex.getCause());
+        }
+
+        return resultado;
+    }
 }

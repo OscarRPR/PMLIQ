@@ -210,6 +210,12 @@ public class ItemsListaPanel extends javax.swing.JPanel {
 
     private void updateListModel() {
         
+        if (itemsModel.getRowCount() > 0) {
+            for (int i = itemsModel.getRowCount() - 1; i > -1; i--) {
+                itemsModel.removeRow(i);
+            }
+        }
+        
         List<Item> listaItems = PMLIApp.getInstance().getSistema().getInventario();
 
         for(Item i : listaItems) {

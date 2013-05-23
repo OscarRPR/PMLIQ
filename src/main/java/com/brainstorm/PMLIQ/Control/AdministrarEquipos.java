@@ -51,15 +51,16 @@ public class AdministrarEquipos {
 
     public List<String> crearEquipo(List<String> infoEquipo, List<String> datosTecnicos,
                                     List<Accesorio> accesorios, List<EquipoAsociado> equipos,
-                                    List<PlanMantenimiento> planes, List<String> adquisicion)
+                                    List<PlanMantenimiento> planes, List<String> adquisicion,
+                                    final List<String> existentes)
     {
         List<String> validaciones = new ArrayList<String>();
-        validaciones.add(validacionDatosEquipo(infoEquipo));
-        validaciones.add(validacionDatosTecnicos(datosTecnicos));
+        validaciones.add(validacionDatos(new ValidacionEquipo(), infoEquipo, existentes));
+        validaciones.add(validacionDatos(new ValidacionDatosTecnicos(), datosTecnicos));
         validaciones.add(validacionAccesorio);
         validaciones.add(validacionEquipoAsociado);
         validaciones.add(validacionPlanMantenimiento);
-        validaciones.add(validacionAdquisicionEquipo(adquisicion));
+        validaciones.add(validacionDatos(new ValidacionAdquisicionEquipo(), adquisicion));
         
         if ( datosFueronValidados(validaciones) ) 
         {
@@ -77,15 +78,15 @@ public class AdministrarEquipos {
     }
     
     public String validarDatosAccesorio(List<String> accesorioEquipo) {
-        return validacionAccesorioEquipo(accesorioEquipo);
+        return validacionDatos(new ValidacionAccesorioEquipo(), accesorioEquipo);
     }
     
     public String validarDatosAsociado(List<String> equipoAsociado) {
-        return validacionEquipoAsociado(equipoAsociado);
+        return validacionDatos(new ValidacionEquipoAsociado(), equipoAsociado);
     }
     
     public String validarDatosPlanMantenimiento(List<String> plan) {
-        return validacionPlanMantenimiento(plan);
+        return validacionDatos(new ValidacionPlanMantenimiento(), plan);
     }
     
     public String validarDatosActividadChecklist(List<String> actividad, List<String> strings) {
@@ -139,11 +140,10 @@ public class AdministrarEquipos {
 
         return resultadoValidacion;        
     }
-
-    private String validacionDatosEquipo(List<String> strings)
-    {
+    
+     private String validacionDatos(Validacion tipoValidacion, List<String> strings) {
         String resultadoValidacion;
-        validacion = new ValidacionEquipo();
+        validacion = tipoValidacion;
         
         try 
         {
@@ -153,89 +153,9 @@ public class AdministrarEquipos {
             resultadoValidacion = ex.getMessage();
         }
 
-        return resultadoValidacion;
+        return resultadoValidacion;        
     }
-    
-    private String validacionDatosTecnicos(List<String> strings)
-    {
-        String resultadoValidacion;
-        validacion = new ValidacionDatosTecnicos();
-        
-        try 
-        {
-            resultadoValidacion = validacion.validarString(strings);
-        }
-        catch(ErrorValidacionException ex) {
-            resultadoValidacion = ex.getMessage();
-        }
 
-        return resultadoValidacion;
-    }
-    
-    private String validacionAdquisicionEquipo(List<String> strings)
-    {
-        String resultadoValidacion;
-        validacion = new ValidacionAdquisicionEquipo();
-        
-        try 
-        {
-            resultadoValidacion = validacion.validarString(strings);
-        }
-        catch(ErrorValidacionException ex) {
-            resultadoValidacion = ex.getMessage();
-        }
-
-        return resultadoValidacion;
-    }
-    
-    private String validacionAccesorioEquipo(List<String> strings)
-    {
-        String resultadoValidacion;
-        validacion = new ValidacionAccesorioEquipo();
-        
-        try 
-        {
-            resultadoValidacion = validacion.validarString(strings);
-        }
-        catch(ErrorValidacionException ex) {
-            resultadoValidacion = ex.getMessage();
-        }
-
-        return resultadoValidacion;
-    }
-    
-    private String validacionEquipoAsociado(List<String> strings)
-    {
-        String resultadoValidacion;
-        validacion = new ValidacionEquipoAsociado();
-        
-        try 
-        {
-            resultadoValidacion = validacion.validarString(strings);
-        }
-        catch(ErrorValidacionException ex) {
-            resultadoValidacion = ex.getMessage();
-        }
-
-        return resultadoValidacion;
-    }
-    
-    private String validacionPlanMantenimiento(List<String> strings)
-    {
-        String resultadoValidacion;
-        validacion = new ValidacionPlanMantenimiento();
-        
-        try 
-        {
-            resultadoValidacion = validacion.validarString(strings);
-        }
-        catch(ErrorValidacionException ex) {
-            resultadoValidacion = ex.getMessage();
-        }
-
-        return resultadoValidacion;
-    }
-    
     public void crearCVPDF(Equipo equipo, String filename) {
         pdfGenerator.crearArchivoPDF(filename);
         pdfGenerator.addMetaData();

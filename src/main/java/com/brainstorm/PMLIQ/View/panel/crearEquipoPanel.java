@@ -1700,6 +1700,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     }
     
     public void guardarDatosEquipo() {
+        List<String> equiposExistentes = getNombresEquipos();
         List<String> infoEquipo = getDatosBasicosEquipo();
         List<String> datosTecnicosEquipo = getDatosTecnicosEquipo();
         List<String> adquisicionEquipo = getDatosAdquisicionEquipo();
@@ -1709,7 +1710,8 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                                                                         accesorios,
                                                                         equipos,
                                                                         planes,
-                                                                        adquisicionEquipo);
+                                                                        adquisicionEquipo,
+                                                                        equiposExistentes);
         errorBasicaLabel.setText(resultados.get(DESCRIPCIONBASICA));
         errorTecnicosLabel.setText(resultados.get(DATOSTECNICOS));
         errorAdquisicionLabel.setText(resultados.get(ADQUISICION));
@@ -1727,6 +1729,16 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         if ( hasFinishedCreation) {
             disposePanel();
         }
+    }
+    
+    private  List<String> getNombresEquipos() {
+        List<String> nombres = new ArrayList<String>();
+        
+        for(Equipo equipo : PMLIApp.getInstance().getSistema().getEquipos()) {
+            nombres.add(equipo.getNombre());
+        }
+        
+        return nombres;
     }
     
     public List<String> getDatosBasicosEquipo() {

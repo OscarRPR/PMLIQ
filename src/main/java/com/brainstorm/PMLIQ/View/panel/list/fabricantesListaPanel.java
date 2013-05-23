@@ -42,27 +42,6 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
 
         listaTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        /*fabricantesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        fabricantesList.setCellRenderer(new DefaultListCellRenderer() { // Setting the DefaultListCellRenderer
- 
-            @Override
-            public Component getListCellRendererComponent(JList list, Object value, int index,
-                    boolean isSelected, boolean cellHasFocus) {
-                Fabricante fabricante = ( Fabricante )value;  // Using value we are getting the object in JList
-                
-                setText( fabricante.toString() );  // Setting the text
-                
-                if(isSelected){
-                    this.setBackground(new Color(200, 200, 255));
-                }
-                else{
-                    this.setBackground(new Color(255, 255, 255));
-                }
-                
-                return this;
-            }
-        });*/
-
         updateListModel();
     }
 
@@ -239,6 +218,12 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void updateListModel() {
+        
+        if (fabricantesModel.getRowCount() > 0) {
+            for (int i = fabricantesModel.getRowCount() - 1; i > -1; i--) {
+                fabricantesModel.removeRow(i);
+            }
+        }
         
         List<Fabricante> listaFabricantes = PMLIApp.getInstance().getSistema().getFabricantes();
         
