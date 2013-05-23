@@ -10,10 +10,16 @@ import com.brainstorm.PMLIQ.View.PMLIApp;
 import com.brainstorm.PMLIQ.View.panel.crearEquipoPanel;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -127,6 +133,11 @@ public class EquiposListaPanel extends javax.swing.JPanel {
         });
 
         verCVPDFButton.setText("Ver En PDF");
+        verCVPDFButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verCVPDFButtonActionPerformed(evt);
+            }
+        });
 
         verCVPDFButton2.setText("Ver Historial Mantenimiento");
 
@@ -212,6 +223,34 @@ public class EquiposListaPanel extends javax.swing.JPanel {
 
         PMLIApp.getInstance().getMainWindow().getAppTabPanel().setComponentAt(1, hojasPanel);
     }//GEN-LAST:event_nuevoEquipoButtonActionPerformed
+
+    private void verCVPDFButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verCVPDFButtonActionPerformed
+        int selectedRow = listaTable.getSelectedRow();
+        String nombre = (String) equiposModel.getValueAt(listaTable.convertRowIndexToModel(selectedRow), 0);
+        Equipo equipoSeleccionado = PMLIApp.getInstance().getSistema().getEquipo(nombre);
+        
+        PMLIApp.getInstance().getAdmEquipos().crearCVPDF(equipoSeleccionado, "D:/test.pdf");
+        
+        if (Desktop.isDesktopSupported()) {
+           if ( JOptionPane.showConfirmDialog(PMLIApp.getInstance().getMainWindow(), "     La hoja de vida del equipo se genero correctamente.\n"
+                   + "¿Desea abrir la hoja de vida generada en su lector de PDF?" , "Lectura Hoja de Vida",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
+           {
+                File archivoPDF = new File("D:/test.pdf");
+               try {
+                   Desktop.getDesktop().open(archivoPDF);
+               } catch (IOException ex) {
+                   Logger.getLogger(EquiposListaPanel.class.getName()).log(Level.SEVERE, null, ex);
+               }
+           }
+       }
+
+       else
+       {
+          JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "La hoja de vida se genero correctamente y se encuentra en PDF. \n"
+                    + "en la carpeta del programa.", "Error Lector PDF", JOptionPane.INFORMATION_MESSAGE);
+       }
+
+    }//GEN-LAST:event_verCVPDFButtonActionPerformed
 
     private void updateListModel() {
         

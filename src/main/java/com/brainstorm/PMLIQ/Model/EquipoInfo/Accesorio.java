@@ -22,7 +22,7 @@ public class Accesorio {
         this.caracteristicas = accesorioEquipo.get(vars.CARACTERISTICAS);                                                                                                   
     }
     
-    public int getCantidad() {
+    public Integer getCantidad() {
         return cantidad;
     }
 
@@ -54,6 +54,6 @@ public class Accesorio {
         this.marca = marca;
     }
    
-    private int cantidad;
+    private Integer cantidad;
     private String nombre, caracteristicas, marca;
 }

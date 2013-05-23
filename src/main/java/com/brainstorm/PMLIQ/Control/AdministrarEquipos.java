@@ -4,6 +4,7 @@
  */
 package com.brainstorm.PMLIQ.Control;
 
+import com.brainstorm.PMLIQ.Control.PDF.PDFEquipo;
 import com.brainstorm.PMLIQ.Model.Equipo;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Accesorio;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Actividad;
@@ -20,8 +21,11 @@ import com.brainstorm.PMLIQ.Model.Validation.ValidacionEquipo;
 import com.brainstorm.PMLIQ.Model.Validation.ValidacionEquipoAsociado;
 import com.brainstorm.PMLIQ.Model.Validation.ValidacionPlanMantenimiento;
 import com.brainstorm.PMLIQ.View.PMLIApp;
+import com.itextpdf.text.DocumentException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -35,6 +39,16 @@ public class AdministrarEquipos {
         
     private Validacion validacion = new ValidacionEquipo();
     
+    private PDFEquipo pdfGenerator = new PDFEquipo();
+
+    public PDFEquipo getPdfGenerator() {
+        return pdfGenerator;
+    }
+
+    public void setPdfGenerator(PDFEquipo pdfGenerator) {
+        this.pdfGenerator = pdfGenerator;
+    }
+
     public List<String> crearEquipo(List<String> infoEquipo, List<String> datosTecnicos,
                                     List<Accesorio> accesorios, List<EquipoAsociado> equipos,
                                     List<PlanMantenimiento> planes, List<String> adquisicion)
@@ -222,4 +236,15 @@ public class AdministrarEquipos {
         return resultadoValidacion;
     }
     
+    public void crearCVPDF(Equipo equipo, String filename) {
+        pdfGenerator.crearArchivoPDF(filename);
+        pdfGenerator.addMetaData();
+        try {
+            pdfGenerator.addContent(equipo);
+        } catch (DocumentException ex) {
+            Logger.getLogger(AdministrarEquipos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        pdfGenerator.closeDocument();
+    }
 }

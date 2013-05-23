@@ -96,6 +96,6 @@ public class Proveedor {
         this.formaAdquisicion = formaAdquisicion;
     }
     
-    String fabricante, proveedor, contacto, direccion, NIT, telefono, email;
-    FormaAdquisicion formaAdquisicion;
+    private String fabricante, proveedor, contacto, direccion, NIT, telefono, email;
+    private FormaAdquisicion formaAdquisicion;
 }

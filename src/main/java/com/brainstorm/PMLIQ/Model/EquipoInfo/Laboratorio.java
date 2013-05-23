@@ -10,6 +10,10 @@ package com.brainstorm.PMLIQ.Model.EquipoInfo;
  */
 public class Laboratorio {
 
+    public Laboratorio() {
+        setDefaultValues();
+    }
+    
     public String getFacultad() {
         return facultad;
     }
@@ -58,42 +62,42 @@ public class Laboratorio {
         this.codigo = codigo;
     }
 
-    public int getNumeroLaboratorio() {
+    public String getNumeroLaboratorio() {
         return numeroLaboratorio;
     }
 
-    public void setNumeroLaboratorio(int numeroLaboratorio) {
+    public void setNumeroLaboratorio(String numeroLaboratorio) {
         this.numeroLaboratorio = numeroLaboratorio;
     }
 
-    public int getNumeroEdificio() {
+    public String getNumeroEdificio() {
         return numeroEdificio;
     }
 
-    public void setNumeroEdificio(int numeroEdificio) {
+    public void setNumeroEdificio(String numeroEdificio) {
         this.numeroEdificio = numeroEdificio;
     }
 
-    public int getExtensionTelefonica() {
+    public String getExtensionTelefonica() {
         return extensionTelefonica;
     }
 
-    public void setExtensionTelefonica(int extensionTelefonica) {
+    public void setExtensionTelefonica(String extensionTelefonica) {
         this.extensionTelefonica = extensionTelefonica;
     }
     
-    public void setDefaultValues() {
+    private final void setDefaultValues() {
         this.facultad = "Ingenieria";
         this.departamento = "Quimica y Ambiental";
         this.laboratorio = "Planta Piloto";
-        this.numeroLaboratorio = 117;
+        this.numeroLaboratorio = "117";
         this.edificio = "LABORATORIO DE INGENIERIA QUIMICA";
-        this.numeroEdificio = 412;
+        this.numeroEdificio = "412";
         this.codigo = "B-ING-L037";
-        this.extensionTelefonica = 14315;
+        this.extensionTelefonica = "14315";
         this.email = "labiq_fiqbog@unal.edu.co";
     }
     
-    String facultad, departamento, laboratorio, edificio, email, codigo;
-    int numeroLaboratorio, numeroEdificio, extensionTelefonica;
+    private String facultad, departamento, laboratorio, edificio, email, codigo;
+    private String numeroLaboratorio, numeroEdificio, extensionTelefonica;
 }

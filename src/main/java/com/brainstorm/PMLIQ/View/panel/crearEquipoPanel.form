@@ -16,7 +16,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="creacionEquipoTabPanel" alignment="0" pref="787" max="32767" attributes="0"/>
+          <Component id="creacionEquipoTabPanel" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -506,6 +506,7 @@
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="rows" type="int" value="5"/>
+                            <Property name="text" type="java.lang.String" value="adfsafsdfdf asnmxz mn  njndnbfmdfd fd&#xa;askljwewer erierrrrrrrrrrrrrrrrrrrrrrr dnfd fds sdfds fdsfklndslfjew m dfhsjd&#xa;dfmds fdsnbfjsdhfe "/>
                           </Properties>
                         </Component>
                       </SubComponents>
@@ -935,6 +936,12 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="otroTextField">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="nnnnnnnnnn nnnnn"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="otroTextFieldActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -978,6 +985,7 @@
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="rows" type="int" value="5"/>
+                            <Property name="text" type="java.lang.String" value="kkkkk kkk kkkkk kk kkk kkkkk kkk kkkk&#xa;dddd ddddd&#xa;ee&#xa;e&#xa;eeeeee ooooooo"/>
                           </Properties>
                         </Component>
                       </SubComponents>

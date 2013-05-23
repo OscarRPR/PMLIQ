@@ -57,7 +57,7 @@ public class FormaAdquisicion {
         this.valorCompra = valorCompra;
     }
 
-    public int getTiempoUso() {
+    public Integer getTiempoUso() {
         return tiempoUso;
     }
 
@@ -65,7 +65,7 @@ public class FormaAdquisicion {
         this.tiempoUso = tiempoUso;
     }
 
-    public int getVidaUtil() {
+    public Integer getVidaUtil() {
         return vidaUtil;
     }
 
@@ -91,6 +91,6 @@ public class FormaAdquisicion {
     
     boolean compra, donacion;
     String valorCompra;
-    int tiempoUso, vidaUtil;
+    Integer tiempoUso, vidaUtil;
     Fecha fechaAdquisicion, puestaEnServicio;
 }

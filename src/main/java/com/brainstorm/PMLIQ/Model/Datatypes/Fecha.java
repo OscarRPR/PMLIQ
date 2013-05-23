@@ -54,6 +54,14 @@ public class Fecha {
         this.año = año;
     }
 
+    public String getFullDate() {
+        return fullDate;
+    }
+
+    public void setFullDate(String fullDate) {
+        this.fullDate = fullDate;
+    }
+
     private Integer dia, mes, año;
     private String fullDate;
 }

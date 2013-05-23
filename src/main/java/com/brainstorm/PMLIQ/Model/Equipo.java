@@ -11,6 +11,7 @@ import com.brainstorm.PMLIQ.Model.Enum.UsoEquipo;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Accesorio;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.DatosTecnicosEquipo;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.EquipoAsociado;
+import com.brainstorm.PMLIQ.Model.EquipoInfo.Laboratorio;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.PlanMantenimiento;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Proveedor;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.LongitudStringException;
@@ -159,6 +160,54 @@ public class Equipo {
         this.tareasEquipo = tareasEquipo;
     }
 
+    public Laboratorio getLaboratorio() {
+        return laboratorio;
+    }
+
+    public void setLaboratorio(Laboratorio laboratorio) {
+        this.laboratorio = laboratorio;
+    }
+
+    public DatosTecnicosEquipo getDatosTecnicosEquipo() {
+        return datosTecnicosEquipo;
+    }
+
+    public void setDatosTecnicosEquipo(DatosTecnicosEquipo datosTecnicosEquipo) {
+        this.datosTecnicosEquipo = datosTecnicosEquipo;
+    }
+
+    public List<Accesorio> getAccesorios() {
+        return accesorios;
+    }
+
+    public void setAccesorios(List<Accesorio> accesorios) {
+        this.accesorios = accesorios;
+    }
+
+    public List<EquipoAsociado> getEquiposAsociados() {
+        return equiposAsociados;
+    }
+
+    public void setEquiposAsociados(List<EquipoAsociado> equiposAsociados) {
+        this.equiposAsociados = equiposAsociados;
+    }
+
+    public List<PlanMantenimiento> getPlanes() {
+        return planes;
+    }
+
+    public void setPlanes(List<PlanMantenimiento> planes) {
+        this.planes = planes;
+    }
+
+    public Proveedor getMetodoAdquisicion() {
+        return metodoAdquisicion;
+    }
+
+    public void setMetodoAdquisicion(Proveedor metodoAdquisicion) {
+        this.metodoAdquisicion = metodoAdquisicion;
+    }
+
     private String nombre, placaInventario, claseEquipo, marca, modelo;
     private TipoEquipo tipoEquipo;
     private String serieEquipo, codigoDocumento;
@@ -167,6 +216,7 @@ public class Equipo {
     private UsoEquipo usoEquipo;
     private String tareasEquipo;
     
+    private Laboratorio laboratorio = new Laboratorio();
     private DatosTecnicosEquipo datosTecnicosEquipo;
     private List<Accesorio> accesorios = new ArrayList<Accesorio>();
     private List<EquipoAsociado> equiposAsociados = new ArrayList<EquipoAsociado>();

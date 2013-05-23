@@ -70,13 +70,22 @@ public class Sistema {
         this.fabricantes = fabricantes;
     }
     
+    public Equipo getEquipo(String nombre) {
+        for (Equipo equipo : equipos) {
+            if (equipo.getNombre().equals(nombre)) {
+                return equipo;
+            }
+        }
+        
+        return null;
+    }
+    
     public Item getItem(String nombre) {
         for (Item item : inventario) {
             if (item.getNombre().equals(nombre)) {
                 return item;
             }
-        }
-        
+        } 
         return null;
     }
     

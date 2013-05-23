@@ -504,6 +504,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         tareasTextArea.setColumns(20);
         tareasTextArea.setRows(5);
+        tareasTextArea.setText("adfsafsdfdf asnmxz mn  njndnbfmdfd fd\naskljwewer erierrrrrrrrrrrrrrrrrrrrrrr dnfd fds sdfds fdsfklndslfjew m dfhsjd\ndfmds fdsnbfjsdhfe ");
         jScrollPane1.setViewportView(tareasTextArea);
 
         javax.swing.GroupLayout tareasPanelLayout = new javax.swing.GroupLayout(tareasPanel);
@@ -745,6 +746,13 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         jLabel26.setText("Otro");
 
+        otroTextField.setText("nnnnnnnnnn nnnnn");
+        otroTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                otroTextFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ambientePanelLayout = new javax.swing.GroupLayout(ambientePanel);
         ambientePanel.setLayout(ambientePanelLayout);
         ambientePanelLayout.setHorizontalGroup(
@@ -782,6 +790,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         requerimientosTextArea.setColumns(20);
         requerimientosTextArea.setRows(5);
+        requerimientosTextArea.setText("kkkkk kkk kkkkk kk kkk kkkkk kkk kkkk\ndddd ddddd\nee\ne\neeeeee ooooooo");
         jScrollPane2.setViewportView(requerimientosTextArea);
 
         javax.swing.GroupLayout requerimientosPanelLayout = new javax.swing.GroupLayout(requerimientosPanel);
@@ -1544,7 +1553,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(creacionEquipoTabPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
+            .addComponent(creacionEquipoTabPanel)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1669,6 +1678,10 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private void cancelarMantenimientoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarMantenimientoBotonActionPerformed
         disposePanel();
     }//GEN-LAST:event_cancelarMantenimientoBotonActionPerformed
+
+    private void otroTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otroTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_otroTextFieldActionPerformed
 
     private void disposePanel() {
         setVisible(false);
