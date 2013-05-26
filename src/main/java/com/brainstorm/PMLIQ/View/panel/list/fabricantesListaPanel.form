@@ -178,7 +178,7 @@
                       <EmptySpace pref="13" max="32767" attributes="0"/>
                       <Component id="nuevoFabricanteButton" min="-2" pref="163" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="Eliminar" min="-2" pref="164" max="-2" attributes="0"/>
+                      <Component id="eliminarFabricanteButton" min="-2" pref="164" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -189,7 +189,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="nuevoFabricanteButton" alignment="3" min="-2" pref="79" max="-2" attributes="0"/>
-                          <Component id="Eliminar" alignment="3" min="-2" pref="79" max="-2" attributes="0"/>
+                          <Component id="eliminarFabricanteButton" alignment="3" min="-2" pref="79" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -205,12 +205,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevoFabricanteButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="Eliminar">
+            <Component class="javax.swing.JButton" name="eliminarFabricanteButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EliminarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarFabricanteButtonActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

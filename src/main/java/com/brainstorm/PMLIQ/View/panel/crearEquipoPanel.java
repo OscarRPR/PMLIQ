@@ -27,6 +27,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -68,6 +69,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         bGroupForma.add(donacionCheckBox);
         
         compraCheckBox.setSelected(true);
+        usoSpinner.setEnabled(false);
         
         adquisicionDateChooser.setDate(new Date());
         servicioDateChooser.setDate(new Date());
@@ -213,8 +215,8 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         equiposAsociadosScrollPane = new javax.swing.JScrollPane();
         equiposAsociadosPanel = new javax.swing.JPanel();
         accionesPanel1 = new javax.swing.JPanel();
-        nuevoAccesorioButton1 = new javax.swing.JButton();
-        eliminarAccesorioButton1 = new javax.swing.JButton();
+        nuevoEquipoAsociadoButton = new javax.swing.JButton();
+        eliminarEquipoAsociadoButton = new javax.swing.JButton();
         buscarInternalPanel1 = new javax.swing.JPanel();
         filtroComboBox1 = new javax.swing.JComboBox();
         buscarTextField1 = new javax.swing.JTextField();
@@ -1022,17 +1024,17 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         creacionEquipoTabPanel.addTab("Accesorios", accesoriosScrollPane);
 
-        nuevoAccesorioButton1.setText("Nuevo");
-        nuevoAccesorioButton1.addActionListener(new java.awt.event.ActionListener() {
+        nuevoEquipoAsociadoButton.setText("Nuevo");
+        nuevoEquipoAsociadoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevoAccesorioButton1ActionPerformed(evt);
+                nuevoEquipoAsociadoButtonActionPerformed(evt);
             }
         });
 
-        eliminarAccesorioButton1.setText("Eliminar");
-        eliminarAccesorioButton1.addActionListener(new java.awt.event.ActionListener() {
+        eliminarEquipoAsociadoButton.setText("Eliminar");
+        eliminarEquipoAsociadoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarAccesorioButton1ActionPerformed(evt);
+                eliminarEquipoAsociadoButtonActionPerformed(evt);
             }
         });
 
@@ -1084,9 +1086,9 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                     .addGroup(accionesPanel1Layout.createSequentialGroup()
                         .addComponent(buscarInternalPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nuevoAccesorioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nuevoEquipoAsociadoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(eliminarAccesorioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(eliminarEquipoAsociadoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         accionesPanel1Layout.setVerticalGroup(
@@ -1098,8 +1100,8 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                         .addGap(8, 8, 8)
                         .addComponent(buscarInternalPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(accionesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(nuevoAccesorioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(eliminarAccesorioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(nuevoEquipoAsociadoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(eliminarEquipoAsociadoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1419,12 +1421,22 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Forma de Adquisición"));
 
         compraCheckBox.setText("Compra");
+        compraCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                compraCheckBoxActionPerformed(evt);
+            }
+        });
 
         jLabel29.setText("Precio");
 
         precioTextField.setText("23423434");
 
         donacionCheckBox.setText("Donación");
+        donacionCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                donacionCheckBoxActionPerformed(evt);
+            }
+        });
 
         jLabel31.setText("Tiempo de Uso (Años)");
 
@@ -1553,7 +1565,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(creacionEquipoTabPanel)
+            .addComponent(creacionEquipoTabPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1584,10 +1596,29 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_nuevoAccesorioButtonActionPerformed
 
     private void eliminarAccesorioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarAccesorioButtonActionPerformed
-        // TODO add your handling code here:
+        int selectedRow = accesoriosTable.getSelectedRow();
+        if (selectedRow != -1) {
+            String nombre = (String) accesoriosModel.getValueAt(accesoriosTable.convertRowIndexToModel(selectedRow), 0);
+            eliminarAccesorio(nombre);
+            updateAccesorioListModel();
+            
+        } else {
+              JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "No esta seleccionado ningun accesorio para eliminar.", 
+                                    "Error Al Eliminar Accesorio", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_eliminarAccesorioButtonActionPerformed
 
-    private void nuevoAccesorioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoAccesorioButton1ActionPerformed
+    private boolean eliminarAccesorio(String nombre) {
+        for(Accesorio a : accesorios) {
+            if (a.getNombre().equals(nombre)) {
+                accesorios.remove(a);
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private void nuevoEquipoAsociadoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoEquipoAsociadoButtonActionPerformed
         CrearEquipoAsociado crearEquipoAsociado = new CrearEquipoAsociado((JFrame)PMLIApp.getInstance().getMainWindow(), true, equipos);
         
         crearEquipoAsociado.addWindowListener(new WindowAdapter() {
@@ -1599,12 +1630,31 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         
         crearEquipoAsociado.setLocationRelativeTo(null);
         crearEquipoAsociado.setVisible(true);
-    }//GEN-LAST:event_nuevoAccesorioButton1ActionPerformed
+    }//GEN-LAST:event_nuevoEquipoAsociadoButtonActionPerformed
 
-    private void eliminarAccesorioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarAccesorioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_eliminarAccesorioButton1ActionPerformed
+    private void eliminarEquipoAsociadoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarEquipoAsociadoButtonActionPerformed
+        int selectedRow = equiposTable.getSelectedRow();
+        if (selectedRow != -1) {
+            String nombre = (String) equiposModel.getValueAt(equiposTable.convertRowIndexToModel(selectedRow), 0);
+            eliminarEquipoAsociado(nombre);
+            updateEquiposAsociadosListModel();
+            
+        } else {
+              JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "No esta seleccionado ningun equipo asociado para eliminar.", 
+                                    "Error Al Eliminar Equipo Asociado", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_eliminarEquipoAsociadoButtonActionPerformed
 
+    private boolean eliminarEquipoAsociado(String nombre) {
+        for(EquipoAsociado e : equipos) {
+            if (e.getNombre().equals(nombre)) {
+                equipos.remove(e);
+                return true;
+            }
+        }
+        return false;
+    }
+    
     private void nuevoMantenimientoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoMantenimientoButtonActionPerformed
         CrearPlanMantenimiento crearPlanMantenimiento = new CrearPlanMantenimiento((JFrame)PMLIApp.getInstance().getMainWindow(), true, planes);
         
@@ -1620,9 +1670,28 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_nuevoMantenimientoButtonActionPerformed
 
     private void eliminarMantenimientoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarMantenimientoButtonActionPerformed
-        // TODO add your handling code here:
+        int selectedRow = mantenimientoTable.getSelectedRow();
+        if (selectedRow != -1) {
+            String nombre = (String) mantenimientoModel.getValueAt(mantenimientoTable.convertRowIndexToModel(selectedRow), 0);
+            eliminarPlanMantenimiento(nombre);
+            updateMantenimientoListModel();
+            
+        } else {
+              JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "No esta seleccionado ningun plan de mantenimiento para eliminar.", 
+                                    "Error Al Eliminar Plan de Mantenimiento", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_eliminarMantenimientoButtonActionPerformed
 
+    private boolean eliminarPlanMantenimiento(String nombre) {
+        for(PlanMantenimiento p : planes) {
+            if (p.getNombre().equals(nombre)) {
+                planes.remove(p);
+                return true;
+            }
+        }
+        return false;
+    }
+    
     private void guardarBasicosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBasicosButtonActionPerformed
         guardarDatosEquipo();
     }//GEN-LAST:event_guardarBasicosButtonActionPerformed
@@ -1682,6 +1751,25 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private void otroTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otroTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_otroTextFieldActionPerformed
+
+    private void compraCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compraCheckBoxActionPerformed
+        precioTextField.setEnabled(true);
+        if ( compraCheckBox.isSelected() ) {
+            usoSpinner.setEnabled(false);
+        } else {
+            usoSpinner.setEnabled(true);
+        }
+    }//GEN-LAST:event_compraCheckBoxActionPerformed
+
+    private void donacionCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_donacionCheckBoxActionPerformed
+        usoSpinner.setEnabled(true);
+        if (donacionCheckBox.isSelected()) {
+            precioTextField.setEnabled(false);
+        } else {
+            precioTextField.setEnabled(true);
+        }
+            
+    }//GEN-LAST:event_donacionCheckBoxActionPerformed
 
     private void disposePanel() {
         setVisible(false);
@@ -1818,6 +1906,12 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     
     private void updateAccesorioListModel() {
 
+        if (accesoriosModel.getRowCount() > 0) {
+            for (int i = accesoriosModel.getRowCount() - 1; i > -1; i--) {
+                accesoriosModel.removeRow(i);
+            }
+        }
+        
         for(Accesorio a : accesorios) {
             accesoriosModel.addRow(new Object[] { a.getNombre(), a.getMarca(), a.getCantidad() });
         }
@@ -1826,7 +1920,12 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     }
     
     private void updateEquiposAsociadosListModel() {
-
+        if (equiposModel.getRowCount() > 0) {
+            for (int i = equiposModel.getRowCount() - 1; i > -1; i--) {
+                equiposModel.removeRow(i);
+            }
+        }
+        
         for(EquipoAsociado e : equipos) {
             equiposModel.addRow(new Object[] {e.getNombre(), e.getPlacaInventario()});
         }
@@ -1835,7 +1934,12 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     }
     
     private void updateMantenimientoListModel() {
-
+        if (mantenimientoModel.getRowCount() > 0) {
+            for (int i = mantenimientoModel.getRowCount() - 1; i > -1; i--) {
+                mantenimientoModel.removeRow(i);
+            }
+        }
+        
         for(PlanMantenimiento p : planes) {
             mantenimientoModel.addRow(new Object[] {p.getNombre(), p.getResponsable(), p.getTipoPlan()});
         }
@@ -1913,7 +2017,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox docenciaCheckBox;
     private javax.swing.JCheckBox donacionCheckBox;
     private javax.swing.JButton eliminarAccesorioButton;
-    private javax.swing.JButton eliminarAccesorioButton1;
+    private javax.swing.JButton eliminarEquipoAsociadoButton;
     private javax.swing.JButton eliminarMantenimientoButton;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JPanel equiposAsociadosPanel;
@@ -1995,7 +2099,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     private javax.swing.JTextField nitTextField;
     private javax.swing.JTextField nombreTextField;
     private javax.swing.JButton nuevoAccesorioButton;
-    private javax.swing.JButton nuevoAccesorioButton1;
+    private javax.swing.JButton nuevoEquipoAsociadoButton;
     private javax.swing.JButton nuevoMantenimientoButton;
     private javax.swing.JTextField otroTextField;
     private javax.swing.JTextField pesoTextField;

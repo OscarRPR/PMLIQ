@@ -377,9 +377,14 @@ public class crearItemInventarioPanel extends javax.swing.JPanel {
     private List<String> getDatosItem() {
         List<String> strings = new ArrayList<String>();
 
+        String nombreFabricante = null;
         strings.add(nombreTextField.getText());
         strings.add(placaTextField.getText());
-        strings.add(fabricantesComboBox.getSelectedItem().toString());
+        
+        if ( fabricantesComboBox.getSelectedIndex() != -1 ) {
+            nombreFabricante = fabricantesComboBox.getSelectedItem().toString();
+        }
+        strings.add(nombreFabricante);
         strings.add(inicialSpinner.getValue().toString());
         strings.add(minimaSpinner.getValue().toString());
         strings.add(frecuenciaMinimaSpinner.getValue().toString());

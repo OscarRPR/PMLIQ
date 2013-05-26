@@ -69,6 +69,8 @@ public class EquiposListaPanel extends javax.swing.JPanel {
         nuevoEquipoButton = new javax.swing.JButton();
         verCVPDFButton = new javax.swing.JButton();
         verCVPDFButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         listaTable = new javax.swing.JTable();
 
@@ -132,14 +134,18 @@ public class EquiposListaPanel extends javax.swing.JPanel {
             }
         });
 
-        verCVPDFButton.setText("Ver En PDF");
+        verCVPDFButton.setText("CV PDF");
         verCVPDFButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 verCVPDFButtonActionPerformed(evt);
             }
         });
 
-        verCVPDFButton2.setText("Ver Historial Mantenimiento");
+        verCVPDFButton2.setText("Historiales ");
+
+        jButton1.setText("Modificar");
+
+        jButton2.setText("Planes Mantenimiento PDF");
 
         javax.swing.GroupLayout accionesPanelLayout = new javax.swing.GroupLayout(accionesPanel);
         accionesPanel.setLayout(accionesPanelLayout);
@@ -147,21 +153,31 @@ public class EquiposListaPanel extends javax.swing.JPanel {
             accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(accionesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(nuevoEquipoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nuevoEquipoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(verCVPDFButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(verCVPDFButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(verCVPDFButton2)
+                .addGroup(accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(verCVPDFButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         accionesPanelLayout.setVerticalGroup(
             accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(accionesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(verCVPDFButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(nuevoEquipoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(verCVPDFButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(accionesPanelLayout.createSequentialGroup()
+                        .addGroup(accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(verCVPDFButton, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(verCVPDFButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -178,8 +194,7 @@ public class EquiposListaPanel extends javax.swing.JPanel {
                     .addGroup(hojasPanelLayout.createSequentialGroup()
                         .addComponent(buscarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(accionesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 9, Short.MAX_VALUE))
+                        .addComponent(accionesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jScrollPane2))
                 .addContainerGap())
         );
@@ -226,28 +241,33 @@ public class EquiposListaPanel extends javax.swing.JPanel {
 
     private void verCVPDFButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verCVPDFButtonActionPerformed
         int selectedRow = listaTable.getSelectedRow();
-        String nombre = (String) equiposModel.getValueAt(listaTable.convertRowIndexToModel(selectedRow), 0);
-        Equipo equipoSeleccionado = PMLIApp.getInstance().getSistema().getEquipo(nombre);
         
-        PMLIApp.getInstance().getAdmEquipos().crearCVPDF(equipoSeleccionado, "D:/test.pdf");
-        
-        if (Desktop.isDesktopSupported()) {
-           if ( JOptionPane.showConfirmDialog(PMLIApp.getInstance().getMainWindow(), "     La hoja de vida del equipo se genero correctamente.\n"
-                   + "¿Desea abrir la hoja de vida generada en su lector de PDF?" , "Lectura Hoja de Vida",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
-           {
-                File archivoPDF = new File("D:/test.pdf");
-               try {
-                   Desktop.getDesktop().open(archivoPDF);
-               } catch (IOException ex) {
-                   Logger.getLogger(EquiposListaPanel.class.getName()).log(Level.SEVERE, null, ex);
-               }
-           }
-       } else
-       {
-          JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "La hoja de vida se genero correctamente y se encuentra en PDF. \n"
-                    + "en la carpeta del programa.", "Error Lector PDF", JOptionPane.INFORMATION_MESSAGE);
-       }
+        if (selectedRow != -1) {
+            String nombre = (String) equiposModel.getValueAt(listaTable.convertRowIndexToModel(selectedRow), 0);
+            Equipo equipoSeleccionado = PMLIApp.getInstance().getSistema().getEquipo(nombre);
 
+            PMLIApp.getInstance().getAdmEquipos().crearCVPDF(equipoSeleccionado, "D:/test.pdf");
+
+            if (Desktop.isDesktopSupported()) {
+               if ( JOptionPane.showConfirmDialog(PMLIApp.getInstance().getMainWindow(), "     La hoja de vida del equipo se genero correctamente.\n"
+                       + "¿Desea abrir la hoja de vida generada en su lector de PDF?" , "Lectura Hoja de Vida",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
+               {
+                    File archivoPDF = new File("D:/test.pdf");
+                   try {
+                       Desktop.getDesktop().open(archivoPDF);
+                   } catch (IOException ex) {
+                       Logger.getLogger(EquiposListaPanel.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+           } else
+           {
+              JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "La hoja de vida se genero correctamente y se encuentra en PDF. \n"
+                        + "en la carpeta del programa.", "Error Lector PDF", JOptionPane.INFORMATION_MESSAGE);
+           }
+        } else {
+            JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "No esta seleccionado ningun equipo para mostrar hoja de vida.", 
+                                        "Error Al No Generar Hoja de Vida", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_verCVPDFButtonActionPerformed
 
     private void updateListModel() {
@@ -281,6 +301,8 @@ public class EquiposListaPanel extends javax.swing.JPanel {
     private javax.swing.JTextField buscarTextField;
     private javax.swing.JComboBox filtroComboBox;
     private javax.swing.JPanel hojasPanel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable listaTable;
     private javax.swing.JButton nuevoEquipoButton;

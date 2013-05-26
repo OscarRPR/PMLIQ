@@ -60,7 +60,8 @@ public class ItemsListaPanel extends javax.swing.JPanel {
         separadorLabel1 = new javax.swing.JLabel();
         accionesPanel1 = new javax.swing.JPanel();
         nuevoItemButton = new javax.swing.JButton();
-        verCVPDFButton1 = new javax.swing.JButton();
+        verHistorialButton = new javax.swing.JButton();
+        modificarButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         listaTable = new javax.swing.JTable();
 
@@ -121,12 +122,14 @@ public class ItemsListaPanel extends javax.swing.JPanel {
             }
         });
 
-        verCVPDFButton1.setText("Ver Historial");
-        verCVPDFButton1.addActionListener(new java.awt.event.ActionListener() {
+        verHistorialButton.setText("Ver Historial");
+        verHistorialButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verCVPDFButton1ActionPerformed(evt);
+                verHistorialButtonActionPerformed(evt);
             }
         });
+
+        modificarButton.setText("Modificar");
 
         javax.swing.GroupLayout accionesPanel1Layout = new javax.swing.GroupLayout(accionesPanel1);
         accionesPanel1.setLayout(accionesPanel1Layout);
@@ -136,16 +139,21 @@ public class ItemsListaPanel extends javax.swing.JPanel {
                 .addContainerGap(13, Short.MAX_VALUE)
                 .addComponent(nuevoItemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(verCVPDFButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(accionesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(verHistorialButton, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                    .addComponent(modificarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         accionesPanel1Layout.setVerticalGroup(
             accionesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(accionesPanel1Layout.createSequentialGroup()
-                .addGroup(accionesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(accionesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(nuevoItemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(verCVPDFButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(accionesPanel1Layout.createSequentialGroup()
+                        .addComponent(modificarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(verHistorialButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         listaTable.setRowSelectionAllowed(false);
@@ -175,7 +183,6 @@ public class ItemsListaPanel extends javax.swing.JPanel {
                     .addGroup(inventarioPanelLayout.createSequentialGroup()
                         .addComponent(accionesPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 91, Short.MAX_VALUE))
         );
@@ -204,9 +211,9 @@ public class ItemsListaPanel extends javax.swing.JPanel {
         PMLIApp.getInstance().getMainWindow().getAppTabPanel().setComponentAt(2, inventarioPanel);
     }//GEN-LAST:event_nuevoItemButtonActionPerformed
 
-    private void verCVPDFButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verCVPDFButton1ActionPerformed
+    private void verHistorialButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verHistorialButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_verCVPDFButton1ActionPerformed
+    }//GEN-LAST:event_verHistorialButtonActionPerformed
 
     private void updateListModel() {
         
@@ -241,8 +248,9 @@ public class ItemsListaPanel extends javax.swing.JPanel {
     private javax.swing.JPanel inventarioPanel;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable listaTable;
+    private javax.swing.JButton modificarButton;
     private javax.swing.JButton nuevoItemButton;
     private javax.swing.JLabel separadorLabel1;
-    private javax.swing.JButton verCVPDFButton1;
+    private javax.swing.JButton verHistorialButton;
     // End of variables declaration//GEN-END:variables
 }

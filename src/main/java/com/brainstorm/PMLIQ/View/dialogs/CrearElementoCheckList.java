@@ -7,8 +7,12 @@ package com.brainstorm.PMLIQ.View.dialogs;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Actividad;
 import com.brainstorm.PMLIQ.Model.Inventario.Item;
 import com.brainstorm.PMLIQ.View.PMLIApp;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 
 /**
  *
@@ -82,17 +86,22 @@ public class CrearElementoCheckList extends javax.swing.JDialog {
         jScrollPane1.setViewportView(procesoTextArea);
 
         agregarButton.setText("+");
+        agregarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarButtonActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Partes");
 
-        partesCheckList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(partesCheckList);
 
         eliminarButton.setText("-");
+        eliminarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -283,6 +292,39 @@ public class CrearElementoCheckList extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_guardarButtonActionPerformed
 
+    private void agregarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarButtonActionPerformed
+        BuscarItems buscarItems = new BuscarItems((JFrame)PMLIApp.getInstance().getMainWindow(), true, items);
+        buscarItems.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                updateListModel();
+            }
+        });
+        
+        buscarItems.setLocationRelativeTo(null);
+        buscarItems.setVisible(true);
+    }//GEN-LAST:event_agregarButtonActionPerformed
+
+    private void eliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarButtonActionPerformed
+        if (partesCheckList.getSelectedValues().length > 0) {
+            for (int i = 0; i < partesCheckList.getSelectedValues().length; i++) {
+                String nombre = (String)partesCheckList.getSelectedValues()[i];
+                eliminarItem(nombre);
+            }
+            
+            updateListModel();
+        }
+    }//GEN-LAST:event_eliminarButtonActionPerformed
+
+    private void eliminarItem(String nombre) {
+        for (Item i : items) {
+            if (i.getNombre().equals(nombre)) {
+                items.remove(i);
+                return;
+            }
+        }
+    }
+    
     private  List<String> getNombresActividades() {
         List<String> nombres = new ArrayList<String>();
         
@@ -312,6 +354,15 @@ public class CrearElementoCheckList extends javax.swing.JDialog {
         strings.add(verificarComboBox.getSelectedItem().toString());
                 
         return strings;
+    }
+    
+    private void updateListModel() {
+        itemsModel.clear();
+        for(Item i : items) {
+            itemsModel.addElement(i.getNombre());
+        }
+        
+        partesCheckList.setModel(itemsModel);
     }
     
     /**
@@ -358,7 +409,8 @@ public class CrearElementoCheckList extends javax.swing.JDialog {
     
     private List<Actividad> actividades = new ArrayList<Actividad>();
     private List<Item> items = new ArrayList<Item>();
-    
+    private DefaultListModel itemsModel = new DefaultListModel();
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarButton;
     private javax.swing.JButton cancelarButton;

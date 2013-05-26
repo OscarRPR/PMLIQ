@@ -10,7 +10,7 @@ package com.brainstorm.PMLIQ.Control.Constantes;
  */
 public class ConstantesActividadChecklist {
     public final String nombre = "Nombre";
-    public final int minNombre = 5, maxNombre = 30;
+    public final int minNombre = 5, maxNombre = 40;
     public final int NOMBRE = 0;
     
     public final int TIPO = 1;

@@ -6,6 +6,7 @@ package com.brainstorm.PMLIQ.View.dialogs;
 
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Actividad;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.PlanMantenimiento;
+import com.brainstorm.PMLIQ.Model.Inventario.Item;
 import com.brainstorm.PMLIQ.View.PMLIApp;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -64,7 +65,6 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
         mantenimientoPanel = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         añadirChecklistButton = new javax.swing.JButton();
-        editarCheckListButton = new javax.swing.JButton();
         eliminarChecklistButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         checkList = new javax.swing.JList();
@@ -188,8 +188,6 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
             }
         });
 
-        editarCheckListButton.setText("O");
-
         eliminarChecklistButton.setText("-");
         eliminarChecklistButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,14 +210,12 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(añadirChecklistButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(editarCheckListButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(eliminarChecklistButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         mantenimientoPanelLayout.setVerticalGroup(
             mantenimientoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,7 +226,6 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
                         .addGroup(mantenimientoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(añadirChecklistButton)
-                            .addComponent(editarCheckListButton)
                             .addComponent(eliminarChecklistButton))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))
@@ -344,12 +339,24 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
     private void eliminarChecklistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarChecklistButtonActionPerformed
         int indiceSeleccion = checkList.getSelectedIndex();
         if ( indiceSeleccion != -1 ) {
-            checkList.remove(indiceSeleccion);
-            actividades.remove(indiceSeleccion);
+            for (int i = 0; i < checkList.getSelectedValues().length; i++) {
+                String nombre = (String)checkList.getSelectedValues()[i];
+                eliminarActividad(nombre);
+            }
+
             updateListModel();
         }
     }//GEN-LAST:event_eliminarChecklistButtonActionPerformed
 
+    private void eliminarActividad(String nombre) {
+        for (Actividad a : actividades) {
+            if (a.getNombre().equals(nombre)) {
+                actividades.remove(a);
+                return;
+            }
+        }
+    }
+    
     private void updateListModel() {
         checklistModel.clear();
         for(Actividad a : actividades) {
@@ -432,7 +439,6 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
     private javax.swing.JButton cancelarButton;
     private javax.swing.JList checkList;
     private javax.swing.JTextField codigoTextField;
-    private javax.swing.JButton editarCheckListButton;
     private javax.swing.JButton eliminarChecklistButton;
     private javax.swing.JLabel errorLabel;
     private javax.swing.JButton guardarButton;

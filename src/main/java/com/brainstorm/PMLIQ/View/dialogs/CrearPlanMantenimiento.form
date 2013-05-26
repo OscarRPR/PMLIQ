@@ -258,14 +258,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="203" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="añadirChecklistButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="editarCheckListButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="eliminarChecklistButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -278,7 +276,6 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="añadirChecklistButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="editarCheckListButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="eliminarChecklistButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -303,11 +300,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="a&#xf1;adirChecklistButtonActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="editarCheckListButton">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="O"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="eliminarChecklistButton">
               <Properties>

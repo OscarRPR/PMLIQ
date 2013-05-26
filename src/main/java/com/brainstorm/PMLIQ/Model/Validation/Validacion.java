@@ -4,6 +4,7 @@
  */
 package com.brainstorm.PMLIQ.Model.Validation;
 
+import com.brainstorm.PMLIQ.Model.Validation.Exceptions.CampoVacioException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.ErrorDatosRepetidosStringException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.ErrorValidacionException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfabeticoStringException;
@@ -106,6 +107,12 @@ public abstract class Validacion {
             }
     }
     
+    public void campoVacio(String tipo, String campo) throws CampoVacioException {
+        if ( campo == null ) {
+            throw new CampoVacioException(tipo);
+        }
+    }
+    
     protected String crearErrorLongitudString(String tipo, int minimo, int maximo) 
     {
         return tipo + " debe tener una longitud mínima de " + minimo + " caracteres y "
@@ -140,5 +147,10 @@ public abstract class Validacion {
     protected String crearErrorDatoRepetidoString(String tipo) 
     {
         return tipo + " ya existe en la lista. No se admiten valores repetidos.";
+    }
+    
+    protected String crearCampoVacio(String tipo) 
+    {
+        return tipo + " no puede estar vacio.";
     }
 }

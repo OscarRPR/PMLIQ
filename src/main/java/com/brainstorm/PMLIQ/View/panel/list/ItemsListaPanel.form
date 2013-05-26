@@ -171,7 +171,10 @@
                       <EmptySpace pref="13" max="32767" attributes="0"/>
                       <Component id="nuevoItemButton" min="-2" pref="163" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="verCVPDFButton1" min="-2" pref="164" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="verHistorialButton" pref="164" max="32767" attributes="0"/>
+                          <Component id="modificarButton" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -179,11 +182,15 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="nuevoItemButton" alignment="3" min="-2" pref="79" max="-2" attributes="0"/>
-                          <Component id="verCVPDFButton1" alignment="3" min="-2" pref="79" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="nuevoItemButton" min="-2" pref="79" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="modificarButton" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="verHistorialButton" min="-2" pref="37" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="11" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -197,13 +204,18 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevoItemButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="verCVPDFButton1">
+            <Component class="javax.swing.JButton" name="verHistorialButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ver Historial"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="verCVPDFButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="verHistorialButtonActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="modificarButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Modificar"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

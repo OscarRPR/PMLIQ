@@ -98,4 +98,15 @@ public class Sistema {
         
         return null;
     }
+    
+    public boolean eliminarFabricante(String nombre) {
+        for (Fabricante f : fabricantes) {
+            if (f.getNombre().equals(nombre)) {
+                fabricantes.remove(f);
+                return true;
+            }
+        }
+        
+        return false;
+    }
 }

@@ -15,6 +15,7 @@ import java.util.List;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -63,7 +64,7 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
         separadorLabel2 = new javax.swing.JLabel();
         accionesPanel2 = new javax.swing.JPanel();
         nuevoFabricanteButton = new javax.swing.JButton();
-        Eliminar = new javax.swing.JButton();
+        eliminarFabricanteButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         listaTable = new javax.swing.JTable();
 
@@ -124,10 +125,10 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
             }
         });
 
-        Eliminar.setText("Eliminar");
-        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+        eliminarFabricanteButton.setText("Eliminar");
+        eliminarFabricanteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EliminarActionPerformed(evt);
+                eliminarFabricanteButtonActionPerformed(evt);
             }
         });
 
@@ -139,7 +140,7 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
                 .addContainerGap(13, Short.MAX_VALUE)
                 .addComponent(nuevoFabricanteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(eliminarFabricanteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         accionesPanel2Layout.setVerticalGroup(
@@ -148,7 +149,7 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(accionesPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nuevoFabricanteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(eliminarFabricanteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -213,9 +214,18 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
         PMLIApp.getInstance().getMainWindow().getAppTabPanel().setComponentAt(3, fabricantesPanel);
     }//GEN-LAST:event_nuevoFabricanteButtonActionPerformed
 
-    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EliminarActionPerformed
+    private void eliminarFabricanteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarFabricanteButtonActionPerformed
+        int selectedRow = listaTable.getSelectedRow();
+        if (selectedRow != -1) {
+            String nombre = (String) fabricantesModel.getValueAt(listaTable.convertRowIndexToModel(selectedRow), 0);
+            PMLIApp.getInstance().getSistema().eliminarFabricante(nombre);
+            updateListModel();
+            
+        } else {
+              JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "No esta seleccionado ningun fabricante para eliminar.", 
+                                    "Error Al Eliminar Fabricante", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_eliminarFabricanteButtonActionPerformed
 
     private void updateListModel() {
         
@@ -242,11 +252,11 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
     };
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Eliminar;
     private javax.swing.JPanel accionesPanel2;
     private javax.swing.JPanel buscarInternalPanel2;
     private javax.swing.JPanel buscarInventarioPanel1;
     private javax.swing.JTextField buscarTextField2;
+    private javax.swing.JButton eliminarFabricanteButton;
     private javax.swing.JPanel fabricantesPanel;
     private javax.swing.JComboBox filtroComboBox2;
     private javax.swing.JScrollPane jScrollPane2;

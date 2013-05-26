@@ -16,7 +16,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="creacionEquipoTabPanel" alignment="0" max="32767" attributes="0"/>
+          <Component id="creacionEquipoTabPanel" alignment="0" pref="787" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -1330,9 +1330,9 @@
                                   <Group type="102" attributes="0">
                                       <Component id="buscarInternalPanel1" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="nuevoAccesorioButton1" min="-2" pref="163" max="-2" attributes="0"/>
+                                      <Component id="nuevoEquipoAsociadoButton" min="-2" pref="163" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="eliminarAccesorioButton1" min="-2" pref="163" max="-2" attributes="0"/>
+                                      <Component id="eliminarEquipoAsociadoButton" min="-2" pref="163" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1349,8 +1349,8 @@
                                       <Component id="buscarInternalPanel1" min="-2" pref="71" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="nuevoAccesorioButton1" alignment="3" min="-2" pref="79" max="-2" attributes="0"/>
-                                      <Component id="eliminarAccesorioButton1" alignment="3" min="-2" pref="79" max="-2" attributes="0"/>
+                                      <Component id="nuevoEquipoAsociadoButton" alignment="3" min="-2" pref="79" max="-2" attributes="0"/>
+                                      <Component id="eliminarEquipoAsociadoButton" alignment="3" min="-2" pref="79" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -1361,20 +1361,20 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JButton" name="nuevoAccesorioButton1">
+                    <Component class="javax.swing.JButton" name="nuevoEquipoAsociadoButton">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Nuevo"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevoAccesorioButton1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevoEquipoAsociadoButtonActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="eliminarAccesorioButton1">
+                    <Component class="javax.swing.JButton" name="eliminarEquipoAsociadoButton">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Eliminar"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarAccesorioButton1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarEquipoAsociadoButtonActionPerformed"/>
                       </Events>
                     </Component>
                     <Container class="javax.swing.JPanel" name="buscarInternalPanel1">
@@ -2072,6 +2072,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Compra"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="compraCheckBoxActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel29">
                       <Properties>
@@ -2087,6 +2090,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Donaci&#xf3;n"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="donacionCheckBoxActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel31">
                       <Properties>

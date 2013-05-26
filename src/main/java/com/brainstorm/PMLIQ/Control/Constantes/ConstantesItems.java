@@ -17,6 +17,7 @@ public class ConstantesItems {
     public final int minPlaca = 3, maxPlaca = 20;
     public final int PLACA = 1;
     
+    public final String fabricante = "Fabricante";
     public final int FABRICANTE = 2;
 
     public final int CANTIDADINICIAL = 3;   
