@@ -14,9 +14,8 @@ import com.brainstorm.PMLIQ.Model.EquipoInfo.EquipoAsociado;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Laboratorio;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.PlanMantenimiento;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Proveedor;
-import com.brainstorm.PMLIQ.Model.Validation.Exceptions.LongitudStringException;
-import com.brainstorm.PMLIQ.Model.Validation.Validacion;
-import com.brainstorm.PMLIQ.Model.Validation.ValidacionEquipo;
+import com.google.code.morphia.annotations.Entity;
+import com.google.code.morphia.annotations.Id;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,9 +24,30 @@ import java.util.List;
  * @author Silex RPR
  */
 
+@Entity
 public class Equipo {
 
+    @Id
+    private String placaInventario;
+    private String nombre, claseEquipo, marca, modelo;
+    private TipoEquipo tipoEquipo;
+    private String serieEquipo, codigoDocumento;
+    private TipoManual tipoManual;
+    private String ubicacionEnLaboratorio;
+    private UsoEquipo usoEquipo;
+    private String tareasEquipo;
+    
+    private Laboratorio laboratorio = new Laboratorio();
+    private DatosTecnicosEquipo datosTecnicosEquipo;
+    private List<Accesorio> accesorios = new ArrayList<Accesorio>();
+    private List<EquipoAsociado> equiposAsociados = new ArrayList<EquipoAsociado>();
+    private List<PlanMantenimiento> planes = new ArrayList<PlanMantenimiento>();
+    private Proveedor metodoAdquisicion;
+    
     private ConstantesEquipos varsBas = new ConstantesEquipos();
+    
+    public Equipo() {
+    }
     
     public Equipo(List<String> infoEquipo) {
         this.nombre = infoEquipo.get(varsBas.NOMBRE);
@@ -207,19 +227,4 @@ public class Equipo {
     public void setMetodoAdquisicion(Proveedor metodoAdquisicion) {
         this.metodoAdquisicion = metodoAdquisicion;
     }
-
-    private String nombre, placaInventario, claseEquipo, marca, modelo;
-    private TipoEquipo tipoEquipo;
-    private String serieEquipo, codigoDocumento;
-    private TipoManual tipoManual;
-    private String ubicacionEnLaboratorio;
-    private UsoEquipo usoEquipo;
-    private String tareasEquipo;
-    
-    private Laboratorio laboratorio = new Laboratorio();
-    private DatosTecnicosEquipo datosTecnicosEquipo;
-    private List<Accesorio> accesorios = new ArrayList<Accesorio>();
-    private List<EquipoAsociado> equiposAsociados = new ArrayList<EquipoAsociado>();
-    private List<PlanMantenimiento> planes = new ArrayList<PlanMantenimiento>();
-    private Proveedor metodoAdquisicion;
 }

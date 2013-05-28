@@ -172,7 +172,7 @@
                       <Component id="nuevoItemButton" min="-2" pref="163" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="verHistorialButton" pref="164" max="32767" attributes="0"/>
+                          <Component id="eliminarButton" pref="164" max="32767" attributes="0"/>
                           <Component id="modificarButton" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -187,7 +187,7 @@
                           <Group type="102" attributes="0">
                               <Component id="modificarButton" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="verHistorialButton" min="-2" pref="37" max="-2" attributes="0"/>
+                              <Component id="eliminarButton" min="-2" pref="37" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="11" max="32767" attributes="0"/>
@@ -204,12 +204,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevoItemButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="verHistorialButton">
+            <Component class="javax.swing.JButton" name="eliminarButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ver Historial"/>
+                <Property name="text" type="java.lang.String" value="Eliminar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="verHistorialButtonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarButtonActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="modificarButton">

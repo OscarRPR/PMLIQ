@@ -5,11 +5,8 @@
 package com.brainstorm.PMLIQ.Model.Validation;
 
 import com.brainstorm.PMLIQ.Control.Constantes.ConstantesAccesoriosEquipo;
-import com.brainstorm.PMLIQ.Control.Constantes.ConstantesAdquisicionEquipo;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.ErrorValidacionException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfabeticoStringException;
-import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfanumericoStringException;
-import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoNumericoStringException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.LongitudStringException;
 import java.util.List;
 

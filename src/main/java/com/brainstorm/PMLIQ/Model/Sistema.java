@@ -6,6 +6,7 @@ package com.brainstorm.PMLIQ.Model;
 
 import com.brainstorm.PMLIQ.Model.Fabricante.Fabricante;
 import com.brainstorm.PMLIQ.Model.Inventario.Item;
+import com.brainstorm.PMLIQ.View.dao.SingleDAO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,18 +25,22 @@ public class Sistema {
     
     public void inicializaEquipos() {
         equipos = new ArrayList<Equipo>();
+        cargarEquipos();
     }
     
     public void inicializaFabricantes() {
         fabricantes = new ArrayList<Fabricante>();
+        cargarFabricantes();
     }
     
     public void inicializaInventario() {
         inventario = new ArrayList<Item>();
+        cargarItems();
     }   
     
     public void agregarEquipo(Equipo equipo) {
-        equipos.add(equipo);
+        SingleDAO.getInstance().getEquipoDAO().save(equipo);
+        cargarEquipos();
     }
 
     public List<Equipo> getEquipos() {
@@ -47,7 +52,8 @@ public class Sistema {
     }
     
     public void agregarItem(Item item) {
-        this.inventario.add(item);
+        SingleDAO.getInstance().getItemDAO().save(item);
+        cargarItems();
     }
 
     public List<Item> getInventario() {
@@ -59,7 +65,8 @@ public class Sistema {
     }
   
     public void agregarFabricante(Fabricante nuevoFabricante) {
-        this.fabricantes.add(nuevoFabricante);
+        SingleDAO.getInstance().getFabricanteDAO().save(nuevoFabricante);
+        cargarFabricantes();
     }
 
     public List<Fabricante> getFabricantes() {
@@ -70,9 +77,9 @@ public class Sistema {
         this.fabricantes = fabricantes;
     }
     
-    public Equipo getEquipo(String nombre) {
+    public Equipo getEquipo(String id) {
         for (Equipo equipo : equipos) {
-            if (equipo.getNombre().equals(nombre)) {
+            if (equipo.getPlacaInventario().equals(id)) {
                 return equipo;
             }
         }
@@ -99,14 +106,30 @@ public class Sistema {
         return null;
     }
     
-    public boolean eliminarFabricante(String nombre) {
-        for (Fabricante f : fabricantes) {
-            if (f.getNombre().equals(nombre)) {
-                fabricantes.remove(f);
-                return true;
-            }
-        }
-        
-        return false;
+    public void eliminarEquipo(String placa) {
+        SingleDAO.getInstance().getEquipoDAO().findAndDelete(placa);
+        cargarEquipos();
+    }
+    
+    public void eliminarFabricante(String nombre) {
+        SingleDAO.getInstance().getFabricanteDAO().findAndDelete(nombre);
+        cargarFabricantes();
+    }
+    
+    public void eliminarItem(String placa) {
+        SingleDAO.getInstance().getItemDAO().findAndDelete(placa);
+        cargarItems();
+    }
+    
+    private void cargarEquipos() {
+        equipos = SingleDAO.getInstance().getEquipoDAO().findAll();
+    }
+    
+    private void cargarFabricantes() {
+        fabricantes = SingleDAO.getInstance().getFabricanteDAO().findAll();
+    }
+    
+    private void cargarItems() {
+        inventario = SingleDAO.getInstance().getItemDAO().findAll();
     }
 }

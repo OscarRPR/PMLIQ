@@ -5,16 +5,28 @@
 package com.brainstorm.PMLIQ.Model.Fabricante;
 
 import com.brainstorm.PMLIQ.Control.Constantes.ConstantesFabricantes;
+import com.google.code.morphia.annotations.Entity;
+import com.google.code.morphia.annotations.Id;
 import java.util.List;
 
 /**
  *
  * @author Silex RPR
  */
+@Entity
 public class Fabricante {
 
-    private ConstantesFabricantes vars = new ConstantesFabricantes();
+    @Id
+    private String nombre;
     
+    private String informacion, contacto, direccion;
+    private String telefonoUno, telefonoDos, correo;    
+    
+    private ConstantesFabricantes vars = new ConstantesFabricantes();
+
+    public Fabricante() {
+    }
+
     public Fabricante(List<String> datos) {
         this.nombre = datos.get(vars.NOMBRE);
         this.informacion = datos.get(vars.INFORMACION);
@@ -79,8 +91,5 @@ public class Fabricante {
 
     public void setCorreo(String correo) {
         this.correo = correo;
-    }
-    
-    private String nombre, informacion, contacto, direccion;
-    private String telefonoUno, telefonoDos, correo;       
+    }   
 }

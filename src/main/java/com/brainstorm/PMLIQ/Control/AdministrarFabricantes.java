@@ -7,7 +7,6 @@ package com.brainstorm.PMLIQ.Control;
 import com.brainstorm.PMLIQ.Model.Fabricante.Fabricante;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.ErrorValidacionException;
 import com.brainstorm.PMLIQ.Model.Validation.Validacion;
-import com.brainstorm.PMLIQ.Model.Validation.ValidacionActividadChecklist;
 import com.brainstorm.PMLIQ.Model.Validation.ValidacionFabricante;
 import com.brainstorm.PMLIQ.View.PMLIApp;
 import java.util.ArrayList;

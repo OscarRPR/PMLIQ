@@ -5,15 +5,10 @@
 package com.brainstorm.PMLIQ.Model.Validation;
 
 import com.brainstorm.PMLIQ.Control.Constantes.ConstantesDatosTecnicos;
-import com.brainstorm.PMLIQ.Control.Constantes.ConstantesEquipos;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.ErrorValidacionException;
-import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfabeticoStringException;
-import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfanumericoStringException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoNumericoDoubleException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.LongitudStringException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

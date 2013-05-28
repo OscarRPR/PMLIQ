@@ -12,8 +12,16 @@ import java.util.List;
  * @author Silex RPR
  */
 public class DatosTecnicosEquipo {
-
+    
+    private DatosElectricosEquipo datosElectricos;
+    private DimensionesEquipo dimensiones;
+    private Double temperaturaAmbiente, HR;
+    private String otraOpcion, requerimientosAdicionales, especificacionMedicion;
+    
     private ConstantesDatosTecnicos vars = new ConstantesDatosTecnicos();
+    
+    public DatosTecnicosEquipo() {
+    }
     
     public DatosTecnicosEquipo(List<String> datosTecnicos) {
         
@@ -90,9 +98,4 @@ public class DatosTecnicosEquipo {
     public void setEspecificacionMedicion(String especificacionMedicion) {
         this.especificacionMedicion = especificacionMedicion;
     }
-
-    DatosElectricosEquipo datosElectricos;
-    DimensionesEquipo dimensiones;
-    Double temperaturaAmbiente, HR;
-    String otraOpcion, requerimientosAdicionales, especificacionMedicion;
 }

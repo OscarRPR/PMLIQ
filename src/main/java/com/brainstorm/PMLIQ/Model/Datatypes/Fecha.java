@@ -4,10 +4,7 @@
  */
 package com.brainstorm.PMLIQ.Model.Datatypes;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,6 +16,12 @@ public class Fecha {
     private final int DIA = 0;
     private final int MES = 1;
     private final int AÑO = 2;
+    
+    private Integer dia, mes, año;
+    private String fullDate;
+    
+    public Fecha() {
+    }
     
     public Fecha(String date) {
         this.fullDate = date;
@@ -61,7 +64,4 @@ public class Fecha {
     public void setFullDate(String fullDate) {
         this.fullDate = fullDate;
     }
-
-    private Integer dia, mes, año;
-    private String fullDate;
 }

@@ -10,6 +10,9 @@ package com.brainstorm.PMLIQ.Model.EquipoInfo;
  */
 public class Laboratorio {
 
+    private String facultad, departamento, laboratorio, edificio, email, codigo;
+    private String numeroLaboratorio, numeroEdificio, extensionTelefonica;
+    
     public Laboratorio() {
         setDefaultValues();
     }
@@ -97,7 +100,4 @@ public class Laboratorio {
         this.extensionTelefonica = "14315";
         this.email = "labiq_fiqbog@unal.edu.co";
     }
-    
-    private String facultad, departamento, laboratorio, edificio, email, codigo;
-    private String numeroLaboratorio, numeroEdificio, extensionTelefonica;
 }

@@ -4,17 +4,11 @@
  */
 package com.brainstorm.PMLIQ.View.panel.list;
 
-import com.brainstorm.PMLIQ.Model.Fabricante.Fabricante;
 import com.brainstorm.PMLIQ.Model.Inventario.Item;
 import com.brainstorm.PMLIQ.View.PMLIApp;
-import com.brainstorm.PMLIQ.View.panel.crearFabricantePanel;
 import com.brainstorm.PMLIQ.View.panel.crearItemInventarioPanel;
-import java.awt.Color;
-import java.awt.Component;
 import java.util.List;
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -60,7 +54,7 @@ public class ItemsListaPanel extends javax.swing.JPanel {
         separadorLabel1 = new javax.swing.JLabel();
         accionesPanel1 = new javax.swing.JPanel();
         nuevoItemButton = new javax.swing.JButton();
-        verHistorialButton = new javax.swing.JButton();
+        eliminarButton = new javax.swing.JButton();
         modificarButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         listaTable = new javax.swing.JTable();
@@ -122,10 +116,10 @@ public class ItemsListaPanel extends javax.swing.JPanel {
             }
         });
 
-        verHistorialButton.setText("Ver Historial");
-        verHistorialButton.addActionListener(new java.awt.event.ActionListener() {
+        eliminarButton.setText("Eliminar");
+        eliminarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verHistorialButtonActionPerformed(evt);
+                eliminarButtonActionPerformed(evt);
             }
         });
 
@@ -140,7 +134,7 @@ public class ItemsListaPanel extends javax.swing.JPanel {
                 .addComponent(nuevoItemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(accionesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(verHistorialButton, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                    .addComponent(eliminarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                     .addComponent(modificarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -152,7 +146,7 @@ public class ItemsListaPanel extends javax.swing.JPanel {
                     .addGroup(accionesPanel1Layout.createSequentialGroup()
                         .addComponent(modificarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(verHistorialButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(eliminarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -211,9 +205,18 @@ public class ItemsListaPanel extends javax.swing.JPanel {
         PMLIApp.getInstance().getMainWindow().getAppTabPanel().setComponentAt(2, inventarioPanel);
     }//GEN-LAST:event_nuevoItemButtonActionPerformed
 
-    private void verHistorialButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verHistorialButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_verHistorialButtonActionPerformed
+    private void eliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarButtonActionPerformed
+        int selectedRow = listaTable.getSelectedRow();
+        if (selectedRow != -1) {
+            String placa = (String) itemsModel.getValueAt(listaTable.convertRowIndexToModel(selectedRow), 1);
+            PMLIApp.getInstance().getSistema().eliminarItem(placa);
+            updateListModel();
+            
+        } else {
+              JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "No esta seleccionado ningun item para eliminar.", 
+                                    "Error Al Eliminar Item Del Inventario", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_eliminarButtonActionPerformed
 
     private void updateListModel() {
         
@@ -244,6 +247,7 @@ public class ItemsListaPanel extends javax.swing.JPanel {
     private javax.swing.JPanel buscarInternalPanel1;
     private javax.swing.JPanel buscarInventarioPanel;
     private javax.swing.JTextField buscarTextField1;
+    private javax.swing.JButton eliminarButton;
     private javax.swing.JComboBox filtroComboBox1;
     private javax.swing.JPanel inventarioPanel;
     private javax.swing.JScrollPane jScrollPane2;
@@ -251,6 +255,5 @@ public class ItemsListaPanel extends javax.swing.JPanel {
     private javax.swing.JButton modificarButton;
     private javax.swing.JButton nuevoItemButton;
     private javax.swing.JLabel separadorLabel1;
-    private javax.swing.JButton verHistorialButton;
     // End of variables declaration//GEN-END:variables
 }

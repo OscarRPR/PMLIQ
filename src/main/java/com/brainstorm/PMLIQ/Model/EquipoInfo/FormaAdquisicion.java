@@ -12,8 +12,16 @@ import com.brainstorm.PMLIQ.Model.Datatypes.Fecha;
  */
 public class FormaAdquisicion {
     
+    private boolean compra, donacion;
+    private String valorCompra;
+    private Integer tiempoUso, vidaUtil;
+    private Fecha fechaAdquisicion, puestaEnServicio;
+    
     private final String COMPRA = "Compra";
     private final String DONACION = "Donación";
+    
+    public FormaAdquisicion() {
+    }
     
     public FormaAdquisicion(String tipo, String precio, String uso, String adquisicion,
                             String servicio, String vidaEstimada) {
@@ -88,9 +96,4 @@ public class FormaAdquisicion {
     public void setPuestaEnServicio(Fecha puestaEnServicio) {
         this.puestaEnServicio = puestaEnServicio;
     }
-    
-    boolean compra, donacion;
-    String valorCompra;
-    Integer tiempoUso, vidaUtil;
-    Fecha fechaAdquisicion, puestaEnServicio;
 }

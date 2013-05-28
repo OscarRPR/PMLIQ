@@ -4,7 +4,6 @@
  */
 package com.brainstorm.PMLIQ.View.panel;
 
-import com.brainstorm.PMLIQ.View.panel.list.fabricantesListaPanel;
 import com.brainstorm.PMLIQ.Model.Fabricante.Fabricante;
 import com.brainstorm.PMLIQ.Model.Inventario.Item;
 import com.brainstorm.PMLIQ.View.PMLIApp;
@@ -328,7 +327,7 @@ public class crearItemInventarioPanel extends javax.swing.JPanel {
 
     private void guardarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBotonActionPerformed
         List<String> infoItem = getDatosItem();
-        List<String> nombresItems = getNombresItems();
+        List<String> nombresItems = getPlacasItems();
  
         List<String> resultados = PMLIApp.getInstance().getAdmItems().crearItem(infoItem, nombresItems);
         errorLabel.setText(resultados.get(DESCRIPCIONBASICA));
@@ -364,14 +363,14 @@ public class crearItemInventarioPanel extends javax.swing.JPanel {
 
     }
     
-    private  List<String> getNombresItems() {
-        List<String> nombres = new ArrayList<String>();
+    private  List<String> getPlacasItems() {
+        List<String> placas = new ArrayList<String>();
         
         for(Item item : items) {
-            nombres.add(item.getNombre());
+            placas.add(item.getPlacaInventario());
         }
         
-        return nombres;
+        return placas;
     }
     
     private List<String> getDatosItem() {

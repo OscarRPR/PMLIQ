@@ -12,6 +12,12 @@ import com.brainstorm.PMLIQ.Model.Enum.PosicionUsoEquipo;
  */
 public class DimensionesEquipo {
 
+    private Double alto, ancho, profundo, peso;
+    private PosicionUsoEquipo posicionUsoEquipo;
+    
+    public DimensionesEquipo() {
+    }
+    
     public DimensionesEquipo(String alto, String ancho, String profundo, String peso,
                              String posicionUsoEquipo) {
         this.alto = Double.valueOf(alto);
@@ -60,7 +66,4 @@ public class DimensionesEquipo {
     public void setPosicionUsoEquipo(PosicionUsoEquipo posicionUsoEquipo) {
         this.posicionUsoEquipo = posicionUsoEquipo;
     }
-
-    Double alto, ancho, profundo, peso;
-    PosicionUsoEquipo posicionUsoEquipo;
 }

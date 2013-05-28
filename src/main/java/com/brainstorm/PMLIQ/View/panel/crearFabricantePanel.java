@@ -7,10 +7,8 @@ package com.brainstorm.PMLIQ.View.panel;
 import com.brainstorm.PMLIQ.View.panel.list.fabricantesListaPanel;
 import com.brainstorm.PMLIQ.Model.Fabricante.Fabricante;
 import com.brainstorm.PMLIQ.View.PMLIApp;
-import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JPanel;
 
 import static com.brainstorm.PMLIQ.View.ventana.MainWindow.FABRICANTESTAB;
 

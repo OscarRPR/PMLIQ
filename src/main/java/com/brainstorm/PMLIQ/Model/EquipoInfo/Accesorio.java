@@ -13,8 +13,14 @@ import java.util.List;
  */
 public class Accesorio {
     
+    private Integer cantidad;
+    private String nombre, caracteristicas, marca;
+    
     private ConstantesAccesoriosEquipo vars = new ConstantesAccesoriosEquipo();
 
+    public Accesorio() {
+    }
+    
     public Accesorio(final List<String> accesorioEquipo) {
         this.cantidad = Integer.parseInt(accesorioEquipo.get(vars.CANTIDAD));
         this.nombre = accesorioEquipo.get(vars.NOMBRE);
@@ -53,7 +59,4 @@ public class Accesorio {
     public void setMarca(String marca) {
         this.marca = marca;
     }
-   
-    private Integer cantidad;
-    private String nombre, caracteristicas, marca;
 }

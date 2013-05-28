@@ -13,7 +13,6 @@ import com.brainstorm.PMLIQ.View.dialogs.CrearAccesorio;
 import com.brainstorm.PMLIQ.View.dialogs.CrearEquipoAsociado;
 import com.brainstorm.PMLIQ.View.dialogs.CrearPlanMantenimiento;
 import com.brainstorm.PMLIQ.View.panel.list.EquiposListaPanel;
-import java.awt.CheckboxGroup;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
@@ -23,9 +22,6 @@ import java.util.Enumeration;
 import java.util.List;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.DefaultListModel;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -1788,7 +1784,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     }
     
     public void guardarDatosEquipo() {
-        List<String> equiposExistentes = getNombresEquipos();
+        List<String> equiposExistentes = getPlacasEquipos();
         List<String> infoEquipo = getDatosBasicosEquipo();
         List<String> datosTecnicosEquipo = getDatosTecnicosEquipo();
         List<String> adquisicionEquipo = getDatosAdquisicionEquipo();
@@ -1819,14 +1815,14 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         }
     }
     
-    private  List<String> getNombresEquipos() {
-        List<String> nombres = new ArrayList<String>();
+    private  List<String> getPlacasEquipos() {
+        List<String> placas = new ArrayList<String>();
         
         for(Equipo equipo : PMLIApp.getInstance().getSistema().getEquipos()) {
-            nombres.add(equipo.getNombre());
+            placas.add(equipo.getPlacaInventario());
         }
         
-        return nombres;
+        return placas;
     }
     
     public List<String> getDatosBasicosEquipo() {

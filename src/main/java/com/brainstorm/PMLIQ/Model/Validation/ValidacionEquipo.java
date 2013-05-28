@@ -62,11 +62,11 @@ public class ValidacionEquipo extends Validacion{
     
     @Override
     public String validarValorRepetidoString(final List<String> strings, final List<String> repetidos) throws ErrorValidacionException {
-        String nombre = strings.get(vars.NOMBRE);
+        String placa = strings.get(vars.PLACAINVENTARIO);
         String resultado = "";
         
         try {
-            datoRepetido(vars.nombre, nombre, repetidos);
+            datoRepetido(vars.placaInventario, placa, repetidos);
         } catch (ErrorDatosRepetidosStringException ex) {
             resultado = crearErrorDatoRepetidoString(ex.getTipo());
             throw new ErrorValidacionException(resultado, ex.getCause());

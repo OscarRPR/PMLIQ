@@ -4,17 +4,13 @@
  */
 package com.brainstorm.PMLIQ.Model.Validation;
 
-import com.brainstorm.PMLIQ.Control.Constantes.ConstantesEquipoAsociado;
 import com.brainstorm.PMLIQ.Control.Constantes.ConstantesPlanMantenimiento;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.ErrorValidacionException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfabeticoStringException;
-import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfanumericoStringException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoNumericoStringException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.LongitudListaException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.LongitudStringException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

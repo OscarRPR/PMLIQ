@@ -16,7 +16,16 @@ import java.util.List;
  */
 public class Actividad {
 
+    private String nombre, proceso;
+    private TipoActividad tipoActividad;
+    private List<Item> partesAsociadas;
+    private int frecuenciaTarea, verificarInventario;
+    private TimeStamp frecuencia, verificar;
+    
     private ConstantesActividadChecklist vars = new ConstantesActividadChecklist();
+    
+    public Actividad() {
+    }
     
     public Actividad(List<String> datos, List<Item> partes) {
         this.nombre = datos.get(vars.NOMBRE);
@@ -92,10 +101,4 @@ public class Actividad {
     public void setVerificar(TimeStamp verificar) {
         this.verificar = verificar;
     }
-
-    private String nombre, proceso;
-    private TipoActividad tipoActividad;
-    private List<Item> partesAsociadas;
-    private int frecuenciaTarea, verificarInventario;
-    private TimeStamp frecuencia, verificar;
 }

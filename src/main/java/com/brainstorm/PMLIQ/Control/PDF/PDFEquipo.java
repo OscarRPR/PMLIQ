@@ -26,7 +26,6 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -141,31 +140,31 @@ public class PDFEquipo {
         float[] widths = new float[] { 55f, 75f, 10f, 15f, 30f, 35f };
         table.setWidths(widths);
 
-        table.addCell(createCell("Facultad o Instituto", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Facultad o Instituto", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(laboratorio.getFacultad(), subNormalFont, BaseColor.WHITE, 5, 1));
         
-        table.addCell(createCell("Departamento/Escuela", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Departamento/Escuela", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(laboratorio.getDepartamento(), subNormalFont, BaseColor.WHITE, 5, 1));
         
-        table.addCell(createCell("Laboratorio", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Laboratorio", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(laboratorio.getLaboratorio(), subNormalFont, BaseColor.WHITE));
         
-        table.addCell(createCell("No", subFont, BaseColor.GRAY));
+        table.addCell(createCell("No", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(laboratorio.getNumeroLaboratorio(), subNormalFont, BaseColor.WHITE));
         
-        table.addCell(createCell("Codigo", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Codigo", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(laboratorio.getCodigo(), subNormalFont, BaseColor.WHITE));
        
-        table.addCell(createCell("Edificio", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Edificio", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(laboratorio.getEdificio(), subNormalFont, BaseColor.WHITE));
         
-        table.addCell(createCell("No", subFont, BaseColor.GRAY));
+        table.addCell(createCell("No", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(laboratorio.getNumeroEdificio(), subNormalFont, BaseColor.WHITE));
         
-        table.addCell(createCell("Ext-Telefono", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Ext-Telefono", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(laboratorio.getExtensionTelefonica(), subNormalFont, BaseColor.WHITE));
         
-        table.addCell(createCell("Email_Lab", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Email_Lab", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(laboratorio.getEmail(), subNormalFont, BaseColor.WHITE, 5, 1));
         
         document.add(table);
@@ -189,37 +188,37 @@ public class PDFEquipo {
         float[] widths = new float[] { 50f, 50f, 50f, 50f, 50f, 50f };
         table.setWidths(widths);
 
-        table.addCell(createCell("Nombre", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Nombre", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(equipo.getNombre(), subNormalFont, BaseColor.WHITE, 5, 1));
         
-        table.addCell(createCell("Placa de Inventario", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Placa de Inventario", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(equipo.getPlacaInventario(), subNormalFont, BaseColor.WHITE, 2, 1));
         
-        table.addCell(createCell("Clase de Equipo", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Clase de Equipo", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(equipo.getClaseEquipo(), subNormalFont, BaseColor.WHITE, 2, 1));
         
-        table.addCell(createCell("Tipo de Equipo", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Tipo de Equipo", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(equipo.getTipoEquipo().toString(), subNormalFont, BaseColor.WHITE, 5, 1));
         
-        table.addCell(createCell("Marca", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Marca", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(equipo.getMarca(), subNormalFont, BaseColor.WHITE));
        
-        table.addCell(createCell("Modelo", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Modelo", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(equipo.getModelo(), subNormalFont, BaseColor.WHITE));
         
-        table.addCell(createCell("Serie", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Serie", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(equipo.getSerieEquipo(), subNormalFont, BaseColor.WHITE));
         
-        table.addCell(createCell("Manuales", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Manuales", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(equipo.getTipoManual().toString(), subNormalFont, BaseColor.WHITE, 2, 1));
         
-        table.addCell(createCell("Codigo Manuales", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Codigo Manuales", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(equipo.getCodigoDocumento(), subNormalFont, BaseColor.WHITE, 2, 1));
         
-        table.addCell(createCell("Ubicacion en el Lab", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Ubicacion en el Lab", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(equipo.getUbicacionEnLaboratorio(), subNormalFont, BaseColor.WHITE, 2, 1));
         
-        table.addCell(createCell("Uso del Equipo", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Uso del Equipo", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(equipo.getUsoEquipo().toString(), subNormalFont, BaseColor.WHITE, 2, 1));
         
         document.add(table);
@@ -265,48 +264,48 @@ public class PDFEquipo {
         float[] widths = new float[] { 50f, 50f, 60f, 50f, 60f, 50f, 40f, 40f };
         table.setWidths(widths);
 
-        table.addCell(createCell("Datos Electricos", subFont, BaseColor.GRAY, 8, 1, Element.ALIGN_CENTER));
+        table.addCell(createCell("Datos Electricos", subFont, BaseColor.LIGHT_GRAY, 8, 1, Element.ALIGN_CENTER));
         
-        table.addCell(createCell("Voltaje(V)", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Voltaje(V)", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(datosElectricos.getVoltaje().toString(), subNormalFont, BaseColor.WHITE));
         
-        table.addCell(createCell("Potencia(W)", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Potencia(W)", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(datosElectricos.getPotencia().toString(), subNormalFont, BaseColor.WHITE));
         
-        table.addCell(createCell("Corriente(A)", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Corriente(A)", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(datosElectricos.getCorriente().toString(), subNormalFont, BaseColor.WHITE));
         
-        table.addCell(createCell("Fases", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Fases", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(datosElectricos.getFases().toString(), subNormalFont, BaseColor.WHITE));
         
-        table.addCell(createCell("Dimensiones", subFont, BaseColor.GRAY, 8, 1, Element.ALIGN_CENTER));
+        table.addCell(createCell("Dimensiones", subFont, BaseColor.LIGHT_GRAY, 8, 1, Element.ALIGN_CENTER));
  
         DimensionesEquipo dimensiones = datos.getDimensiones();
         
-        table.addCell(createCell("Alto(m)", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Alto(m)", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(dimensiones.getAlto().toString(), subNormalFont, BaseColor.WHITE));
        
-        table.addCell(createCell("Ancho(m)", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Ancho(m)", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(dimensiones.getAncho().toString(), subNormalFont, BaseColor.WHITE));
         
-        table.addCell(createCell("Profundo(m)", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Profundo(m)", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(dimensiones.getProfundo().toString(), subNormalFont, BaseColor.WHITE));
         
-        table.addCell(createCell("Peso(kg)", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Peso(kg)", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(dimensiones.getPeso().toString(), subNormalFont, BaseColor.WHITE));
         
-        table.addCell(createCell("Tipo de Equipo", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Tipo de Equipo", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(dimensiones.getPosicionUsoEquipo().toString(), subNormalFont, BaseColor.WHITE, 7, 1));
         
-        table.addCell(createCell("Ambientales y de Funcionamiento", subFont, BaseColor.GRAY, 8, 1, Element.ALIGN_CENTER));
+        table.addCell(createCell("Ambientales y de Funcionamiento", subFont, BaseColor.LIGHT_GRAY, 8, 1, Element.ALIGN_CENTER));
 
-        table.addCell(createCell("T Ambiente (C)", subFont, BaseColor.GRAY));
+        table.addCell(createCell("T Ambiente (C)", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(datos.getTemperaturaAmbiente().toString(), subNormalFont, BaseColor.WHITE, 2, 1));
         
-        table.addCell(createCell("HR(%)", subFont, BaseColor.GRAY));
+        table.addCell(createCell("HR(%)", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(datos.getHR().toString(), subNormalFont, BaseColor.WHITE));
         
-        table.addCell(createCell("Otro", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Otro", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(datos.getOtraOpcion(), subNormalFont, BaseColor.WHITE, 2, 1));
         
         document.add(table);       
@@ -373,10 +372,10 @@ public class PDFEquipo {
         float[] widths = new float[] { 40f, 120f, 150f, 90f };
         table.setWidths(widths);
         
-        table.addCell(createCell("Cantidad", subFont, BaseColor.GRAY, 1, 1, Element.ALIGN_CENTER));
-        table.addCell(createCell("Nombre", subFont, BaseColor.GRAY, 1, 1, Element.ALIGN_CENTER));
-        table.addCell(createCell("Caracteristicas", subFont, BaseColor.GRAY, 1, 1, Element.ALIGN_CENTER));
-        table.addCell(createCell("Marca", subFont, BaseColor.GRAY, 1, 1, Element.ALIGN_CENTER));
+        table.addCell(createCell("Cantidad", subFont, BaseColor.LIGHT_GRAY, 1, 1, Element.ALIGN_CENTER));
+        table.addCell(createCell("Nombre", subFont, BaseColor.LIGHT_GRAY, 1, 1, Element.ALIGN_CENTER));
+        table.addCell(createCell("Caracteristicas", subFont, BaseColor.LIGHT_GRAY, 1, 1, Element.ALIGN_CENTER));
+        table.addCell(createCell("Marca", subFont, BaseColor.LIGHT_GRAY, 1, 1, Element.ALIGN_CENTER));
         
         for (Accesorio a : accesorios) {
             table.addCell(createCell(a.getCantidad().toString(), subNormalFont, BaseColor.WHITE));
@@ -406,8 +405,8 @@ public class PDFEquipo {
         float[] widths = new float[] { 120f, 80f };
         table.setWidths(widths);
         
-        table.addCell(createCell("Nombre", subFont, BaseColor.GRAY, 1, 1, Element.ALIGN_CENTER));
-        table.addCell(createCell("Placa de Inventario", subFont, BaseColor.GRAY, 1, 1, Element.ALIGN_CENTER));
+        table.addCell(createCell("Nombre", subFont, BaseColor.LIGHT_GRAY, 1, 1, Element.ALIGN_CENTER));
+        table.addCell(createCell("Placa de Inventario", subFont, BaseColor.LIGHT_GRAY, 1, 1, Element.ALIGN_CENTER));
         
         for (EquipoAsociado e : equipos) {
             table.addCell(createCell(e.getNombre(), subNormalFont, BaseColor.WHITE));
@@ -435,9 +434,9 @@ public class PDFEquipo {
         float[] widths = new float[] { 110f, 80f, 110f };
         table.setWidths(widths);
         
-        table.addCell(createCell("Nombre", subFont, BaseColor.GRAY, 1, 1, Element.ALIGN_CENTER));
-        table.addCell(createCell("Tipo de Plan", subFont, BaseColor.GRAY, 1, 1, Element.ALIGN_CENTER));
-        table.addCell(createCell("Responsable", subFont, BaseColor.GRAY, 1, 1, Element.ALIGN_CENTER));
+        table.addCell(createCell("Nombre", subFont, BaseColor.LIGHT_GRAY, 1, 1, Element.ALIGN_CENTER));
+        table.addCell(createCell("Tipo de Plan", subFont, BaseColor.LIGHT_GRAY, 1, 1, Element.ALIGN_CENTER));
+        table.addCell(createCell("Responsable", subFont, BaseColor.LIGHT_GRAY, 1, 1, Element.ALIGN_CENTER));
         
         for (PlanMantenimiento p : planes) {
             table.addCell(createCell(p.getNombre(), subNormalFont, BaseColor.WHITE));
@@ -470,46 +469,46 @@ public class PDFEquipo {
         float[] widths = new float[] { 50f, 50f, 50f, 50f, 50f, 50f };
         table.setWidths(widths);
 
-        table.addCell(createCell("Fabricante", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Fabricante", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(proveedor.getFabricante(), subNormalFont, BaseColor.WHITE, 5, 1));
         
-        table.addCell(createCell("Proveedor", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Proveedor", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(proveedor.getProveedor(), subNormalFont, BaseColor.WHITE, 2, 1));
         
-        table.addCell(createCell("NIT", subFont, BaseColor.GRAY));
+        table.addCell(createCell("NIT", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(proveedor.getNIT(), subNormalFont, BaseColor.WHITE, 2, 1));
         
-        table.addCell(createCell("Contacto", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Contacto", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(proveedor.getContacto(), subNormalFont, BaseColor.WHITE, 2, 1));
         
-        table.addCell(createCell("Telefono", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Telefono", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(proveedor.getTelefono(), subNormalFont, BaseColor.WHITE, 2, 1));
        
-        table.addCell(createCell("Direccion", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Direccion", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(proveedor.getDireccion(), subNormalFont, BaseColor.WHITE, 2, 1));
         
-        table.addCell(createCell("Email", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Email", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(proveedor.getEmail(), subNormalFont, BaseColor.WHITE, 2, 1));
         
-        table.addCell(createCell("Forma de Adquisicion", subFont, BaseColor.GRAY, 6, 1, Element.ALIGN_CENTER));
+        table.addCell(createCell("Forma de Adquisicion", subFont, BaseColor.LIGHT_GRAY, 6, 1, Element.ALIGN_CENTER));
 
         FormaAdquisicion forma = proveedor.getFormaAdquisicion();
         
         if ( forma.isCompra() ) {
-            table.addCell(createCell("Valor Compra", subFont, BaseColor.GRAY, 2, 1));
+            table.addCell(createCell("Valor Compra", subFont, BaseColor.LIGHT_GRAY, 2, 1));
             table.addCell(createCell("$" + forma.getValorCompra() + " COP", subNormalFont, BaseColor.WHITE, 4, 1));
         } else {
-            table.addCell(createCell("Donacion - Tiempo Uso", subFont, BaseColor.GRAY, 2, 1));
+            table.addCell(createCell("Donacion - Tiempo Uso", subFont, BaseColor.LIGHT_GRAY, 2, 1));
             table.addCell(createCell(forma.getTiempoUso().toString() + " años", subNormalFont, BaseColor.WHITE, 4, 1));
         }
         
-        table.addCell(createCell("Fecha Adquisicion", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Fecha Adquisicion", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(forma.getFechaAdquisicion().getFullDate(), subNormalFont, BaseColor.WHITE));
         
-        table.addCell(createCell("Fecha Puesta en Servicio", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Fecha Puesta en Servicio", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(forma.getPuestaEnServicio().getFullDate(), subNormalFont, BaseColor.WHITE));
         
-        table.addCell(createCell("Vida Util (años)", subFont, BaseColor.GRAY));
+        table.addCell(createCell("Vida Util (años)", subFont, BaseColor.LIGHT_GRAY));
         table.addCell(createCell(forma.getValorCompra(), subNormalFont, BaseColor.WHITE));
         
         document.add(table);

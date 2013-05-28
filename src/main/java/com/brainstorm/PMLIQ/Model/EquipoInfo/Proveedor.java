@@ -13,7 +13,13 @@ import java.util.List;
  */
 public class Proveedor {
     
+    private String fabricante, proveedor, contacto, direccion, NIT, telefono, email;
+    private FormaAdquisicion formaAdquisicion;
+    
     private ConstantesAdquisicionEquipo vars = new ConstantesAdquisicionEquipo();
+    
+    public Proveedor() {
+    }
     
     public Proveedor(List<String> datos) {
         this.fabricante = datos.get(vars.FABRICANTE);
@@ -95,7 +101,4 @@ public class Proveedor {
     public void setFormaAdquisicion(FormaAdquisicion formaAdquisicion) {
         this.formaAdquisicion = formaAdquisicion;
     }
-    
-    private String fabricante, proveedor, contacto, direccion, NIT, telefono, email;
-    private FormaAdquisicion formaAdquisicion;
 }

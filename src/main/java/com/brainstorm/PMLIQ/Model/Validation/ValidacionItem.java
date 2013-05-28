@@ -4,18 +4,14 @@
  */
 package com.brainstorm.PMLIQ.Model.Validation;
 
-import com.brainstorm.PMLIQ.Control.Constantes.ConstantesFabricantes;
 import com.brainstorm.PMLIQ.Control.Constantes.ConstantesItems;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.CampoVacioException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.ErrorDatosRepetidosStringException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.ErrorValidacionException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfabeticoStringException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfanumericoStringException;
-import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoNumericoStringException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.LongitudStringException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -54,11 +50,11 @@ public class ValidacionItem extends Validacion{
     
     @Override
     public String validarValorRepetidoString(final List<String> strings, final List<String> repetidos) throws ErrorValidacionException {
-        String nombre = strings.get(vars.NOMBRE);
+        String placa = strings.get(vars.PLACA);
         String resultado = "";
         
         try {
-            datoRepetido(vars.nombre, nombre, repetidos);
+            datoRepetido(vars.placa, placa, repetidos);
         } catch (ErrorDatosRepetidosStringException ex) {
             resultado = crearErrorDatoRepetidoString(ex.getTipo());
             throw new ErrorValidacionException(resultado, ex.getCause());

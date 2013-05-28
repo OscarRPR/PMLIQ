@@ -4,11 +4,9 @@
  */
 package com.brainstorm.PMLIQ.Control;
 
-import com.brainstorm.PMLIQ.Model.Fabricante.Fabricante;
 import com.brainstorm.PMLIQ.Model.Inventario.Item;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.ErrorValidacionException;
 import com.brainstorm.PMLIQ.Model.Validation.Validacion;
-import com.brainstorm.PMLIQ.Model.Validation.ValidacionFabricante;
 import com.brainstorm.PMLIQ.Model.Validation.ValidacionItem;
 import com.brainstorm.PMLIQ.View.PMLIApp;
 import java.util.ArrayList;

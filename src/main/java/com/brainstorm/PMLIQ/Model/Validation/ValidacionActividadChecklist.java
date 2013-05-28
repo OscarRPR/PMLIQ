@@ -11,10 +11,7 @@ import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfabeticoStringE
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.FormatoAlfanumericoStringException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.LongitudListaException;
 import com.brainstorm.PMLIQ.Model.Validation.Exceptions.LongitudStringException;
-import com.brainstorm.PMLIQ.View.PMLIApp;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

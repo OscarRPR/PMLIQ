@@ -13,7 +13,7 @@ public class ConstantesItems {
     public final int minNombre = 5, maxNombre = 30;
     public final int NOMBRE = 0;
     
-    public final String placa = "Placa de Inventario";
+    public final String placa = "Placa de inventario";
     public final int minPlaca = 3, maxPlaca = 20;
     public final int PLACA = 1;
     

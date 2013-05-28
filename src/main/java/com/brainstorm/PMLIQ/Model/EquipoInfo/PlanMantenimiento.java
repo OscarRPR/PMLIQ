@@ -15,7 +15,15 @@ import java.util.List;
  */
 public class PlanMantenimiento {
 
+    private String nombre, codigo, responsable;
+    private TipoPlan tipoPlan;
+    private int maximoRegistros, frecuenciaUso;
+    private List<Actividad> checkList = new ArrayList<Actividad>();
+    
     private ConstantesPlanMantenimiento vars = new ConstantesPlanMantenimiento();
+    
+    public PlanMantenimiento() {
+    }
     
     public PlanMantenimiento(List<String> datos, List<Actividad> actividades) {
         this.nombre = datos.get(vars.NOMBRE);
@@ -83,9 +91,4 @@ public class PlanMantenimiento {
     public void setCheckList(List<Actividad> checkList) {
         this.checkList = checkList;
     }
-
-    private String nombre, codigo, responsable;
-    private TipoPlan tipoPlan;
-    private int maximoRegistros, frecuenciaUso;
-    private List<Actividad> checkList = new ArrayList<Actividad>();
 }

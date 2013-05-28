@@ -4,22 +4,11 @@
  */
 package com.brainstorm.PMLIQ.View.ventana;
 
-import com.brainstorm.PMLIQ.View.PMLIApp;
-import com.brainstorm.PMLIQ.View.dialogs.CrearEquipoAsociado;
-import com.brainstorm.PMLIQ.View.panel.crearEquipoPanel;
-import com.brainstorm.PMLIQ.View.panel.crearFabricantePanel;
-import com.brainstorm.PMLIQ.View.panel.crearItemInventarioPanel;
 import com.brainstorm.PMLIQ.View.panel.list.EquiposListaPanel;
 import com.brainstorm.PMLIQ.View.panel.list.ItemsListaPanel;
 import com.brainstorm.PMLIQ.View.panel.list.fabricantesListaPanel;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 
 /**

@@ -11,7 +11,13 @@ import com.brainstorm.PMLIQ.Model.Enum.TipoElectrico;
  * @author Silex RPR
  */
 public class DatosElectricosEquipo {
-
+ 
+    private Double voltaje, potencia, corriente, fases;
+    private TipoElectrico tipoElectrico;
+    
+    public DatosElectricosEquipo() {
+    }
+    
     public DatosElectricosEquipo(String voltaje, String potencia, String corriente,
                            String fases, String tipo) {
         this.voltaje = Double.valueOf(voltaje);
@@ -60,7 +66,4 @@ public class DatosElectricosEquipo {
     public void setTipoElectrico(TipoElectrico tipoElectrico) {
         this.tipoElectrico = tipoElectrico;
     }
- 
-    Double voltaje, potencia, corriente, fases;
-    TipoElectrico tipoElectrico;
 }

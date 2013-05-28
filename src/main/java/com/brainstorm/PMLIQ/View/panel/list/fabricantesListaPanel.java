@@ -4,19 +4,11 @@
  */
 package com.brainstorm.PMLIQ.View.panel.list;
 
-import com.brainstorm.PMLIQ.Model.EquipoInfo.Actividad;
 import com.brainstorm.PMLIQ.Model.Fabricante.Fabricante;
 import com.brainstorm.PMLIQ.View.PMLIApp;
-import com.brainstorm.PMLIQ.View.listrenderers.ListRendererFabricante;
 import com.brainstorm.PMLIQ.View.panel.crearFabricantePanel;
-import java.awt.Color;
-import java.awt.Component;
 import java.util.List;
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JTabbedPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 

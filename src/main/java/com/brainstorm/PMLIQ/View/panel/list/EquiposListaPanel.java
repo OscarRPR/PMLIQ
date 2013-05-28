@@ -5,20 +5,14 @@
 package com.brainstorm.PMLIQ.View.panel.list;
 
 import com.brainstorm.PMLIQ.Model.Equipo;
-import com.brainstorm.PMLIQ.Model.Inventario.Item;
 import com.brainstorm.PMLIQ.View.PMLIApp;
 import com.brainstorm.PMLIQ.View.panel.crearEquipoPanel;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -68,9 +62,10 @@ public class EquiposListaPanel extends javax.swing.JPanel {
         accionesPanel = new javax.swing.JPanel();
         nuevoEquipoButton = new javax.swing.JButton();
         verCVPDFButton = new javax.swing.JButton();
-        verCVPDFButton2 = new javax.swing.JButton();
+        eliminarButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        historialesButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         listaTable = new javax.swing.JTable();
 
@@ -141,11 +136,18 @@ public class EquiposListaPanel extends javax.swing.JPanel {
             }
         });
 
-        verCVPDFButton2.setText("Historiales ");
+        eliminarButton.setText("Eliminar");
+        eliminarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarButtonActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Modificar");
 
         jButton2.setText("Planes Mantenimiento PDF");
+
+        historialesButton.setText("Historiales");
 
         javax.swing.GroupLayout accionesPanelLayout = new javax.swing.GroupLayout(accionesPanel);
         accionesPanel.setLayout(accionesPanelLayout);
@@ -160,9 +162,12 @@ public class EquiposListaPanel extends javax.swing.JPanel {
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(verCVPDFButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton2)
+                    .addGroup(accionesPanelLayout.createSequentialGroup()
+                        .addComponent(eliminarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(historialesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         accionesPanelLayout.setVerticalGroup(
             accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,13 +176,15 @@ public class EquiposListaPanel extends javax.swing.JPanel {
                 .addGroup(accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(nuevoEquipoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(accionesPanelLayout.createSequentialGroup()
-                        .addGroup(accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(verCVPDFButton, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(verCVPDFButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(eliminarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(historialesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(accionesPanelLayout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(verCVPDFButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -195,7 +202,7 @@ public class EquiposListaPanel extends javax.swing.JPanel {
                         .addComponent(buscarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(accionesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE))
                 .addContainerGap())
         );
         hojasPanelLayout.setVerticalGroup(
@@ -244,15 +251,18 @@ public class EquiposListaPanel extends javax.swing.JPanel {
         
         if (selectedRow != -1) {
             String nombre = (String) equiposModel.getValueAt(listaTable.convertRowIndexToModel(selectedRow), 0);
-            Equipo equipoSeleccionado = PMLIApp.getInstance().getSistema().getEquipo(nombre);
+            String placa = (String) equiposModel.getValueAt(listaTable.convertRowIndexToModel(selectedRow), 1);
+            Equipo equipoSeleccionado = PMLIApp.getInstance().getSistema().getEquipo(placa);
 
-            PMLIApp.getInstance().getAdmEquipos().crearCVPDF(equipoSeleccionado, "D:/test.pdf");
+            String rutaArchivo = "D:/PMLIQ/CV/" + nombre + " - " + placa + ".pdf";
+            
+            PMLIApp.getInstance().getAdmEquipos().crearCVPDF(equipoSeleccionado, rutaArchivo);
 
             if (Desktop.isDesktopSupported()) {
                if ( JOptionPane.showConfirmDialog(PMLIApp.getInstance().getMainWindow(), "     La hoja de vida del equipo se genero correctamente.\n"
                        + "¿Desea abrir la hoja de vida generada en su lector de PDF?" , "Lectura Hoja de Vida",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
                {
-                    File archivoPDF = new File("D:/test.pdf");
+                    File archivoPDF = new File(rutaArchivo);
                    try {
                        Desktop.getDesktop().open(archivoPDF);
                    } catch (IOException ex) {
@@ -269,6 +279,19 @@ public class EquiposListaPanel extends javax.swing.JPanel {
                                         "Error Al No Generar Hoja de Vida", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_verCVPDFButtonActionPerformed
+
+    private void eliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarButtonActionPerformed
+        int selectedRow = listaTable.getSelectedRow();
+        if (selectedRow != -1) {
+            String placa = (String) equiposModel.getValueAt(listaTable.convertRowIndexToModel(selectedRow), 1);
+            PMLIApp.getInstance().getSistema().eliminarEquipo(placa);
+            updateListModel();
+            
+        } else {
+              JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "No esta seleccionado ningun equipo para eliminar.", 
+                                    "Error Al Eliminar Equipo", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_eliminarButtonActionPerformed
 
     private void updateListModel() {
         
@@ -299,7 +322,9 @@ public class EquiposListaPanel extends javax.swing.JPanel {
     private javax.swing.JPanel buscarInternalPanel;
     private javax.swing.JPanel buscarPanel;
     private javax.swing.JTextField buscarTextField;
+    private javax.swing.JButton eliminarButton;
     private javax.swing.JComboBox filtroComboBox;
+    private javax.swing.JButton historialesButton;
     private javax.swing.JPanel hojasPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -308,6 +333,5 @@ public class EquiposListaPanel extends javax.swing.JPanel {
     private javax.swing.JButton nuevoEquipoButton;
     private javax.swing.JLabel separadorLabel;
     private javax.swing.JButton verCVPDFButton;
-    private javax.swing.JButton verCVPDFButton2;
     // End of variables declaration//GEN-END:variables
 }

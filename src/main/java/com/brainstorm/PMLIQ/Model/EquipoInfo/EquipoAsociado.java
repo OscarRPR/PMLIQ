@@ -13,7 +13,12 @@ import java.util.List;
  */
 public class EquipoAsociado {
     
+    private String nombre, placaInventario;
+    
     private ConstantesEquipoAsociado vars = new ConstantesEquipoAsociado();
+    
+    public EquipoAsociado() {
+    }
     
     public EquipoAsociado(final List<String> equipoAsociado) {
        this.nombre = equipoAsociado.get(vars.NOMBRE);
@@ -35,6 +40,4 @@ public class EquipoAsociado {
     public void setPlacaInventario(String placaInventario) {
         this.placaInventario = placaInventario;
     }
-    
-    private String nombre, placaInventario;
 }

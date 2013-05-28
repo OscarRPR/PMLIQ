@@ -6,15 +6,31 @@ package com.brainstorm.PMLIQ.Model.Inventario;
 
 import com.brainstorm.PMLIQ.Control.Constantes.ConstantesItems;
 import com.brainstorm.PMLIQ.Model.Enum.TimeStamp;
+import com.google.code.morphia.annotations.Entity;
+import com.google.code.morphia.annotations.Id;
 import java.util.List;
 
 /**
  *
  * @author Silex RPR
  */
+
+@Entity
 public class Item {
     
+    @Id
+    private String placaInventario;
+    
+    private String nombre, fabricante;
+    private int cantidadInicial;    
+    private int cantidadMinima, tiempoMaximo;
+    private TimeStamp tiempoMaximoTipo, frecuenciaMinimaTipo, frecuenciaMaximaTipo;
+    private int frecuenciaMinima, frecuenciaMaxima;
+    
     private ConstantesItems vars = new ConstantesItems();
+   
+    public Item() {
+    }
     
     public Item(List<String> datos) {
         this.nombre = datos.get(vars.NOMBRE);
@@ -117,10 +133,4 @@ public class Item {
     public void setFrecuenciaMaxima(int frecuenciaMaxima) {
         this.frecuenciaMaxima = frecuenciaMaxima;
     }
-
-    private String nombre, placaInventario, fabricante;
-    private int cantidadInicial;    
-    private int cantidadMinima, tiempoMaximo;
-    private TimeStamp tiempoMaximoTipo, frecuenciaMinimaTipo, frecuenciaMaximaTipo;
-    private int frecuenciaMinima, frecuenciaMaxima;
 }
