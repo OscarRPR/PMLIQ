@@ -6,14 +6,16 @@ package com.brainstorm.PMLIQ.View.panel.list;
 
 import com.brainstorm.PMLIQ.Model.Equipo;
 import com.brainstorm.PMLIQ.View.PMLIApp;
+import com.brainstorm.PMLIQ.View.actions.CVPDFAction;
+import com.brainstorm.PMLIQ.View.actions.EliminarAction;
 import com.brainstorm.PMLIQ.View.panel.crearEquipoPanel;
-import java.awt.Desktop;
-import java.io.File;
-import java.io.IOException;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Silex RPR
  */
-public class EquiposListaPanel extends javax.swing.JPanel {
+public class EquiposListaPanel extends javax.swing.JPanel implements ListaPanel{
 
     /**
      * Creates new form EquiposListaPanel
@@ -40,6 +42,34 @@ public class EquiposListaPanel extends javax.swing.JPanel {
         equiposModel.addColumn("Ubicación");
         
         listaTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        listaTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2 && !e.isConsumed()) {
+                    e.consume();
+                    JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "Modificando un equipo.", 
+                                    "Modificando Equipo", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                int r = listaTable.rowAtPoint(e.getPoint());
+                if (r >= 0 && r < listaTable.getRowCount()) {
+                    listaTable.setRowSelectionInterval(r, r);
+                } else {
+                    listaTable.clearSelection();
+                }
+
+                int rowindex = listaTable.getSelectedRow();
+                if (rowindex < 0)
+                    return;
+                if (e.isPopupTrigger() && e.getComponent() instanceof JTable ) {
+                    JPopupMenu popup = createJPopupMenu();
+                    popup.show(e.getComponent(), e.getX(), e.getY());
+                }
+            }
+        });
         
         updateListModel();
     }
@@ -61,11 +91,7 @@ public class EquiposListaPanel extends javax.swing.JPanel {
         separadorLabel = new javax.swing.JLabel();
         accionesPanel = new javax.swing.JPanel();
         nuevoEquipoButton = new javax.swing.JButton();
-        verCVPDFButton = new javax.swing.JButton();
         eliminarButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        historialesButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         listaTable = new javax.swing.JTable();
 
@@ -73,7 +99,7 @@ public class EquiposListaPanel extends javax.swing.JPanel {
 
         buscarInternalPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR"));
 
-        filtroComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        filtroComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nombre", "Placa", "Tipo", "Uso", "Ubicacion" }));
 
         buscarTextField.setForeground(new java.awt.Color(255, 153, 0));
         buscarTextField.setText("Buscar");
@@ -129,13 +155,6 @@ public class EquiposListaPanel extends javax.swing.JPanel {
             }
         });
 
-        verCVPDFButton.setText("CV PDF");
-        verCVPDFButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verCVPDFButtonActionPerformed(evt);
-            }
-        });
-
         eliminarButton.setText("Eliminar");
         eliminarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,48 +162,24 @@ public class EquiposListaPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Modificar");
-
-        jButton2.setText("Planes Mantenimiento PDF");
-
-        historialesButton.setText("Historiales");
-
         javax.swing.GroupLayout accionesPanelLayout = new javax.swing.GroupLayout(accionesPanel);
         accionesPanel.setLayout(accionesPanelLayout);
         accionesPanelLayout.setHorizontalGroup(
             accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(accionesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(nuevoEquipoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nuevoEquipoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(verCVPDFButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2)
-                    .addGroup(accionesPanelLayout.createSequentialGroup()
-                        .addComponent(eliminarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(historialesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(eliminarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(14, 14, 14))
         );
         accionesPanelLayout.setVerticalGroup(
             accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(accionesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(nuevoEquipoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(accionesPanelLayout.createSequentialGroup()
-                        .addGroup(accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(eliminarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(historialesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(accionesPanelLayout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(verCVPDFButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(accionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(eliminarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nuevoEquipoButton, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -246,54 +241,13 @@ public class EquiposListaPanel extends javax.swing.JPanel {
         PMLIApp.getInstance().getMainWindow().getAppTabPanel().setComponentAt(1, hojasPanel);
     }//GEN-LAST:event_nuevoEquipoButtonActionPerformed
 
-    private void verCVPDFButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verCVPDFButtonActionPerformed
-        int selectedRow = listaTable.getSelectedRow();
-        
-        if (selectedRow != -1) {
-            String nombre = (String) equiposModel.getValueAt(listaTable.convertRowIndexToModel(selectedRow), 0);
-            String placa = (String) equiposModel.getValueAt(listaTable.convertRowIndexToModel(selectedRow), 1);
-            Equipo equipoSeleccionado = PMLIApp.getInstance().getSistema().getEquipo(placa);
-
-            String rutaArchivo = "D:/PMLIQ/CV/" + nombre + " - " + placa + ".pdf";
-            
-            PMLIApp.getInstance().getAdmEquipos().crearCVPDF(equipoSeleccionado, rutaArchivo);
-
-            if (Desktop.isDesktopSupported()) {
-               if ( JOptionPane.showConfirmDialog(PMLIApp.getInstance().getMainWindow(), "     La hoja de vida del equipo se genero correctamente.\n"
-                       + "¿Desea abrir la hoja de vida generada en su lector de PDF?" , "Lectura Hoja de Vida",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
-               {
-                    File archivoPDF = new File(rutaArchivo);
-                   try {
-                       Desktop.getDesktop().open(archivoPDF);
-                   } catch (IOException ex) {
-                       Logger.getLogger(EquiposListaPanel.class.getName()).log(Level.SEVERE, null, ex);
-                   }
-               }
-           } else
-           {
-              JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "La hoja de vida se genero correctamente y se encuentra en PDF. \n"
-                        + "en la carpeta del programa.", "Error Lector PDF", JOptionPane.INFORMATION_MESSAGE);
-           }
-        } else {
-            JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "No esta seleccionado ningun equipo para mostrar hoja de vida.", 
-                                        "Error Al No Generar Hoja de Vida", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_verCVPDFButtonActionPerformed
-
     private void eliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarButtonActionPerformed
-        int selectedRow = listaTable.getSelectedRow();
-        if (selectedRow != -1) {
-            String placa = (String) equiposModel.getValueAt(listaTable.convertRowIndexToModel(selectedRow), 1);
-            PMLIApp.getInstance().getSistema().eliminarEquipo(placa);
-            updateListModel();
-            
-        } else {
-              JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "No esta seleccionado ningun equipo para eliminar.", 
-                                    "Error Al Eliminar Equipo", JOptionPane.ERROR_MESSAGE);
-        }
+        EliminarAction eliminar = new EliminarAction("Eliminar", 1, "Equipo", this, 
+                                                      listaTable, equiposModel);
+        eliminar.actionPerformed(evt);
     }//GEN-LAST:event_eliminarButtonActionPerformed
 
-    private void updateListModel() {
+    public final void updateListModel() {
         
         if (equiposModel.getRowCount() > 0) {
             for (int i = equiposModel.getRowCount() - 1; i > -1; i--) {
@@ -311,6 +265,31 @@ public class EquiposListaPanel extends javax.swing.JPanel {
         listaTable.setModel(equiposModel);
     }
     
+    private JPopupMenu createJPopupMenu() {
+        JPopupMenu menu = new JPopupMenu();
+        JMenuItem modificar = new JMenuItem("Modificar");
+        JMenuItem eliminar = new JMenuItem(new EliminarAction("Eliminar", 1, "Equipo", this, 
+                                                               listaTable,equiposModel));
+        
+        JMenuItem hojaVidaPDF = new JMenuItem(new CVPDFAction("Hoja de Vida", listaTable, equiposModel));
+ 
+        JMenuItem planesMantenimientoPDF = new JMenuItem("Planes de Mantenimiento");
+        JMenuItem historialesMantenimientoPDF = new JMenuItem("Historiales de Mantenimiento");
+        JMenuItem ordenMantenimiento = new JMenuItem("Generar Orden de Mantenimiento");
+        
+        menu.add(modificar);
+        menu.add(eliminar);
+        menu.addSeparator();
+        menu.add(hojaVidaPDF);
+        menu.addSeparator();
+        menu.add(planesMantenimientoPDF);
+        menu.add(historialesMantenimientoPDF);
+        menu.addSeparator();
+        menu.add(ordenMantenimiento);
+        
+        return menu;
+    }
+    
     private DefaultTableModel equiposModel = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -324,14 +303,10 @@ public class EquiposListaPanel extends javax.swing.JPanel {
     private javax.swing.JTextField buscarTextField;
     private javax.swing.JButton eliminarButton;
     private javax.swing.JComboBox filtroComboBox;
-    private javax.swing.JButton historialesButton;
     private javax.swing.JPanel hojasPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable listaTable;
     private javax.swing.JButton nuevoEquipoButton;
     private javax.swing.JLabel separadorLabel;
-    private javax.swing.JButton verCVPDFButton;
     // End of variables declaration//GEN-END:variables
 }

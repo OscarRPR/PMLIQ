@@ -12,7 +12,7 @@ public enum TipoManual {
     INSTALACION("Instalacion"),
     TECNICO("Tecnico"),
     USUARIO("De usuario"),
-    PORLABORATORIO("Dcoumento por el lab.");
+    LABORATORIO("Dcoumento por el lab.");
     
     private final String stringValue;
     private TipoManual(final String s) { stringValue = s; }

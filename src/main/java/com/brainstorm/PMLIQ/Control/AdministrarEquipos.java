@@ -108,8 +108,8 @@ public class AdministrarEquipos {
         return nuevoPlan;
     }
     
-    public Actividad crearActividadChecklist(List<String> plan, List<Item> partes) {
-        Actividad nuevaActividad = new Actividad(plan, partes);
+    public Actividad crearActividadChecklist(List<String> plan, List<Item> partes, List<Integer> cantidades) {
+        Actividad nuevaActividad = new Actividad(plan, partes, cantidades);
         return nuevaActividad;
     }
     

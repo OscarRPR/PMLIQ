@@ -82,6 +82,8 @@ public class CrearAccesorio extends javax.swing.JDialog {
         caracteristicasTextArea.setRows(5);
         jScrollPane1.setViewportView(caracteristicasTextArea);
 
+        cantidadSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+
         jLabel5.setText("CREANDO ACCESORIO");
 
         errorLabel.setForeground(java.awt.Color.red);

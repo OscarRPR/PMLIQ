@@ -26,6 +26,7 @@ public class Item {
     private int cantidadMinima, tiempoMaximo;
     private TimeStamp tiempoMaximoTipo, frecuenciaMinimaTipo, frecuenciaMaximaTipo;
     private int frecuenciaMinima, frecuenciaMaxima;
+    private int cantidadUtilizada;
     
     private ConstantesItems vars = new ConstantesItems();
    
@@ -133,4 +134,13 @@ public class Item {
     public void setFrecuenciaMaxima(int frecuenciaMaxima) {
         this.frecuenciaMaxima = frecuenciaMaxima;
     }
+
+    public int getCantidadUtilizada() {
+        return cantidadUtilizada;
+    }
+
+    public void setCantidadUtilizada(int cantidadUtilizada) {
+        this.cantidadUtilizada = cantidadUtilizada;
+    }
+
 }

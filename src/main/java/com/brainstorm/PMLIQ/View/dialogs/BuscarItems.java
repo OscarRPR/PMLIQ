@@ -6,9 +6,16 @@ package com.brainstorm.PMLIQ.View.dialogs;
 
 import com.brainstorm.PMLIQ.Model.Inventario.Item;
 import com.brainstorm.PMLIQ.View.PMLIApp;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,7 +27,7 @@ public class BuscarItems extends javax.swing.JDialog {
     /**
      * Creates new form BuscarItems
      */
-    public BuscarItems(java.awt.Frame parent, boolean modal, List<Item> items) {
+    public BuscarItems(java.awt.Frame parent, boolean modal, List<Item> items, List<Integer> cantidades) {
         super(parent, modal);
         initComponents();
         
@@ -32,9 +39,36 @@ public class BuscarItems extends javax.swing.JDialog {
         itemsModel.addColumn("Placa de Inventario");
         itemsModel.addColumn("Cantidad Disponible");
         
-        itemsTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        itemsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        cantidadSpinner.setModel(new SpinnerNumberModel(1, 1, 1, 1));
+        
+        itemsTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                int r = itemsTable.rowAtPoint(e.getPoint());
+                if (r >= 0 && r < itemsTable.getRowCount()) {
+                    itemsTable.setRowSelectionInterval(r, r);
+                } else {
+                    itemsTable.clearSelection();
+                }
+
+                int rowindex = itemsTable.getSelectedRow();
+                if (rowindex < 0)
+                    return;
+                if (e.getComponent() instanceof JTable ) {
+                    String nombre = (String) itemsModel.getValueAt(itemsTable.convertRowIndexToModel(rowindex), 0);
+                    Item itemSeleccionado = PMLIApp.getInstance().getSistema().getItem(nombre);
+                    cantidadSpinner.setModel(new SpinnerNumberModel(1, 1, itemSeleccionado.getCantidadInicial(), 1));
+                    cantidadSpinner.setEnabled(true);
+                } else {
+                    cantidadSpinner.setEnabled(false);
+                }
+                    
+            }
+        });
         
         this.items = items;
+        this.cantidades = cantidades;
         
         updateListModel();
         
@@ -55,6 +89,9 @@ public class BuscarItems extends javax.swing.JDialog {
         itemsTable = new javax.swing.JTable();
         agregarButton = new javax.swing.JButton();
         cancelarButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        cantidadSpinner = new javax.swing.JSpinner();
+        errorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -84,24 +121,41 @@ public class BuscarItems extends javax.swing.JDialog {
             }
         });
 
+        jLabel2.setText("Cantidad Solicitada");
+
+        cantidadSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+        cantidadSpinner.setEnabled(false);
+
+        errorLabel.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(agregarButton)
-                        .addGap(15, 15, 15)
-                        .addComponent(cancelarButton)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(agregarButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cancelarButton)
+                .addGap(12, 12, 12))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(170, 170, 170)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cantidadSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62)
+                        .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,11 +164,16 @@ public class BuscarItems extends javax.swing.JDialog {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cantidadSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(errorLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(agregarButton)
                     .addComponent(cancelarButton))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -138,6 +197,7 @@ public class BuscarItems extends javax.swing.JDialog {
                 String nombre = (String) itemsModel.getValueAt(itemsTable.convertRowIndexToModel(selectedIndexes[i]), 0);
                 Item itemSeleccionado = PMLIApp.getInstance().getSistema().getItem(nombre);
                 items.add(itemSeleccionado);
+                cantidades.add((Integer)cantidadSpinner.getValue());
             }
         }
         
@@ -179,7 +239,8 @@ public class BuscarItems extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                BuscarItems dialog = new BuscarItems(new javax.swing.JFrame(), true, new ArrayList<Item>());
+                BuscarItems dialog = new BuscarItems(new javax.swing.JFrame(), true, new ArrayList<Item>(),
+                                                     new ArrayList<Integer>());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -199,10 +260,10 @@ public class BuscarItems extends javax.swing.JDialog {
             }
         }
         
-        final List<Item> listaItems = PMLIApp.getInstance().getSistema().getInventario();
+        List<Item> listaItems = new ArrayList<Item>(PMLIApp.getInstance().getSistema().getInventario());
 
         for(Item i : listaItems) {
-            if (!searchItem(i)) {
+            if (searchItem(i) && i.getCantidadInicial() >= 1) {
                 itemsModel.addRow(new Object[] { i.getNombre(), i.getPlacaInventario(), i.getCantidadInicial()} );
             }
         }
@@ -213,11 +274,11 @@ public class BuscarItems extends javax.swing.JDialog {
     private boolean searchItem(Item item) {
         for (Item it : items) {
             if (it.getNombre().equals(item.getNombre())) {
-                return true;
+                return false;
             }
         }
         
-        return false;
+        return true;
     }
     
     private DefaultTableModel itemsModel = new DefaultTableModel() {
@@ -228,12 +289,16 @@ public class BuscarItems extends javax.swing.JDialog {
     };
     
     private List<Item> items = new ArrayList<Item>();
+    private List<Integer> cantidades = new ArrayList<Integer>();
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarButton;
     private javax.swing.JButton cancelarButton;
+    private javax.swing.JSpinner cantidadSpinner;
+    private javax.swing.JLabel errorLabel;
     private javax.swing.JTable itemsTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

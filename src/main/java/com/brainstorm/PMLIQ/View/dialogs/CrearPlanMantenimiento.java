@@ -6,6 +6,7 @@ package com.brainstorm.PMLIQ.View.dialogs;
 
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Actividad;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.PlanMantenimiento;
+import com.brainstorm.PMLIQ.Model.Inventario.Item;
 import com.brainstorm.PMLIQ.View.PMLIApp;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -102,7 +103,11 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
 
         jLabel8.setText("Máximo Registros de Mantenimiento");
 
+        maxRegistrosSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+
         jLabel10.setText("Frecuencia Uso (Horas Semanales)");
+
+        usoSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -293,7 +298,8 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelarButtonActionPerformed
 
     private void añadirChecklistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirChecklistButtonActionPerformed
-        CrearElementoCheckList crearElementoCheckList = new CrearElementoCheckList((JFrame)PMLIApp.getInstance().getMainWindow(), true, actividades);
+        CrearElementoCheckList crearElementoCheckList = new CrearElementoCheckList(
+                                                (JFrame)PMLIApp.getInstance().getMainWindow(), true, actividades);
         crearElementoCheckList.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
@@ -416,7 +422,8 @@ public class CrearPlanMantenimiento extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CrearPlanMantenimiento dialog = new CrearPlanMantenimiento(new javax.swing.JFrame(), true, new ArrayList<PlanMantenimiento>());
+                CrearPlanMantenimiento dialog = new CrearPlanMantenimiento(new javax.swing.JFrame(), true, 
+                                                new ArrayList<PlanMantenimiento>());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

@@ -10,7 +10,7 @@ package com.brainstorm.PMLIQ.Model.Enum;
  */
 public enum TipoPlan {
     PREVENTIVO("Preventivo"),
-    CALIBRACION("Valibracion");
+    CALIBRACION("Calibracion");
     
     private final String stringValue;
     private TipoPlan(final String s) { stringValue = s; }

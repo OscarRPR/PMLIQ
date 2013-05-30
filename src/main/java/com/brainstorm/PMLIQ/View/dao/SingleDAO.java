@@ -4,7 +4,9 @@
  */
 package com.brainstorm.PMLIQ.View.dao;
 
+import com.brainstorm.PMLIQ.Model.Equipo;
 import com.brainstorm.PMLIQ.Model.Fabricante.Fabricante;
+import com.brainstorm.PMLIQ.Model.Inventario.Item;
 import com.google.code.morphia.Morphia;
 import com.mongodb.Mongo;
 import java.net.UnknownHostException;
@@ -32,7 +34,7 @@ public class SingleDAO {
         }
         
         morphia = new Morphia();
-        morphia.map(Fabricante.class);
+        morphia.map(Fabricante.class).map(Item.class).map(Equipo.class);
         
         fabricanteDAO = new FabricanteDAO(mongo, morphia, dbName);
         itemDAO = new ItemDAO(mongo, morphia, dbName);

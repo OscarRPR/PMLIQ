@@ -6,9 +6,15 @@ package com.brainstorm.PMLIQ.View.panel.list;
 
 import com.brainstorm.PMLIQ.Model.Fabricante.Fabricante;
 import com.brainstorm.PMLIQ.View.PMLIApp;
+import com.brainstorm.PMLIQ.View.actions.EliminarAction;
 import com.brainstorm.PMLIQ.View.panel.crearFabricantePanel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Silex RPR
  */
-public class fabricantesListaPanel extends javax.swing.JPanel {
+public class fabricantesListaPanel extends javax.swing.JPanel implements ListaPanel {
 
     /**
      * Creates new form fabricantesListaPanel
@@ -35,6 +41,34 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
 
         listaTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+        listaTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2 && !e.isConsumed()) {
+                    e.consume();
+                    JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "Modificando un fabricante.", 
+                                    "Modificando Fabricante", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                int r = listaTable.rowAtPoint(e.getPoint());
+                if (r >= 0 && r < listaTable.getRowCount()) {
+                    listaTable.setRowSelectionInterval(r, r);
+                } else {
+                    listaTable.clearSelection();
+                }
+
+                int rowindex = listaTable.getSelectedRow();
+                if (rowindex < 0)
+                    return;
+                if (e.isPopupTrigger() && e.getComponent() instanceof JTable ) {
+                    JPopupMenu popup = createJPopupMenu();
+                    popup.show(e.getComponent(), e.getX(), e.getY());
+                }
+            }
+        });
+        
         updateListModel();
     }
 
@@ -62,7 +96,7 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
 
         buscarInternalPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR"));
 
-        filtroComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        filtroComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nombre", "Contacto", "Correo" }));
 
         buscarTextField2.setForeground(new java.awt.Color(255, 153, 0));
         buscarTextField2.setText("Buscar");
@@ -207,19 +241,12 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_nuevoFabricanteButtonActionPerformed
 
     private void eliminarFabricanteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarFabricanteButtonActionPerformed
-        int selectedRow = listaTable.getSelectedRow();
-        if (selectedRow != -1) {
-            String nombre = (String) fabricantesModel.getValueAt(listaTable.convertRowIndexToModel(selectedRow), 0);
-            PMLIApp.getInstance().getSistema().eliminarFabricante(nombre);
-            updateListModel();
-            
-        } else {
-              JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "No esta seleccionado ningun fabricante para eliminar.", 
-                                    "Error Al Eliminar Fabricante", JOptionPane.ERROR_MESSAGE);
-        }
+        EliminarAction eliminar = new EliminarAction("Eliminar", 0, "Fabricante", this, 
+                                                      listaTable, fabricantesModel);
+        eliminar.actionPerformed(evt);
     }//GEN-LAST:event_eliminarFabricanteButtonActionPerformed
 
-    private void updateListModel() {
+    public final void updateListModel() {
         
         if (fabricantesModel.getRowCount() > 0) {
             for (int i = fabricantesModel.getRowCount() - 1; i > -1; i--) {
@@ -234,6 +261,19 @@ public class fabricantesListaPanel extends javax.swing.JPanel {
         }
         
         listaTable.setModel(fabricantesModel);
+    }
+    
+    private JPopupMenu createJPopupMenu() {
+        JPopupMenu menu = new JPopupMenu();
+        JMenuItem modificar = new JMenuItem("Modificar");
+        JMenuItem eliminar = new JMenuItem(new EliminarAction("Eliminar", 0, "Fabricante", this, 
+                                                                listaTable, fabricantesModel));
+        
+        menu.add(modificar);
+        menu.add(eliminar);
+        
+
+        return menu;
     }
     
     private DefaultTableModel fabricantesModel = new DefaultTableModel() {

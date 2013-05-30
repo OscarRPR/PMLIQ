@@ -6,9 +6,15 @@ package com.brainstorm.PMLIQ.View.panel.list;
 
 import com.brainstorm.PMLIQ.Model.Inventario.Item;
 import com.brainstorm.PMLIQ.View.PMLIApp;
+import com.brainstorm.PMLIQ.View.actions.EliminarAction;
 import com.brainstorm.PMLIQ.View.panel.crearItemInventarioPanel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Silex RPR
  */
-public class ItemsListaPanel extends javax.swing.JPanel {
+public class ItemsListaPanel extends javax.swing.JPanel implements ListaPanel{
 
     /**
      * Creates new form ItemsListaPanel
@@ -31,8 +37,37 @@ public class ItemsListaPanel extends javax.swing.JPanel {
         itemsModel.addColumn("Nombre");
         itemsModel.addColumn("Placa de Inventario");
         itemsModel.addColumn("Cantidad Disponible");
+        itemsModel.addColumn("Fabricante");
         
         listaTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        listaTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2 && !e.isConsumed()) {
+                    e.consume();
+                    JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "Modificando un item.", 
+                                    "Modificando Item Del Inventario", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                int r = listaTable.rowAtPoint(e.getPoint());
+                if (r >= 0 && r < listaTable.getRowCount()) {
+                    listaTable.setRowSelectionInterval(r, r);
+                } else {
+                    listaTable.clearSelection();
+                }
+
+                int rowindex = listaTable.getSelectedRow();
+                if (rowindex < 0)
+                    return;
+                if (e.isPopupTrigger() && e.getComponent() instanceof JTable ) {
+                    JPopupMenu popup = createJPopupMenu();
+                    popup.show(e.getComponent(), e.getX(), e.getY());
+                }
+            }
+        });
         
         updateListModel();
     }
@@ -55,13 +90,12 @@ public class ItemsListaPanel extends javax.swing.JPanel {
         accionesPanel1 = new javax.swing.JPanel();
         nuevoItemButton = new javax.swing.JButton();
         eliminarButton = new javax.swing.JButton();
-        modificarButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         listaTable = new javax.swing.JTable();
 
         buscarInternalPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR"));
 
-        filtroComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        filtroComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nombre", "Placa", "Fabricante" }));
 
         buscarTextField1.setForeground(new java.awt.Color(255, 153, 0));
         buscarTextField1.setText("Buscar");
@@ -123,8 +157,6 @@ public class ItemsListaPanel extends javax.swing.JPanel {
             }
         });
 
-        modificarButton.setText("Modificar");
-
         javax.swing.GroupLayout accionesPanel1Layout = new javax.swing.GroupLayout(accionesPanel1);
         accionesPanel1.setLayout(accionesPanel1Layout);
         accionesPanel1Layout.setHorizontalGroup(
@@ -133,24 +165,24 @@ public class ItemsListaPanel extends javax.swing.JPanel {
                 .addContainerGap(13, Short.MAX_VALUE)
                 .addComponent(nuevoItemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(accionesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(eliminarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                    .addComponent(modificarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(eliminarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         accionesPanel1Layout.setVerticalGroup(
             accionesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(accionesPanel1Layout.createSequentialGroup()
-                .addGroup(accionesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(nuevoItemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(accionesPanel1Layout.createSequentialGroup()
-                        .addComponent(modificarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(eliminarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(accionesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nuevoItemButton, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                    .addComponent(eliminarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         listaTable.setRowSelectionAllowed(false);
+        listaTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                listaTableMouseReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(listaTable);
 
         javax.swing.GroupLayout inventarioPanelLayout = new javax.swing.GroupLayout(inventarioPanel);
@@ -206,19 +238,16 @@ public class ItemsListaPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_nuevoItemButtonActionPerformed
 
     private void eliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarButtonActionPerformed
-        int selectedRow = listaTable.getSelectedRow();
-        if (selectedRow != -1) {
-            String placa = (String) itemsModel.getValueAt(listaTable.convertRowIndexToModel(selectedRow), 1);
-            PMLIApp.getInstance().getSistema().eliminarItem(placa);
-            updateListModel();
-            
-        } else {
-              JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "No esta seleccionado ningun item para eliminar.", 
-                                    "Error Al Eliminar Item Del Inventario", JOptionPane.ERROR_MESSAGE);
-        }
+        EliminarAction eliminar = new EliminarAction("Eliminar", 1, "Item", this, 
+                                                      listaTable, itemsModel);
+        eliminar.actionPerformed(evt);
     }//GEN-LAST:event_eliminarButtonActionPerformed
 
-    private void updateListModel() {
+    private void listaTableMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaTableMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listaTableMouseReleased
+
+    public final void updateListModel() {
         
         if (itemsModel.getRowCount() > 0) {
             for (int i = itemsModel.getRowCount() - 1; i > -1; i--) {
@@ -229,10 +258,25 @@ public class ItemsListaPanel extends javax.swing.JPanel {
         List<Item> listaItems = PMLIApp.getInstance().getSistema().getInventario();
 
         for(Item i : listaItems) {
-            itemsModel.addRow(new Object[] { i.getNombre(), i.getPlacaInventario(), i.getCantidadInicial()} );
+            itemsModel.addRow(new Object[] { i.getNombre(), i.getPlacaInventario(), i.getCantidadInicial(), i.getFabricante()} );
         }
         
         listaTable.setModel(itemsModel);
+    }
+    
+    private JPopupMenu createJPopupMenu() {
+        JPopupMenu menu = new JPopupMenu();
+        JMenuItem modificar = new JMenuItem("Modificar");
+        JMenuItem eliminar = new JMenuItem(new EliminarAction("Eliminar", 1, "Item", this, 
+                                                               listaTable, itemsModel));
+        
+        JMenuItem verHistorial = new JMenuItem("Ver Historial");
+        
+        menu.add(modificar);
+        menu.add(eliminar);
+        menu.addSeparator();
+        menu.add(verHistorial);
+        return menu;
     }
     
     private DefaultTableModel itemsModel = new DefaultTableModel() {
@@ -252,7 +296,6 @@ public class ItemsListaPanel extends javax.swing.JPanel {
     private javax.swing.JPanel inventarioPanel;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable listaTable;
-    private javax.swing.JButton modificarButton;
     private javax.swing.JButton nuevoItemButton;
     private javax.swing.JLabel separadorLabel1;
     // End of variables declaration//GEN-END:variables

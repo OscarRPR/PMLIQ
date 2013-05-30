@@ -326,9 +326,9 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         tecnicoCheckBox.setText("Tecnico");
 
-        usuarioCheckBox.setText("De Usuario");
+        usuarioCheckBox.setText("Usuario");
 
-        labCheckBox.setText("Doc. Por Lab");
+        labCheckBox.setText("Laboratorio");
 
         jLabel10.setText("Código Documentos");
 
@@ -1442,6 +1442,10 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         jLabel37.setText("Vida Útil Estimada");
 
+        usoSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+
+        vidaSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -1561,7 +1565,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(creacionEquipoTabPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
+            .addComponent(creacionEquipoTabPanel)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1796,6 +1800,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
                                                                         planes,
                                                                         adquisicionEquipo,
                                                                         equiposExistentes);
+
         errorBasicaLabel.setText(resultados.get(DESCRIPCIONBASICA));
         errorTecnicosLabel.setText(resultados.get(DATOSTECNICOS));
         errorAdquisicionLabel.setText(resultados.get(ADQUISICION));

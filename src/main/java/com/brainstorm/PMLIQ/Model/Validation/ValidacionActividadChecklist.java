@@ -30,7 +30,6 @@ public class ValidacionActividadChecklist extends Validacion{
             formatoAlfabeticoString(vars.nombre, strings.get(vars.NOMBRE));
             longitudLista(vars.partes, strings.get(vars.PARTES));
             longitudString(vars.proceso, strings.get(vars.PROCESO), vars.minProceso, vars.maxProceso);
-            formatoAlfanumericoString(vars.proceso, strings.get(vars.PROCESO));
             
         } catch(LongitudStringException ex) {
             resultado = crearErrorLongitudString(ex.getTipo(), ex.getMinimo(), ex.getMaximo());
@@ -41,11 +40,7 @@ public class ValidacionActividadChecklist extends Validacion{
         } catch (LongitudListaException ex) {
             resultado = crearErrorLongitudLista(ex.getTipo());
             throw new ErrorValidacionException(resultado, ex.getCause());
-        } catch (FormatoAlfanumericoStringException ex) {
-            resultado = crearErrorFormatoAlfanumericoString(ex.getTipo());
-            throw new ErrorValidacionException(resultado, ex.getCause());
-        }
-
+        } 
         return resultado;
     }    
     

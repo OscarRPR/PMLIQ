@@ -19,7 +19,7 @@ public class ConstantesActividadChecklist {
     public final int PARTES = 2;
     
     public final String proceso = "Proceso";
-    public final int minProceso = 10, maxProceso = 600;
+    public final int minProceso = 10, maxProceso = 800;
     public final int PROCESO = 3;
     
     public final int FRECUENCIA = 4;

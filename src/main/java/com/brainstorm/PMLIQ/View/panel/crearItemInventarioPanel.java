@@ -118,6 +118,8 @@ public class crearItemInventarioPanel extends javax.swing.JPanel {
             }
         });
 
+        inicialSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -200,13 +202,21 @@ public class crearItemInventarioPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Cantidad Minima Permitida por Item");
 
+        minimaSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+
         jLabel2.setText("Frecuencia de la Alarma");
 
         jLabel8.setText("Tiempo Maximo de Item en Inventario");
 
         tiempoMaximoTipoComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Horas", "Dias", "Semanas", "Meses", "Años" }));
 
+        tiempoMaximoSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+
         jLabel9.setText("Frecuencia de la Alarma");
+
+        frecuenciaMinimaSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+
+        frecuenciaMaximaSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 
         frecuenciaMinimaTipoComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Horas", "Dias", "Semanas", "Meses", "Años" }));
 

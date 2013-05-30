@@ -19,6 +19,7 @@ public class Actividad {
     private String nombre, proceso;
     private TipoActividad tipoActividad;
     private List<Item> partesAsociadas;
+    private List<Integer> cantidades;
     private int frecuenciaTarea, verificarInventario;
     private TimeStamp frecuencia, verificar;
     
@@ -27,10 +28,11 @@ public class Actividad {
     public Actividad() {
     }
     
-    public Actividad(List<String> datos, List<Item> partes) {
+    public Actividad(List<String> datos, List<Item> partes, List<Integer> cantidades) {
         this.nombre = datos.get(vars.NOMBRE);
         this.tipoActividad = TipoActividad.valueOf(datos.get(vars.TIPO).toUpperCase());
         this.partesAsociadas = partes;
+        this.cantidades = cantidades;
         this.proceso = datos.get(vars.PROCESO);
         this.frecuenciaTarea = Integer.parseInt(datos.get(vars.FRECUENCIA));
         this.frecuencia = TimeStamp.valueOf(datos.get(vars.FRECUENCIATIEMPO).toUpperCase());

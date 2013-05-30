@@ -106,6 +106,23 @@ public class Sistema {
         return null;
     }
     
+    public void actualizarItem(Item item, Integer cantidadConsumida) {
+        item.setCantidadInicial(cantidadConsumida);
+        SingleDAO.getInstance().getItemDAO().save(item);
+    }
+    
+    public void eliminar(String id, String tipo) {
+        if (tipo.equals("Equipo")) {
+            eliminarEquipo(id);
+        }
+        else if (tipo.equals("Item")) {
+            eliminarItem(id);
+        }
+        else if (tipo.equals("Fabricante")) {
+            eliminarFabricante(id);
+        }
+    }
+    
     public void eliminarEquipo(String placa) {
         SingleDAO.getInstance().getEquipoDAO().findAndDelete(placa);
         cargarEquipos();

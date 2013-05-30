@@ -29,7 +29,7 @@ public class CrearElementoCheckList extends javax.swing.JDialog {
         
         setTitle("Añadiendo una actividad al checklist");
         setResizable(false);
-        
+
         this.actividades = listaActividades;
     }
 
@@ -165,9 +165,13 @@ public class CrearElementoCheckList extends javax.swing.JDialog {
 
         jLabel3.setText("Frecuencia de la Tarea");
 
+        frecuenciaSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+
         frecuenciaComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Horas", "Dias", "Semanas", "Meses", "Años" }));
 
         jLabel6.setText("Verificar Inventario (Antes) ");
+
+        verificarSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 
         verificarComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Horas", "Dias", "Semanas", "Meses", "Años" }));
 
@@ -287,13 +291,13 @@ public class CrearElementoCheckList extends javax.swing.JDialog {
 
         if ( resultados.equals("") )
         {
-            actividades.add(PMLIApp.getInstance().getAdmEquipos().crearActividadChecklist(actividad, items));
+            actividades.add(PMLIApp.getInstance().getAdmEquipos().crearActividadChecklist(actividad, items, cantidades));
             this.dispose();
         }
     }//GEN-LAST:event_guardarButtonActionPerformed
 
     private void agregarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarButtonActionPerformed
-        BuscarItems buscarItems = new BuscarItems((JFrame)PMLIApp.getInstance().getMainWindow(), true, items);
+        BuscarItems buscarItems = new BuscarItems((JFrame)PMLIApp.getInstance().getMainWindow(), true, items, cantidades);
         buscarItems.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
@@ -317,11 +321,14 @@ public class CrearElementoCheckList extends javax.swing.JDialog {
     }//GEN-LAST:event_eliminarButtonActionPerformed
 
     private void eliminarItem(String nombre) {
+        int indice = 0;
         for (Item i : items) {
             if (i.getNombre().equals(nombre)) {
                 items.remove(i);
+                cantidades.remove(indice);
                 return;
             }
+            indice += 1;
         }
     }
     
@@ -395,7 +402,8 @@ public class CrearElementoCheckList extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CrearElementoCheckList dialog = new CrearElementoCheckList(new javax.swing.JFrame(), true, new ArrayList<Actividad>());
+                CrearElementoCheckList dialog = new CrearElementoCheckList(new javax.swing.JFrame(), true, 
+                                                new ArrayList<Actividad>());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -409,6 +417,7 @@ public class CrearElementoCheckList extends javax.swing.JDialog {
     
     private List<Actividad> actividades = new ArrayList<Actividad>();
     private List<Item> items = new ArrayList<Item>();
+    private List<Integer> cantidades = new ArrayList<Integer>();
     private DefaultListModel itemsModel = new DefaultListModel();
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
