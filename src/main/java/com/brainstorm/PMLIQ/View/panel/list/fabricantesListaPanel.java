@@ -7,10 +7,15 @@ package com.brainstorm.PMLIQ.View.panel.list;
 import com.brainstorm.PMLIQ.Model.Fabricante.Fabricante;
 import com.brainstorm.PMLIQ.View.PMLIApp;
 import com.brainstorm.PMLIQ.View.actions.EliminarAction;
+import com.brainstorm.PMLIQ.View.actions.ModificarFabricanteAction;
+import com.brainstorm.PMLIQ.View.adapters.FabricanteMouseAdapter;
 import com.brainstorm.PMLIQ.View.panel.crearFabricantePanel;
+import com.brainstorm.PMLIQ.View.panel.modificarFabricantePanel;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import javax.swing.AbstractAction;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
@@ -41,33 +46,7 @@ public class fabricantesListaPanel extends javax.swing.JPanel implements ListaPa
 
         listaTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        listaTable.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2 && !e.isConsumed()) {
-                    e.consume();
-                    JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "Modificando un fabricante.", 
-                                    "Modificando Fabricante", JOptionPane.INFORMATION_MESSAGE);
-                }
-            }
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                int r = listaTable.rowAtPoint(e.getPoint());
-                if (r >= 0 && r < listaTable.getRowCount()) {
-                    listaTable.setRowSelectionInterval(r, r);
-                } else {
-                    listaTable.clearSelection();
-                }
-
-                int rowindex = listaTable.getSelectedRow();
-                if (rowindex < 0)
-                    return;
-                if (e.isPopupTrigger() && e.getComponent() instanceof JTable ) {
-                    JPopupMenu popup = createJPopupMenu();
-                    popup.show(e.getComponent(), e.getX(), e.getY());
-                }
-            }
-        });
+        listaTable.addMouseListener(new FabricanteMouseAdapter(this, listaTable, fabricantesModel, "Modificar"));
         
         updateListModel();
     }
@@ -263,9 +242,10 @@ public class fabricantesListaPanel extends javax.swing.JPanel implements ListaPa
         listaTable.setModel(fabricantesModel);
     }
     
-    private JPopupMenu createJPopupMenu() {
+    public JPopupMenu createJPopupMenu() {
         JPopupMenu menu = new JPopupMenu();
-        JMenuItem modificar = new JMenuItem("Modificar");
+        JMenuItem modificar = new JMenuItem(new ModificarFabricanteAction("Modificar", 0, this,
+                                                                listaTable, fabricantesModel));
         JMenuItem eliminar = new JMenuItem(new EliminarAction("Eliminar", 0, "Fabricante", this, 
                                                                 listaTable, fabricantesModel));
         

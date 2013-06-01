@@ -6,24 +6,39 @@ package com.brainstorm.PMLIQ.View.panel;
 
 import com.brainstorm.PMLIQ.Model.Equipo;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Accesorio;
+import com.brainstorm.PMLIQ.Model.EquipoInfo.DatosTecnicosEquipo;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.EquipoAsociado;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.PlanMantenimiento;
+import com.brainstorm.PMLIQ.Model.EquipoInfo.Proveedor;
+import com.brainstorm.PMLIQ.Model.Inventario.Item;
 import com.brainstorm.PMLIQ.View.PMLIApp;
 import com.brainstorm.PMLIQ.View.dialogs.CrearAccesorio;
 import com.brainstorm.PMLIQ.View.dialogs.CrearEquipoAsociado;
 import com.brainstorm.PMLIQ.View.dialogs.CrearPlanMantenimiento;
+import com.brainstorm.PMLIQ.View.dialogs.ModificarAccesorio;
+import com.brainstorm.PMLIQ.View.dialogs.ModificarEquipoAsociado;
+import com.brainstorm.PMLIQ.View.dialogs.ModificarPlanMantenimiento;
 import com.brainstorm.PMLIQ.View.panel.list.EquiposListaPanel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,7 +46,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Silex RPR
  */
-public class crearEquipoPanel extends javax.swing.JPanel {
+public class modificarEquipoPanel extends javax.swing.JPanel {
     
     private final int EQUIPOSTAB = 1;
     
@@ -42,7 +57,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     /**
      * Creates new form crearEquipoPanel
      */
-    public crearEquipoPanel() {
+    public modificarEquipoPanel(Equipo equipo) {
         initComponents();
         
         bGroupManual = new ButtonGroup();
@@ -79,8 +94,33 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         accesoriosModel.addColumn("Cantidad Disponible");
         
         accesoriosTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        accesoriosTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2 && !e.isConsumed()) {
+                    e.consume();
+                    int selectedRow = accesoriosTable.getSelectedRow();
+                    String nombre = (String) accesoriosModel.getValueAt(accesoriosTable.convertRowIndexToModel(selectedRow), 0);
+                    int indice = getAccesorio(nombre);
+                    ModificarAccesorio modificarAccesorio = new ModificarAccesorio(
+                            (JFrame)PMLIApp.getInstance().getMainWindow(), true, accesorios, indice);
+        
+                    modificarAccesorio.addWindowListener(new WindowAdapter() {
+                            @Override
+                            public void windowClosed(WindowEvent e) {
+                                updateAccesorioListModel();
+                            }
+                    });
 
-        equiposTable.setModel(accesoriosModel);
+                    modificarAccesorio.setLocationRelativeTo(null);
+                    modificarAccesorio.setVisible(true);
+                    
+                }
+            }
+        });
+        
+        equiposTable.setModel(equiposModel);
         equiposTable.setColumnSelectionAllowed(false);
         equiposTable.setRowSelectionAllowed(true);
 
@@ -89,21 +129,152 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         
         equiposTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
         
-        mantenimientoTable.setModel(accesoriosModel);
+        equiposTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2 && !e.isConsumed()) {
+                    e.consume();
+                    int selectedRow = equiposTable.getSelectedRow();
+                    String placa = (String) equiposModel.getValueAt(equiposTable.convertRowIndexToModel(selectedRow), 1);
+                    int indice = getEquipoAsociado(placa);
+                    ModificarEquipoAsociado modificarEquipoAsociado = new ModificarEquipoAsociado(
+                            (JFrame)PMLIApp.getInstance().getMainWindow(), true, equipos, indice);
+        
+                    modificarEquipoAsociado.addWindowListener(new WindowAdapter() {
+                            @Override
+                            public void windowClosed(WindowEvent e) {
+                                updateEquiposAsociadosListModel();
+                            }
+                    });
+
+                    modificarEquipoAsociado.setLocationRelativeTo(null);
+                    modificarEquipoAsociado.setVisible(true);
+                    
+                }
+            }
+        });        
+        
+        mantenimientoTable.setModel(mantenimientoModel);
         mantenimientoTable.setColumnSelectionAllowed(false);
         mantenimientoTable.setRowSelectionAllowed(true);
 
         mantenimientoModel.addColumn("Nombre");
+        mantenimientoModel.addColumn("Codigo");
         mantenimientoModel.addColumn("Responsable");
         mantenimientoModel.addColumn("Tipo de Plan");
         
         mantenimientoTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
+
+        mantenimientoTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2 && !e.isConsumed()) {
+                    e.consume();
+                    int selectedRow = mantenimientoTable.getSelectedRow();
+                    String codigo = (String) mantenimientoModel.getValueAt(mantenimientoTable.convertRowIndexToModel(selectedRow), 1);
+                    int indice = getPlan(codigo);
+                    ModificarPlanMantenimiento modificarPlanMantenimiento = new ModificarPlanMantenimiento(
+                            (JFrame)PMLIApp.getInstance().getMainWindow(), true, planes, indice);
         
+                    modificarPlanMantenimiento.addWindowListener(new WindowAdapter() {
+                            @Override
+                            public void windowClosed(WindowEvent e) {
+                                updateMantenimientoListModel();
+                            }
+                    });
+
+                    modificarPlanMantenimiento.setLocationRelativeTo(null);
+                    modificarPlanMantenimiento.setVisible(true);
+                    
+                }
+            }
+        });          
+        
+        nombreTextField.setText(equipo.getNombre());
+        placaTextField.setEnabled(false);
+        placaTextField.setText(equipo.getPlacaInventario());
+        claseTextField.setText(equipo.getClaseEquipo());
+        tipoModeloComboBox.setSelectedItem(equipo.getTipoEquipo().toString());
+        marcaTextField.setText(equipo.getMarca());
+        modeloTextField.setText(equipo.getModelo());
+        serieTextField.setText(equipo.getSerieEquipo());
+        bGroupManual.setSelected(getButtonSelected(bGroupManual, equipo.getTipoManual().toString()), true);
+        codigoTextField.setText(equipo.getCodigoDocumento());
+        ubicacionTextField.setText(equipo.getUbicacionEnLaboratorio());
+        bGroupUso.setSelected(getButtonSelected(bGroupUso, equipo.getUsoEquipo().toString()), true);
+        tareasTextArea.setText(equipo.getTareasEquipo());
+       
+        DatosTecnicosEquipo datos = equipo.getDatosTecnicosEquipo();
+        
+        voltajeTextField.setText(datos.getDatosElectricos().getVoltaje().toString());
+        potenciaTextField.setText(datos.getDatosElectricos().getPotencia().toString());
+        corrienteTextField.setText(datos.getDatosElectricos().getCorriente().toString());
+        fasesTextField.setText(datos.getDatosElectricos().getFases().toString());
+        tipoComboBox.setSelectedItem(datos.getDatosElectricos().getTipoElectrico().toString());
+        altoTextField.setText(datos.getDimensiones().getAlto().toString());
+        anchoTextField.setText(datos.getDimensiones().getAncho().toString());
+        profundoTextField.setText(datos.getDimensiones().getProfundo().toString());
+        pesoTextField.setText(datos.getDimensiones().getPeso().toString());
+        usoComboBox.setSelectedItem(datos.getDimensiones().getPosicionUsoEquipo().toString());
+        ambienteTextField.setText(datos.getTemperaturaAmbiente().toString());
+        hrTextField.setText(datos.getHR().toString());
+        otroTextField.setText(datos.getOtraOpcion());
+        requerimientosTextArea.setText(datos.getRequerimientosAdicionales());
+        especificacionTextArea.setText(datos.getEspecificacionMedicion());
+        
+        this.accesorios = equipo.getAccesorios();
         updateAccesorioListModel();
+        
+        this.equipos = equipo.getEquiposAsociados();
         updateEquiposAsociadosListModel();
+        
+        this.planes = equipo.getPlanes();
         updateMantenimientoListModel();
+        
+        Proveedor proveedor = equipo.getMetodoAdquisicion();
+        fabricanteTextField.setText(proveedor.getFabricante());
+        proveedorTextField.setText(proveedor.getProveedor());
+        nitTextField.setText(proveedor.getNIT());
+        contactoTextField.setText(proveedor.getContacto());
+        telefonoTextField.setText(proveedor.getTelefono());
+        direccionTextField.setText(proveedor.getDireccion());
+        emailTextField.setText(proveedor.getEmail());
+        
+        if ( proveedor.getFormaAdquisicion().isCompra()) {
+            compraCheckBox.setSelected(true);
+            precioTextField.setText(proveedor.getFormaAdquisicion().getValorCompra());
+            usoSpinner.setValue(0);
+        } else {
+            donacionCheckBox.setSelected(true);
+            usoSpinner.setValue(proveedor.getFormaAdquisicion().getTiempoUso());
+            precioTextField.setText("");
+        }
+
+        Date dateAdquisicion = null;
+        Date dateServicio = null;
+        try {
+            dateAdquisicion = new SimpleDateFormat("dd-MM-yyyy").parse(proveedor.getFormaAdquisicion().getFechaAdquisicion().getFullDate());
+            dateServicio = new SimpleDateFormat("dd-MM-yyyy").parse(proveedor.getFormaAdquisicion().getPuestaEnServicio().getFullDate());
+        } catch (ParseException ex) {
+            Logger.getLogger(modificarEquipoPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        adquisicionDateChooser.setDate(dateAdquisicion);
+        servicioDateChooser.setDate(dateServicio);
+        vidaSpinner.setValue(proveedor.getFormaAdquisicion().getVidaUtil());
     }
 
+    private ButtonModel getButtonSelected(ButtonGroup group, String text) {
+        for (Enumeration<AbstractButton> buttons = group.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+
+            if (button.getText().equals(text)) {
+                return button.getModel();
+            }
+        }
+        
+        return null;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -271,7 +442,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         cancelarAdquisicionBoton = new javax.swing.JButton();
         errorAdquisicionLabel = new javax.swing.JLabel();
 
-        jLabel1.setText("CREANDO UN NUEVO EQUIPO");
+        jLabel1.setText("MODIFICANDO UN EQUIPO");
 
         javax.swing.GroupLayout tituloPanelLayout = new javax.swing.GroupLayout(tituloPanel);
         tituloPanel.setLayout(tituloPanelLayout);
@@ -564,7 +735,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         creacionEquipoTabPanel.addTab("Descripción Básica", descripcionBasicaScrollPane);
 
-        jLabel13.setText("CREANDO UN NUEVO EQUIPO");
+        jLabel13.setText("MODIFICANDO UN EQUIPO");
 
         javax.swing.GroupLayout tituloPanel1Layout = new javax.swing.GroupLayout(tituloPanel1);
         tituloPanel1.setLayout(tituloPanel1Layout);
@@ -1269,7 +1440,7 @@ public class crearEquipoPanel extends javax.swing.JPanel {
 
         creacionEquipoTabPanel.addTab("Mantenimiento", mantenimientoScrollPane);
 
-        jLabel27.setText("CREANDO UN NUEVO EQUIPO");
+        jLabel27.setText("MODIFICANDO UN EQUIPO");
 
         javax.swing.GroupLayout tituloPanel2Layout = new javax.swing.GroupLayout(tituloPanel2);
         tituloPanel2.setLayout(tituloPanel2Layout);
@@ -1618,6 +1789,17 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         return false;
     }
     
+    private int getAccesorio(String nombre) {
+        int indice = 0;
+        for(Accesorio a : accesorios) {
+            if (a.getNombre().equals(nombre)) {
+                break;
+            }
+            indice += 1;
+        }
+        return indice;
+    }
+    
     private void nuevoEquipoAsociadoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoEquipoAsociadoButtonActionPerformed
         CrearEquipoAsociado crearEquipoAsociado = new CrearEquipoAsociado((JFrame)PMLIApp.getInstance().getMainWindow(), true, equipos);
         
@@ -1655,6 +1837,17 @@ public class crearEquipoPanel extends javax.swing.JPanel {
         return false;
     }
     
+    private int getEquipoAsociado(String placa) {
+        int indice = 0;
+        for(EquipoAsociado e : equipos) {
+            if (e.getPlacaInventario().equals(placa)) {
+                return indice;
+            }
+            indice += 1;
+        }
+        return indice;
+    }
+    
     private void nuevoMantenimientoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoMantenimientoButtonActionPerformed
         CrearPlanMantenimiento crearPlanMantenimiento = new CrearPlanMantenimiento((JFrame)PMLIApp.getInstance().getMainWindow(), true, planes);
         
@@ -1690,6 +1883,18 @@ public class crearEquipoPanel extends javax.swing.JPanel {
             }
         }
         return false;
+    }
+    
+    private int getPlan(String codigo) {
+        int indicePlan = 0;
+        for(PlanMantenimiento p : planes) {
+            if(p.getCodigo().equals(codigo)) {
+                break;
+            }
+            indicePlan += 1;
+        }
+        
+        return indicePlan;
     }
     
     private void guardarBasicosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBasicosButtonActionPerformed
@@ -1822,11 +2027,6 @@ public class crearEquipoPanel extends javax.swing.JPanel {
     
     private  List<String> getPlacasEquipos() {
         List<String> placas = new ArrayList<String>();
-        
-        for(Equipo equipo : PMLIApp.getInstance().getSistema().getEquipos()) {
-            placas.add(equipo.getPlacaInventario());
-        }
-        
         return placas;
     }
     

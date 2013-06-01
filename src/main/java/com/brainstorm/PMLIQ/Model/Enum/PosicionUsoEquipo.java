@@ -9,9 +9,9 @@ package com.brainstorm.PMLIQ.Model.Enum;
  * @author Silex RPR
  */
 public enum PosicionUsoEquipo {
-    PISO("Equipo de piso"),
-    MESA("Equipo de mesa"),
-    CAMPO("Equipo de uso en campo");
+    PISO("Piso"),
+    MESA("Mesa"),
+    CAMPO("Campo");
     
     private final String stringValue;
     private PosicionUsoEquipo(final String s) { stringValue = s; }

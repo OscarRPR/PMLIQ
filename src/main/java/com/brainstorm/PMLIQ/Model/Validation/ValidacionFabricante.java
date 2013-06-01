@@ -29,7 +29,6 @@ public class ValidacionFabricante extends Validacion{
             longitudString(vars.nombre, strings.get(vars.NOMBRE), vars.minNombre, vars.maxNombre);
             formatoAlfabeticoString(vars.nombre, strings.get(vars.NOMBRE));
             longitudString(vars.informacion, strings.get(vars.INFORMACION), vars.minInformacion, vars.maxInformacion);
-            formatoAlfanumericoString(vars.informacion, strings.get(vars.INFORMACION));
             longitudString(vars.contacto, strings.get(vars.CONTACTO), vars.minContacto, vars.maxContacto);
             formatoAlfabeticoString(vars.contacto, strings.get(vars.CONTACTO));
             longitudString(vars.direccion, strings.get(vars.DIRECCION), vars.minDireccion, vars.maxDireccion);

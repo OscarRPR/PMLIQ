@@ -11,8 +11,8 @@ package com.brainstorm.PMLIQ.Model.Enum;
 public enum TipoManual {
     INSTALACION("Instalacion"),
     TECNICO("Tecnico"),
-    USUARIO("De usuario"),
-    LABORATORIO("Dcoumento por el lab.");
+    USUARIO("Usuario"),
+    LABORATORIO("Laboratorio");
     
     private final String stringValue;
     private TipoManual(final String s) { stringValue = s; }

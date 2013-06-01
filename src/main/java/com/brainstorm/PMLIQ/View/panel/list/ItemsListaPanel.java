@@ -7,7 +7,10 @@ package com.brainstorm.PMLIQ.View.panel.list;
 import com.brainstorm.PMLIQ.Model.Inventario.Item;
 import com.brainstorm.PMLIQ.View.PMLIApp;
 import com.brainstorm.PMLIQ.View.actions.EliminarAction;
+import com.brainstorm.PMLIQ.View.actions.ModificarItemAction;
+import com.brainstorm.PMLIQ.View.adapters.ItemMouseAdapter;
 import com.brainstorm.PMLIQ.View.panel.crearItemInventarioPanel;
+import com.brainstorm.PMLIQ.View.panel.modificarItemInventarioPanel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -41,33 +44,7 @@ public class ItemsListaPanel extends javax.swing.JPanel implements ListaPanel{
         
         listaTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        listaTable.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2 && !e.isConsumed()) {
-                    e.consume();
-                    JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "Modificando un item.", 
-                                    "Modificando Item Del Inventario", JOptionPane.INFORMATION_MESSAGE);
-                }
-            }
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                int r = listaTable.rowAtPoint(e.getPoint());
-                if (r >= 0 && r < listaTable.getRowCount()) {
-                    listaTable.setRowSelectionInterval(r, r);
-                } else {
-                    listaTable.clearSelection();
-                }
-
-                int rowindex = listaTable.getSelectedRow();
-                if (rowindex < 0)
-                    return;
-                if (e.isPopupTrigger() && e.getComponent() instanceof JTable ) {
-                    JPopupMenu popup = createJPopupMenu();
-                    popup.show(e.getComponent(), e.getX(), e.getY());
-                }
-            }
-        });
+        listaTable.addMouseListener(new ItemMouseAdapter(this, listaTable, itemsModel, "Modificar"));
         
         updateListModel();
     }
@@ -264,9 +241,10 @@ public class ItemsListaPanel extends javax.swing.JPanel implements ListaPanel{
         listaTable.setModel(itemsModel);
     }
     
-    private JPopupMenu createJPopupMenu() {
+    public JPopupMenu createJPopupMenu() {
         JPopupMenu menu = new JPopupMenu();
-        JMenuItem modificar = new JMenuItem("Modificar");
+        JMenuItem modificar = new JMenuItem(new ModificarItemAction("Modificar", 0, this,
+                                                                listaTable, itemsModel));
         JMenuItem eliminar = new JMenuItem(new EliminarAction("Eliminar", 1, "Item", this, 
                                                                listaTable, itemsModel));
         

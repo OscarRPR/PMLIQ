@@ -86,10 +86,19 @@ public class Sistema {
         
         return null;
     }
-    
+        
     public Item getItem(String nombre) {
         for (Item item : inventario) {
             if (item.getNombre().equals(nombre)) {
+                return item;
+            }
+        } 
+        return null;
+    }
+    
+    public Item getItemByPlaca(String placa) {
+        for (Item item : inventario) {
+            if (item.getPlacaInventario().equals(placa)) {
                 return item;
             }
         } 
