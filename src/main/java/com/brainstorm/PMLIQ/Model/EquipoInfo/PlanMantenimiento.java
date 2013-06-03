@@ -17,7 +17,7 @@ public class PlanMantenimiento {
 
     private String nombre, codigo, responsable;
     private TipoPlan tipoPlan;
-    private int maximoRegistros, frecuenciaUso;
+    private Integer maximoRegistros, frecuenciaUso;
     private List<Actividad> checkList = new ArrayList<Actividad>();
     
     private ConstantesPlanMantenimiento vars = new ConstantesPlanMantenimiento();
@@ -68,7 +68,7 @@ public class PlanMantenimiento {
         this.tipoPlan = tipoPlan;
     }
 
-    public int getMaximoRegistros() {
+    public Integer getMaximoRegistros() {
         return maximoRegistros;
     }
 
@@ -76,7 +76,7 @@ public class PlanMantenimiento {
         this.maximoRegistros = maximoRegistros;
     }
 
-    public int getFrecuenciaUso() {
+    public Integer getFrecuenciaUso() {
         return frecuenciaUso;
     }
 

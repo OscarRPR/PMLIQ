@@ -103,4 +103,12 @@ public class Actividad {
     public void setVerificar(TimeStamp verificar) {
         this.verificar = verificar;
     }
+
+    public List<Integer> getCantidades() {
+        return cantidades;
+    }
+
+    public void setCantidades(List<Integer> cantidades) {
+        this.cantidades = cantidades;
+    }
 }

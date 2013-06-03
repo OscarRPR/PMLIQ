@@ -243,7 +243,7 @@ public class ItemsListaPanel extends javax.swing.JPanel implements ListaPanel{
     
     public JPopupMenu createJPopupMenu() {
         JPopupMenu menu = new JPopupMenu();
-        JMenuItem modificar = new JMenuItem(new ModificarItemAction("Modificar", 0, this,
+        JMenuItem modificar = new JMenuItem(new ModificarItemAction("Modificar", 1, this,
                                                                 listaTable, itemsModel));
         JMenuItem eliminar = new JMenuItem(new EliminarAction("Eliminar", 1, "Item", this, 
                                                                listaTable, itemsModel));

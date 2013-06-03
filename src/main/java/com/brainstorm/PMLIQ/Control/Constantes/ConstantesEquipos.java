@@ -11,7 +11,7 @@ package com.brainstorm.PMLIQ.Control.Constantes;
 public class ConstantesEquipos {
     
     public final String nombre = "Nombre";
-    public final int minNombre = 10, maxNombre = 40;
+    public final int minNombre = 10, maxNombre = 50;
     public final int NOMBRE = 0;
     
     public final String placaInventario = "Placa de inventario";

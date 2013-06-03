@@ -38,7 +38,7 @@ public class ItemMouseAdapter extends MouseAdapter{
         if (e.getClickCount() == 2 && !e.isConsumed()) {
             e.consume();
                     
-            ModificarItemAction modificar = new ModificarItemAction(accion, 0, panel,
+            ModificarItemAction modificar = new ModificarItemAction(accion, 1, panel,
                                                                 listaTable, itemsModel);
             modificar.actionPerformed(null);
         }

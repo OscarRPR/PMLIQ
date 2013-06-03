@@ -4,7 +4,9 @@
  */
 package com.brainstorm.PMLIQ.Control;
 
+import com.brainstorm.PMLIQ.Control.PDF.PDF;
 import com.brainstorm.PMLIQ.Control.PDF.PDFEquipo;
+import com.brainstorm.PMLIQ.Control.PDF.PDFPlanes;
 import com.brainstorm.PMLIQ.Model.Equipo;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Accesorio;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Actividad;
@@ -39,9 +41,9 @@ public class AdministrarEquipos {
         
     private Validacion validacion = new ValidacionEquipo();
     
-    private PDFEquipo pdfGenerator = new PDFEquipo();
+    private PDF pdfGenerator = new PDFEquipo();
 
-    public PDFEquipo getPdfGenerator() {
+    public PDF getPdfGenerator() {
         return pdfGenerator;
     }
 
@@ -156,7 +158,8 @@ public class AdministrarEquipos {
         return resultadoValidacion;        
     }
 
-    public void crearCVPDF(Equipo equipo, String filename) {
+    public void crearPDF(PDF pdfGenerator, Equipo equipo, String filename) {
+        this.pdfGenerator = pdfGenerator;
         pdfGenerator.crearArchivoPDF(filename);
         pdfGenerator.addMetaData();
         try {
@@ -165,6 +168,6 @@ public class AdministrarEquipos {
             Logger.getLogger(AdministrarEquipos.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        pdfGenerator.closeDocument();
+        pdfGenerator.closeDocument();      
     }
 }

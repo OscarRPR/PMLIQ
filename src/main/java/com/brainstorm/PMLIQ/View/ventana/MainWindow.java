@@ -42,6 +42,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         appTabPanel = new javax.swing.JTabbedPane();
         homePanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         hojasPanel = new javax.swing.JPanel();
         inventarioPanel = new javax.swing.JPanel();
         fabricantesPanel = new javax.swing.JPanel();
@@ -51,15 +52,24 @@ public class MainWindow extends javax.swing.JFrame {
 
         appTabPanel.setPreferredSize(new java.awt.Dimension(800, 600));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("BIENVENIDO A PMLIQ");
+
         javax.swing.GroupLayout homePanelLayout = new javax.swing.GroupLayout(homePanel);
         homePanel.setLayout(homePanelLayout);
         homePanelLayout.setHorizontalGroup(
             homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
+            .addGroup(homePanelLayout.createSequentialGroup()
+                .addGap(239, 239, 239)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(291, Short.MAX_VALUE))
         );
         homePanelLayout.setVerticalGroup(
             homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGroup(homePanelLayout.createSequentialGroup()
+                .addGap(171, 171, 171)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(292, Short.MAX_VALUE))
         );
 
         appTabPanel.addTab("Inicio", homePanel);
@@ -154,5 +164,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel hojasPanel;
     private javax.swing.JPanel homePanel;
     private javax.swing.JPanel inventarioPanel;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

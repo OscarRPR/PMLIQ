@@ -34,37 +34,8 @@ import java.util.logging.Logger;
  *
  * @author Silex RPR
  */
-public class PDFEquipo {
-    
-    private Document document;
-    
-    private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
-    private static Font subTitleFont = new Font(Font.FontFamily.TIMES_ROMAN, 15, Font.BOLD);
-    private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
-    private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
-    private static Font subNormalFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL);
-    private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
-    
-    public void crearArchivoPDF(String filename) {
-     document = new Document();
-        try {
-            PdfWriter.getInstance(document, new FileOutputStream(filename));
-            document.open();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(PDFEquipo.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (DocumentException ex) {
-            Logger.getLogger(PDFEquipo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void addMetaData() {
-        document.addTitle("My first PDF");
-        document.addSubject("Using iText");
-        document.addKeywords("Java, PDF, iText");
-        document.addAuthor("Universidad Nacional de Colombia");
-        document.addCreator("Brainstorm Interactive");
-    }
-    
+public class PDFEquipo extends PDF {
+
     public void addContent(Equipo equipo) throws DocumentException {
         agregarHeader();
         agregarDatosLaboratorio(equipo);
@@ -513,43 +484,4 @@ public class PDFEquipo {
         
         document.add(table);
     }
-    
-    public void closeDocument() {
-        document.close();
-    }
-    
-    private PdfPCell createCell(String data, Font font, BaseColor color, int colspan, int rowspan) {
-        PdfPCell cell = new PdfPCell(new Phrase(data, font));
-        cell.setBackgroundColor(color);
-        cell.setColspan(colspan);
-        cell.setRowspan(rowspan);
-  
-        return cell;
-    }
-
-    private PdfPCell createCell(String data, Font font, BaseColor color, int colspan, int rowspan, int alignment) {
-        PdfPCell cell = new PdfPCell(new Phrase(data, font));
-        cell.setHorizontalAlignment(alignment);
-        cell.setBackgroundColor(color);
-        cell.setColspan(colspan);
-        cell.setRowspan(rowspan);
-  
-        return cell;
-    }
-    
-    private PdfPCell createCell(String data, Font font, BaseColor color) {
-        PdfPCell cell = new PdfPCell(new Phrase(data, font));
-        cell.setBackgroundColor(color);
-        cell.setColspan(1);
-        cell.setRowspan(1);
-  
-        return cell;
-    }
-
-    private void addEmptyLine(Paragraph paragraph, int number) {
-        for (int i = 0; i < number; i++) {
-          paragraph.add(new Paragraph(" "));
-        }
-    }
-
 }

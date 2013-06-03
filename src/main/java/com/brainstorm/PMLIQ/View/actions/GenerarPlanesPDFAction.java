@@ -4,7 +4,7 @@
  */
 package com.brainstorm.PMLIQ.View.actions;
 
-import com.brainstorm.PMLIQ.Control.PDF.PDFEquipo;
+import com.brainstorm.PMLIQ.Control.PDF.PDFPlanes;
 import com.brainstorm.PMLIQ.Model.Equipo;
 import com.brainstorm.PMLIQ.View.PMLIApp;
 import com.brainstorm.PMLIQ.View.panel.list.EquiposListaPanel;
@@ -23,12 +23,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Silex RPR
  */
-public class CVPDFAction extends AbstractAction {
+public class GenerarPlanesPDFAction extends AbstractAction {
 
     private JTable listaTable;
     private DefaultTableModel equiposModel;
     
-    public CVPDFAction(String name, JTable table, DefaultTableModel model) {
+    public GenerarPlanesPDFAction(String name, JTable table, DefaultTableModel model) {
         super(name);
         this.listaTable = table;
         this.equiposModel = model;
@@ -42,13 +42,13 @@ public class CVPDFAction extends AbstractAction {
             String placa = (String) equiposModel.getValueAt(listaTable.convertRowIndexToModel(selectedRow), 1);
             Equipo equipoSeleccionado = PMLIApp.getInstance().getSistema().getEquipo(placa);
 
-            String rutaArchivo = "D:/PMLIQ/CV/" + nombre + " - " + placa + ".pdf";
+            String rutaArchivo = "D:/PMLIQ/Planes/PlanMantenimiento - " + nombre + " - " + placa + ".pdf";
             
-            PMLIApp.getInstance().getAdmEquipos().crearPDF(new PDFEquipo(), equipoSeleccionado, rutaArchivo);
+            PMLIApp.getInstance().getAdmEquipos().crearPDF(new PDFPlanes(), equipoSeleccionado, rutaArchivo);
 
             if (Desktop.isDesktopSupported()) {
-               if ( JOptionPane.showConfirmDialog(PMLIApp.getInstance().getMainWindow(), "     La hoja de vida del equipo se genero correctamente.\n"
-                       + "¿Desea abrir la hoja de vida generada en su lector de PDF?" , "Lectura Hoja de Vida",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
+               if ( JOptionPane.showConfirmDialog(PMLIApp.getInstance().getMainWindow(), "     El plan de mantenimiento del equipo se genero correctamente.\n"
+                       + "¿Desea abrir el plan de mantenimiento generado en su lector de PDF?" , "Lectura Planes de Mantenimiento",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
                {
                     File archivoPDF = new File(rutaArchivo);
                    try {
@@ -59,13 +59,12 @@ public class CVPDFAction extends AbstractAction {
                }
            } else
            {
-              JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "La hoja de vida se genero correctamente y se encuentra en PDF. \n"
+              JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "El plan de mantenimiento se genero correctamente y se encuentra en PDF. \n"
                         + "en la carpeta del programa.", "Error Lector PDF", JOptionPane.INFORMATION_MESSAGE);
            }
         } else {
-            JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "No esta seleccionado ningun equipo para mostrar hoja de vida.", 
-                                        "Error Al No Generar Hoja de Vida", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "No esta seleccionado ningun equipo para generar el plan de mantenimiento.", 
+                                        "Error Al No Generar Plan de Mantenimiento", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
 }
