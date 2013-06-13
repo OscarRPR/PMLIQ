@@ -42,7 +42,7 @@ public class GenerarPlanesPDFAction extends AbstractAction {
             String placa = (String) equiposModel.getValueAt(listaTable.convertRowIndexToModel(selectedRow), 1);
             Equipo equipoSeleccionado = PMLIApp.getInstance().getSistema().getEquipo(placa);
 
-            String rutaArchivo = "D:/PMLIQ/Planes/PlanMantenimiento - " + nombre + " - " + placa + ".pdf";
+            String rutaArchivo = "Data/Planes/PlanMantenimiento - " + nombre + " - " + placa + ".pdf";
             
             PMLIApp.getInstance().getAdmEquipos().crearPDF(new PDFPlanes(), equipoSeleccionado, rutaArchivo);
 

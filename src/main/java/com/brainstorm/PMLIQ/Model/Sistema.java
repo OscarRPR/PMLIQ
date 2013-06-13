@@ -7,6 +7,7 @@ package com.brainstorm.PMLIQ.Model;
 import com.brainstorm.PMLIQ.Model.Fabricante.Fabricante;
 import com.brainstorm.PMLIQ.Model.Inventario.Item;
 import com.brainstorm.PMLIQ.View.dao.SingleDAO;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,8 @@ public class Sistema {
     
     public Sistema()
     {
+        new File("Data/CV/").mkdirs();
+        new File("Data/Planes/").mkdirs();
     }
     
     public void inicializaEquipos() {
