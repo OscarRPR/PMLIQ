@@ -9,6 +9,7 @@ import com.brainstorm.PMLIQ.Model.Fabricante.Fabricante;
 import com.brainstorm.PMLIQ.Model.Inventario.Item;
 import com.google.code.morphia.Morphia;
 import com.mongodb.Mongo;
+import com.mongodb.MongoURI;
 import java.net.UnknownHostException;
 
 /**
@@ -18,17 +19,20 @@ import java.net.UnknownHostException;
 public class SingleDAO {
     private Mongo mongo = null;
     private Morphia morphia = null;
-    private String dbName = "PMLIQ";
+    private String dbName = "pmliq";
     
     private FabricanteDAO fabricanteDAO;
     private ItemDAO itemDAO;
     private EquipoDAO equipoDAO;
 
-    public SingleDAO() {
+    private SingleDAO() {
+        
+        String textUri = "mongodb://SilexRPR:123456@ds031098.mongolab.com:31098/pmliq";
+        MongoURI uri = new MongoURI(textUri);
         
         mongo = null;
         try {
-            mongo = new Mongo("localhost", 27017);
+            mongo = new Mongo(uri);
         } catch(UnknownHostException e){
             e.getMessage();
         }
