@@ -8,6 +8,7 @@ import com.brainstorm.PMLIQ.Model.Inventario.Item;
 import com.brainstorm.PMLIQ.View.PMLIApp;
 import com.brainstorm.PMLIQ.View.actions.EliminarAction;
 import com.brainstorm.PMLIQ.View.actions.ModificarItemAction;
+import com.brainstorm.PMLIQ.View.actions.VerHistorialItemAction;
 import com.brainstorm.PMLIQ.View.adapters.ItemMouseAdapter;
 import com.brainstorm.PMLIQ.View.panel.crearItemInventarioPanel;
 import com.brainstorm.PMLIQ.View.panel.modificarItemInventarioPanel;
@@ -248,7 +249,8 @@ public class ItemsListaPanel extends javax.swing.JPanel implements ListaPanel{
         JMenuItem eliminar = new JMenuItem(new EliminarAction("Eliminar", 1, "Item", this, 
                                                                listaTable, itemsModel));
         
-        JMenuItem verHistorial = new JMenuItem("Ver Historial");
+        JMenuItem verHistorial = new JMenuItem(new VerHistorialItemAction("Ver Historial", 
+                                                               listaTable, itemsModel));
         
         menu.add(modificar);
         menu.add(eliminar);

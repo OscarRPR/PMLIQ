@@ -6,7 +6,10 @@ package com.brainstorm.PMLIQ.Model;
 
 import com.brainstorm.PMLIQ.Model.Fabricante.Fabricante;
 import com.brainstorm.PMLIQ.Model.Inventario.Item;
+import com.brainstorm.PMLIQ.Model.Record.ItemRecord;
+import com.brainstorm.PMLIQ.Model.Record.ObjectRecord;
 import com.brainstorm.PMLIQ.View.dao.SingleDAO;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +22,13 @@ public class Sistema {
     private List<Item> inventario;
     private List<Fabricante> fabricantes;
     
+    private List<ObjectRecord> recordItems = new ArrayList<ObjectRecord>();
+    
     public Sistema()
     {
+        new File("Data/CV/").mkdirs();
+        new File("Data/Planes/").mkdirs();
+        new File("Data/Historiales Items/").mkdirs();
     }
     
     public void inicializaEquipos() {
@@ -55,6 +63,14 @@ public class Sistema {
         SingleDAO.getInstance().getItemDAO().save(item);
         cargarItems();
     }
+    
+    public void actualizarHistorialItem(String id, String action, String responsable) {
+        SingleDAO.getInstance().getItemRecordDAO().save(new ItemRecord(id, action, responsable));
+    }
+    
+    public List<ItemRecord> getItemsRecordsById(String id) {
+       return SingleDAO.getInstance().getItemRecordDAO().findById(id);
+    }
 
     public List<Item> getInventario() {
         return inventario;
@@ -86,7 +102,7 @@ public class Sistema {
         
         return null;
     }
-        
+    
     public Item getItem(String nombre) {
         for (Item item : inventario) {
             if (item.getNombre().equals(nombre)) {
@@ -157,5 +173,13 @@ public class Sistema {
     
     private void cargarItems() {
         inventario = SingleDAO.getInstance().getItemDAO().findAll();
+    }
+
+    public List<ObjectRecord> getRecordItems() {
+        return recordItems;
+    }
+
+    public void setRecordItems(List<ObjectRecord> recordItems) {
+        this.recordItems = recordItems;
     }
 }

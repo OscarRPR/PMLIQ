@@ -14,6 +14,7 @@ import com.brainstorm.PMLIQ.Model.EquipoInfo.FormaAdquisicion;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Laboratorio;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.PlanMantenimiento;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Proveedor;
+import com.brainstorm.PMLIQ.Model.Inventario.Item;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;

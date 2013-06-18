@@ -42,7 +42,7 @@ public class CVPDFAction extends AbstractAction {
             String placa = (String) equiposModel.getValueAt(listaTable.convertRowIndexToModel(selectedRow), 1);
             Equipo equipoSeleccionado = PMLIApp.getInstance().getSistema().getEquipo(placa);
 
-            String rutaArchivo = "D:/PMLIQ/CV/" + nombre + " - " + placa + ".pdf";
+            String rutaArchivo = "Data/CV/" + nombre + " - " + placa + ".pdf";
             
             PMLIApp.getInstance().getAdmEquipos().crearPDF(new PDFEquipo(), equipoSeleccionado, rutaArchivo);
 

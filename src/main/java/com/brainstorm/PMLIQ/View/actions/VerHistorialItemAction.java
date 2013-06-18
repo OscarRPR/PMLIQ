@@ -4,14 +4,17 @@
  */
 package com.brainstorm.PMLIQ.View.actions;
 
-import com.brainstorm.PMLIQ.Control.PDF.PDFPlanes;
+import com.brainstorm.PMLIQ.Control.PDF.PDFEquipo;
+import com.brainstorm.PMLIQ.Control.PDF.PDFHistorialItem;
 import com.brainstorm.PMLIQ.Model.Equipo;
+import com.brainstorm.PMLIQ.Model.Record.ItemRecord;
 import com.brainstorm.PMLIQ.View.PMLIApp;
 import com.brainstorm.PMLIQ.View.panel.list.EquiposListaPanel;
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
@@ -23,32 +26,31 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Silex RPR
  */
-public class GenerarPlanesPDFAction extends AbstractAction {
+public class VerHistorialItemAction extends AbstractAction {
 
     private JTable listaTable;
     private DefaultTableModel equiposModel;
     
-    public GenerarPlanesPDFAction(String name, JTable table, DefaultTableModel model) {
+    public VerHistorialItemAction(String name, JTable table, DefaultTableModel model) {
         super(name);
         this.listaTable = table;
         this.equiposModel = model;
     }
     
     public void actionPerformed(ActionEvent e) {
-       int selectedRow = listaTable.getSelectedRow();
+        int selectedRow = listaTable.getSelectedRow();
         
         if (selectedRow != -1) {
-            String nombre = (String) equiposModel.getValueAt(listaTable.convertRowIndexToModel(selectedRow), 0);
             String placa = (String) equiposModel.getValueAt(listaTable.convertRowIndexToModel(selectedRow), 1);
-            Equipo equipoSeleccionado = PMLIApp.getInstance().getSistema().getEquipo(placa);
+            List<ItemRecord> list = PMLIApp.getInstance().getSistema().getItemsRecordsById(placa);
 
-            String rutaArchivo = "Data/Planes/PlanMantenimiento - " + nombre + " - " + placa + ".pdf";
+            String rutaArchivo = "Data/Historiales Items/" + placa + " - Historial.pdf";
             
-            PMLIApp.getInstance().getAdmEquipos().crearPDF(new PDFPlanes(), equipoSeleccionado, rutaArchivo);
+            PMLIApp.getInstance().getAdmItems().crearPDF(new PDFHistorialItem(), list, rutaArchivo);
 
             if (Desktop.isDesktopSupported()) {
-               if ( JOptionPane.showConfirmDialog(PMLIApp.getInstance().getMainWindow(), "     El plan de mantenimiento del equipo se genero correctamente.\n"
-                       + "¿Desea abrir el plan de mantenimiento generado en su lector de PDF?" , "Lectura Planes de Mantenimiento",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
+               if ( JOptionPane.showConfirmDialog(PMLIApp.getInstance().getMainWindow(), "     El historial del item se genero correctamente.\n"
+                       + "¿Desea abrir el historial del item en su lector de PDF?" , "Lectura Historial del Item",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
                {
                     File archivoPDF = new File(rutaArchivo);
                    try {
@@ -59,12 +61,13 @@ public class GenerarPlanesPDFAction extends AbstractAction {
                }
            } else
            {
-              JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "El plan de mantenimiento se genero correctamente y se encuentra en PDF. \n"
+              JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "El historial del item se genero correctamente y se encuentra en PDF. \n"
                         + "en la carpeta del programa.", "Error Lector PDF", JOptionPane.INFORMATION_MESSAGE);
            }
         } else {
-            JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "No esta seleccionado ningun equipo para generar el plan de mantenimiento.", 
-                                        "Error Al No Generar Plan de Mantenimiento", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(PMLIApp.getInstance().getMainWindow(), "No esta seleccionado ningun item para mostrar el historial.", 
+                                        "Error Al No Generar Historial de un Item", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
 }

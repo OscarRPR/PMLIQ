@@ -14,6 +14,9 @@ import com.brainstorm.PMLIQ.Model.EquipoInfo.FormaAdquisicion;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Laboratorio;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.PlanMantenimiento;
 import com.brainstorm.PMLIQ.Model.EquipoInfo.Proveedor;
+import com.brainstorm.PMLIQ.Model.Inventario.Item;
+import com.brainstorm.PMLIQ.Model.Record.ItemRecord;
+import com.brainstorm.PMLIQ.Model.Record.PlanesRecord;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -26,6 +29,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -69,7 +73,11 @@ public abstract class PDF {
         document.close();
     }
     
-    public abstract void addContent(Equipo equipo) throws DocumentException;
+    public void addContent(Equipo equipo) throws DocumentException {};
+    
+    public void addContent(List<ItemRecord> list) throws DocumentException {};
+    
+    public void addContent(ArrayList<PlanesRecord> list) throws DocumentException {};
     
     protected PdfPCell createCell(String data, Font font, BaseColor color, int colspan, int rowspan) {
         PdfPCell cell = new PdfPCell(new Phrase(data, font));

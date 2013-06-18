@@ -27,6 +27,5 @@ public class ItemDAO extends BasicDAO<Item, Integer> {
     
     public void findAndDelete(String id) {
         ds.findAndDelete(createQuery().field("_id") .equal(id)); 
-    }
-    
+    }  
 }
