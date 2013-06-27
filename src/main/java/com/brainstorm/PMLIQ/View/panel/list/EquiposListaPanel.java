@@ -8,8 +8,10 @@ import com.brainstorm.PMLIQ.Model.Equipo;
 import com.brainstorm.PMLIQ.View.PMLIApp;
 import com.brainstorm.PMLIQ.View.actions.CVPDFAction;
 import com.brainstorm.PMLIQ.View.actions.EliminarAction;
+import com.brainstorm.PMLIQ.View.actions.GenerarOrdenAction;
 import com.brainstorm.PMLIQ.View.actions.GenerarPlanesPDFAction;
 import com.brainstorm.PMLIQ.View.actions.ModificarEquipoAction;
+import com.brainstorm.PMLIQ.View.actions.SeleccionarPlanAction;
 import com.brainstorm.PMLIQ.View.adapters.EquipoMouseAdapter;
 import com.brainstorm.PMLIQ.View.adapters.ItemMouseAdapter;
 import com.brainstorm.PMLIQ.View.panel.crearEquipoPanel;
@@ -255,7 +257,8 @@ public class EquiposListaPanel extends javax.swing.JPanel implements ListaPanel{
  
         JMenuItem planesMantenimientoPDF = new JMenuItem(new GenerarPlanesPDFAction("Planes de Mantenimiento", listaTable, equiposModel));
         JMenuItem historialesMantenimientoPDF = new JMenuItem("Historiales de Mantenimiento");
-        JMenuItem ordenMantenimiento = new JMenuItem("Generar Orden de Mantenimiento");
+        JMenuItem ordenMantenimiento = new JMenuItem(new SeleccionarPlanAction("Generar Orden de Mantenimiento", listaTable,
+                                                                            equiposModel));
         
         menu.add(modificar);
         menu.add(eliminar);

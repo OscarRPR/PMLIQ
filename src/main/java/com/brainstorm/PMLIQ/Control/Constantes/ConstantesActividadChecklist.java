@@ -22,13 +22,9 @@ public class ConstantesActividadChecklist {
     public final int minProceso = 10, maxProceso = 800;
     public final int PROCESO = 3;
     
-    public final int FRECUENCIA = 4;
+    public final int TIEMPOTAREA = 4;
     
-    public final int FRECUENCIATIEMPO = 5;
-    
-    public final int VERIFICAR = 6;
-    
-    public final int VERIFICARTIEMPO = 7;
+    public final int TIEMPO = 5;
     
     public final String checklist = "Checklist";
     public final int CHECKLIST = 6;

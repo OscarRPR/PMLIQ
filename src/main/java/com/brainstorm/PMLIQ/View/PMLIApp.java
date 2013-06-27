@@ -7,8 +7,10 @@ package com.brainstorm.PMLIQ.View;
 import com.brainstorm.PMLIQ.Control.AdministrarEquipos;
 import com.brainstorm.PMLIQ.Control.AdministrarFabricantes;
 import com.brainstorm.PMLIQ.Control.AdministrarItems;
+import com.brainstorm.PMLIQ.Control.AdministrarNotificaciones;
 import com.brainstorm.PMLIQ.Model.Sistema;
 import com.brainstorm.PMLIQ.View.ventana.MainWindow;
+import com.brainstorm.PMLIQ.View.ventana.WindowEventHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -28,12 +30,14 @@ public class PMLIApp {
     private AdministrarEquipos admEquipos;
     private AdministrarFabricantes admFabricantes;
     private AdministrarItems admItems;
+    private AdministrarNotificaciones admNotificaciones;
     
     private PMLIApp()
     {
         admEquipos = new AdministrarEquipos();
         admFabricantes = new AdministrarFabricantes();
         admItems = new AdministrarItems();
+        admNotificaciones = new AdministrarNotificaciones();
         
         sistema = new Sistema();
         sistema.inicializaEquipos();
@@ -71,6 +75,8 @@ public class PMLIApp {
             mainWindow.setVisible(true);
                 
             mainWindow.setLocationRelativeTo(null);
+            
+            mainWindow.addWindowListener(new WindowEventHandler());
     }
     
     public synchronized static PMLIApp getInstance() {
@@ -109,6 +115,13 @@ public class PMLIApp {
         this.admItems = admItems;
     }
 
- 
+    public AdministrarNotificaciones getAdmNotificaciones() {
+        return admNotificaciones;
+    }
+
+    public void setAdmNotificaciones(AdministrarNotificaciones admNotificaciones) {
+        this.admNotificaciones = admNotificaciones;
+    }
+
     private static PMLIApp m_this;
 }

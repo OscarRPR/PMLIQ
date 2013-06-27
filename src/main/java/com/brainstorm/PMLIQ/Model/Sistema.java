@@ -26,9 +26,12 @@ public class Sistema {
     
     public Sistema()
     {
+        System.out.println(System.getProperty("user.dir"));
+        
         new File("Data/CV/").mkdirs();
         new File("Data/Planes/").mkdirs();
         new File("Data/Historiales Items/").mkdirs();
+        new File("Data/Ordenes/").mkdirs();
     }
     
     public void inicializaEquipos() {

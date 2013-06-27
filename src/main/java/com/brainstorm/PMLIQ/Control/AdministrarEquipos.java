@@ -170,4 +170,17 @@ public class AdministrarEquipos {
         
         pdfGenerator.closeDocument();      
     }
+    
+    public void crearPDF(PDF pdfGenerator, PlanMantenimiento plan, String filename) {
+        this.pdfGenerator = pdfGenerator;
+        pdfGenerator.crearArchivoPDF(filename);
+        pdfGenerator.addMetaData();
+        try {
+            pdfGenerator.addContent(plan);
+        } catch (DocumentException ex) {
+            Logger.getLogger(AdministrarEquipos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        pdfGenerator.closeDocument();      
+    }
 }

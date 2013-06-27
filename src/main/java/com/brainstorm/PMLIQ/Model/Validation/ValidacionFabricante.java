@@ -32,21 +32,16 @@ public class ValidacionFabricante extends Validacion{
             longitudString(vars.contacto, strings.get(vars.CONTACTO), vars.minContacto, vars.maxContacto);
             formatoAlfabeticoString(vars.contacto, strings.get(vars.CONTACTO));
             longitudString(vars.direccion, strings.get(vars.DIRECCION), vars.minDireccion, vars.maxDireccion);
-            formatoAlfanumericoString(vars.direccion, strings.get(vars.DIRECCION));
             longitudString(vars.telefono1, strings.get(vars.TELEFONOUNO), vars.minTelefono1, vars.maxTelefono1);
             formatoNumericoString(vars.telefono1, strings.get(vars.TELEFONOUNO));
             longitudString(vars.telefono2, strings.get(vars.TELEFONODOS), vars.minTelefono2, vars.maxTelefono2);
             formatoNumericoString(vars.telefono2, strings.get(vars.TELEFONODOS));
             longitudString(vars.correo, strings.get(vars.CORREO), vars.minCorreo, vars.maxCorreo);
-            formatoAlfanumericoString(vars.correo, strings.get(vars.CORREO));
         } catch(LongitudStringException ex) {
             resultado = crearErrorLongitudString(ex.getTipo(), ex.getMinimo(), ex.getMaximo());
             throw new ErrorValidacionException(resultado, ex.getCause());
         } catch (FormatoAlfabeticoStringException ex) {
             resultado = crearErrorFormatoAlfabeticoString(ex.getTipo());
-            throw new ErrorValidacionException(resultado, ex.getCause());
-        } catch (FormatoAlfanumericoStringException ex) {
-            resultado = crearErrorFormatoAlfanumericoString(ex.getTipo());
             throw new ErrorValidacionException(resultado, ex.getCause());
         } catch (FormatoNumericoStringException ex) {
             resultado = crearErrorFormatoNumericoString(ex.getTipo());

@@ -38,10 +38,8 @@ public class ModificarElementoCheckList extends javax.swing.JDialog {
         nombreTextField.setEnabled(false);
         tipoComboBox.setSelectedItem(listaActividades.get(indice).getTipoActividad().toString());
         procesoTextArea.setText(listaActividades.get(indice).getProceso());
-        frecuenciaSpinner.setValue(listaActividades.get(indice).getFrecuenciaTarea());
-        frecuenciaComboBox.setSelectedItem(listaActividades.get(indice).getFrecuencia().toString());
-        verificarSpinner.setValue(listaActividades.get(indice).getVerificarInventario());
-        verificarComboBox.setSelectedItem(listaActividades.get(indice).getVerificar().toString());
+        tiempoSpinner.setValue(listaActividades.get(indice).getTiempoTarea());
+        tiempoComboBox.setSelectedItem(listaActividades.get(indice).getTiempo().toString());
         
         updateListModel();
     }
@@ -71,11 +69,8 @@ public class ModificarElementoCheckList extends javax.swing.JDialog {
         eliminarButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        frecuenciaSpinner = new javax.swing.JSpinner();
-        frecuenciaComboBox = new javax.swing.JComboBox();
-        jLabel6 = new javax.swing.JLabel();
-        verificarSpinner = new javax.swing.JSpinner();
-        verificarComboBox = new javax.swing.JComboBox();
+        tiempoSpinner = new javax.swing.JSpinner();
+        tiempoComboBox = new javax.swing.JComboBox();
         guardarButton = new javax.swing.JButton();
         cancelarButton = new javax.swing.JButton();
         errorLabel = new javax.swing.JLabel();
@@ -176,17 +171,11 @@ public class ModificarElementoCheckList extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Notificaciones"));
 
-        jLabel3.setText("Frecuencia de la Tarea");
+        jLabel3.setText("Tiempo de la Tarea");
 
-        frecuenciaSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+        tiempoSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 
-        frecuenciaComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Horas", "Dias", "Semanas", "Meses", "Años" }));
-
-        jLabel6.setText("Verificar Inventario (Antes) ");
-
-        verificarSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
-
-        verificarComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Horas", "Dias", "Semanas", "Meses", "Años" }));
+        tiempoComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Horas", "Dias", "Semanas", "Meses", "Años" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -194,19 +183,11 @@ public class ModificarElementoCheckList extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(frecuenciaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(frecuenciaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(verificarSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(verificarComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tiempoSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(tiempoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -214,14 +195,9 @@ public class ModificarElementoCheckList extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tiempoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(frecuenciaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(frecuenciaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(verificarSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(verificarComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tiempoSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -278,13 +254,13 @@ public class ModificarElementoCheckList extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarButton)
                     .addComponent(cancelarButton))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -357,16 +333,14 @@ public class ModificarElementoCheckList extends javax.swing.JDialog {
         strings.add(tipoComboBox.getSelectedItem().toString());
 
         String resultadoLista = "";
-        if (  partesCheckList.getModel().getSize() > 0 )
+        if (  partesCheckList.getModel().getSize() >= 0 )
         {
             resultadoLista = "Tiene informacion";
         }
         strings.add(resultadoLista);
         strings.add(procesoTextArea.getText());
-        strings.add(frecuenciaSpinner.getValue().toString());
-        strings.add(frecuenciaComboBox.getSelectedItem().toString());
-        strings.add(verificarSpinner.getValue().toString());
-        strings.add(verificarComboBox.getSelectedItem().toString());
+        strings.add(tiempoSpinner.getValue().toString());
+        strings.add(tiempoComboBox.getSelectedItem().toString());
                 
         return strings;
     }
@@ -434,15 +408,12 @@ public class ModificarElementoCheckList extends javax.swing.JDialog {
     private javax.swing.JButton cancelarButton;
     private javax.swing.JButton eliminarButton;
     private javax.swing.JLabel errorLabel;
-    private javax.swing.JComboBox frecuenciaComboBox;
-    private javax.swing.JSpinner frecuenciaSpinner;
     private javax.swing.JButton guardarButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -451,8 +422,8 @@ public class ModificarElementoCheckList extends javax.swing.JDialog {
     private javax.swing.JTextField nombreTextField;
     private javax.swing.JList partesCheckList;
     private javax.swing.JTextArea procesoTextArea;
+    private javax.swing.JComboBox tiempoComboBox;
+    private javax.swing.JSpinner tiempoSpinner;
     private javax.swing.JComboBox tipoComboBox;
-    private javax.swing.JComboBox verificarComboBox;
-    private javax.swing.JSpinner verificarSpinner;
     // End of variables declaration//GEN-END:variables
 }

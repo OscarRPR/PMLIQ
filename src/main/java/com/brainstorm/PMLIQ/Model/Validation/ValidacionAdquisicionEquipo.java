@@ -36,9 +36,7 @@ public class ValidacionAdquisicionEquipo extends Validacion{
             longitudString(vars.telefono, strings.get(vars.TELEFONO), vars.minTelefono, vars.maxTelefono);
             formatoNumericoString(vars.telefono, strings.get(vars.TELEFONO));
             longitudString(vars.direccion, strings.get(vars.DIRECCION), vars.minDireccion, vars.maxDireccion);
-            formatoAlfanumericoString(vars.direccion, strings.get(vars.DIRECCION));
             longitudString(vars.email, strings.get(vars.EMAIL), vars.minEmail, vars.maxEmail);
-            formatoAlfanumericoString(vars.email, strings.get(vars.EMAIL));
             longitudString(vars.precio, strings.get(vars.PRECIO), vars.minPrecio, vars.maxPrecio);
             formatoNumericoString(vars.precio, strings.get(vars.PRECIO));
         } catch(LongitudStringException ex) {
@@ -46,9 +44,6 @@ public class ValidacionAdquisicionEquipo extends Validacion{
             throw new ErrorValidacionException(resultado, ex.getCause());
         } catch (FormatoAlfabeticoStringException ex) {
             resultado = crearErrorFormatoAlfabeticoString(ex.getTipo());
-            throw new ErrorValidacionException(resultado, ex.getCause());
-        } catch (FormatoAlfanumericoStringException ex) {
-            resultado = crearErrorFormatoAlfanumericoString(ex.getTipo());
             throw new ErrorValidacionException(resultado, ex.getCause());
         } catch (FormatoNumericoStringException ex) {
             resultado = crearErrorFormatoNumericoString(ex.getTipo());

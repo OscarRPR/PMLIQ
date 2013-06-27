@@ -16,6 +16,7 @@ import com.brainstorm.PMLIQ.Model.Validation.Exceptions.ErrorValidacionException
 import com.brainstorm.PMLIQ.Model.Validation.Validacion;
 import com.brainstorm.PMLIQ.Model.Validation.ValidacionItem;
 import com.brainstorm.PMLIQ.View.PMLIApp;
+import com.brainstorm.PMLIQ.View.dao.SingleDAO;
 import com.itextpdf.text.DocumentException;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,10 @@ public class AdministrarItems {
 
             PMLIApp.getInstance().getSistema().agregarItem(nuevoItem);  
             actualizarHistorial(nuevoItem, ItemAction.CREATE);
+            
+            if(nuevoItem.getCantidadInicial() <= nuevoItem.getCantidadMinima()) {
+                PMLIApp.getInstance().getAdmNotificaciones().activarAlarmaItem(nuevoItem);
+            }
         }   
         
         return validaciones;
@@ -54,6 +59,10 @@ public class AdministrarItems {
                                                                    "Administrador");  
     }
         
+    public List<Item> getInventario() {
+        return PMLIApp.getInstance().getSistema().getInventario();
+    }
+    
     private boolean datosFueronValidados(List<String> strings) 
     {
         for ( String s : strings )

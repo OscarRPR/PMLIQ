@@ -75,6 +75,8 @@ public abstract class PDF {
     
     public void addContent(Equipo equipo) throws DocumentException {};
     
+    public void addContent(PlanMantenimiento plan) throws DocumentException {};
+    
     public void addContent(List<ItemRecord> list) throws DocumentException {};
     
     public void addContent(ArrayList<PlanesRecord> list) throws DocumentException {};

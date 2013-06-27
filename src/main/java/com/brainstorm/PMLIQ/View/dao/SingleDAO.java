@@ -31,7 +31,7 @@ public class SingleDAO {
 
     private SingleDAO() {
         
-        /*String textUri = "mongodb://SilexRPR:123456@ds031098.mongolab.com:31098/pmliq";
+        /*String textUri = "mongodb://SilexRPR:123456@ds031618.mongolab.com:31618/pmliq";
         MongoURI uri = new MongoURI(textUri);*/
         
         mongo = null;

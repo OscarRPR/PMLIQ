@@ -7,6 +7,7 @@ package com.brainstorm.PMLIQ.View.ventana;
 import com.brainstorm.PMLIQ.View.panel.list.EquiposListaPanel;
 import com.brainstorm.PMLIQ.View.panel.list.ItemsListaPanel;
 import com.brainstorm.PMLIQ.View.panel.list.fabricantesListaPanel;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
@@ -17,6 +18,7 @@ import org.pushingpixels.substance.api.SubstanceLookAndFeel;
  */
 public class MainWindow extends javax.swing.JFrame {
     
+    public static int HOMETAB = 0;
     public static int EQUIPOSTAB = 1;
     public static int ITEMSTAB = 2;
     public static int FABRICANTESTAB = 3;
@@ -25,6 +27,11 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public MainWindow() {
         initComponents();
+        
+        appTabPanel.setIconAt(HOMETAB, new javax.swing.ImageIcon(getClass().getResource("/iconHome.png")));
+        appTabPanel.setIconAt(EQUIPOSTAB, new javax.swing.ImageIcon(getClass().getResource("/iconEquipos2.png")));
+        appTabPanel.setIconAt(ITEMSTAB, new javax.swing.ImageIcon(getClass().getResource("/iconInventario.png")));
+        appTabPanel.setIconAt(FABRICANTESTAB, new javax.swing.ImageIcon(getClass().getResource("/iconFabricantes.png")));
         
         appTabPanel.setComponentAt(EQUIPOSTAB, new EquiposListaPanel());
         appTabPanel.setComponentAt(ITEMSTAB, new ItemsListaPanel());
@@ -43,6 +50,7 @@ public class MainWindow extends javax.swing.JFrame {
         appTabPanel = new javax.swing.JTabbedPane();
         homePanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         hojasPanel = new javax.swing.JPanel();
         inventarioPanel = new javax.swing.JPanel();
         fabricantesPanel = new javax.swing.JPanel();
@@ -52,24 +60,33 @@ public class MainWindow extends javax.swing.JFrame {
 
         appTabPanel.setPreferredSize(new java.awt.Dimension(800, 600));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 24)); // NOI18N
         jLabel1.setText("BIENVENIDO A PMLIQ");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoPMLIQ.jpg"))); // NOI18N
 
         javax.swing.GroupLayout homePanelLayout = new javax.swing.GroupLayout(homePanel);
         homePanel.setLayout(homePanelLayout);
         homePanelLayout.setHorizontalGroup(
             homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(homePanelLayout.createSequentialGroup()
-                .addGap(239, 239, 239)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(291, Short.MAX_VALUE))
+                .addContainerGap(137, Short.MAX_VALUE)
+                .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePanelLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(127, 127, 127))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePanelLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(251, 251, 251))))
         );
         homePanelLayout.setVerticalGroup(
             homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(homePanelLayout.createSequentialGroup()
-                .addGap(171, 171, 171)
+                .addGap(25, 25, 25)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(292, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         appTabPanel.addTab("Inicio", homePanel);
@@ -84,7 +101,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
         hojasPanelLayout.setVerticalGroup(
             hojasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGap(0, 553, Short.MAX_VALUE)
         );
 
         appTabPanel.addTab("Equipos", hojasPanel);
@@ -97,7 +114,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
         inventarioPanelLayout.setVerticalGroup(
             inventarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGap(0, 553, Short.MAX_VALUE)
         );
 
         appTabPanel.addTab("Inventario", inventarioPanel);
@@ -110,7 +127,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
         fabricantesPanelLayout.setVerticalGroup(
             fabricantesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGap(0, 553, Short.MAX_VALUE)
         );
 
         appTabPanel.addTab("Fabricantes", fabricantesPanel);
@@ -128,7 +145,7 @@ public class MainWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(appTabPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+                .addComponent(appTabPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -165,5 +182,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel homePanel;
     private javax.swing.JPanel inventarioPanel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

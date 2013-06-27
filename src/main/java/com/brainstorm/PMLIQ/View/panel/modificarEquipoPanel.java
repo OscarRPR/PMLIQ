@@ -242,12 +242,16 @@ public class modificarEquipoPanel extends javax.swing.JPanel {
         
         if ( proveedor.getFormaAdquisicion().isCompra()) {
             compraCheckBox.setSelected(true);
+            precioTextField.setEnabled(true);
             precioTextField.setText(proveedor.getFormaAdquisicion().getValorCompra());
             usoSpinner.setValue(0);
+            usoSpinner.setEnabled(false);
         } else {
             donacionCheckBox.setSelected(true);
+            usoSpinner.setEnabled(true);
             usoSpinner.setValue(proveedor.getFormaAdquisicion().getTiempoUso());
             precioTextField.setText("");
+            precioTextField.setEnabled(false);
         }
 
         Date dateAdquisicion = null;
@@ -728,7 +732,7 @@ public class modificarEquipoPanel extends javax.swing.JPanel {
                 .addGroup(descripcionBasicaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarBasicosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarBasicaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addGap(30, 30, 30))
         );
 
         descripcionBasicaScrollPane.setViewportView(descripcionBasicaPanel);
@@ -1059,7 +1063,7 @@ public class modificarEquipoPanel extends javax.swing.JPanel {
                 .addGroup(datosTecnicosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarTecnicosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarTecnicosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21))
+                .addGap(30, 30, 30))
         );
 
         datosTecnicosScrollPane.setViewportView(datosTecnicosPanel);
@@ -1082,7 +1086,7 @@ public class modificarEquipoPanel extends javax.swing.JPanel {
 
         buscarInternalPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR"));
 
-        filtroComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        filtroComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nombre", "Marca" }));
 
         buscarTextField.setForeground(new java.awt.Color(255, 153, 0));
         buscarTextField.setText("Buscar");
@@ -1207,7 +1211,7 @@ public class modificarEquipoPanel extends javax.swing.JPanel {
 
         buscarInternalPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR"));
 
-        filtroComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        filtroComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nombre" }));
 
         buscarTextField1.setForeground(new java.awt.Color(255, 153, 0));
         buscarTextField1.setText("Buscar");
@@ -1333,7 +1337,7 @@ public class modificarEquipoPanel extends javax.swing.JPanel {
 
         buscarInternalPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR"));
 
-        filtroComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        filtroComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nombre", "Codigo", "Responsable" }));
 
         buscarTextField2.setForeground(new java.awt.Color(255, 153, 0));
         buscarTextField2.setText("Buscar");
@@ -1725,7 +1729,7 @@ public class modificarEquipoPanel extends javax.swing.JPanel {
                 .addGroup(adquisicionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarAdquisicionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarAdquisicionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addGap(30, 30, 30))
         );
 
         adquisicionScrollPane.setViewportView(adquisicionPanel);
@@ -2083,7 +2087,13 @@ public class modificarEquipoPanel extends javax.swing.JPanel {
         strings.add(direccionTextField.getText());
         strings.add(emailTextField.getText());
         strings.add(getSelectedButtonText(bGroupForma));
-        strings.add(precioTextField.getText());
+        
+        String precio = "0";
+        if (compraCheckBox.isSelected()) {
+            precio = precioTextField.getText();
+        }
+        
+        strings.add(precio);
         strings.add(usoSpinner.getValue().toString());
         strings.add(formateador.format(adquisicionDateChooser.getDate()));
         strings.add(formateador.format(servicioDateChooser.getDate()));

@@ -28,8 +28,14 @@ public class ConstantesPlanMantenimiento {
     
     public final int USOSEMANAL = 5;
     
+    public final int TIEMPO = 6;
+    
+    public final int TIEMPOVAR = 7;
+    
+    public final int PRIORIDAD = 8;
+    
     public final String checklist = "Checklist";
-    public final int CHECKLIST = 6;
+    public final int CHECKLIST = 9;
     
     public ConstantesPlanMantenimiento()
     {

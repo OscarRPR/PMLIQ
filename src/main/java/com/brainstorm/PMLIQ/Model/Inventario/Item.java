@@ -6,6 +6,8 @@ package com.brainstorm.PMLIQ.Model.Inventario;
 
 import com.brainstorm.PMLIQ.Control.Constantes.ConstantesItems;
 import com.brainstorm.PMLIQ.Model.Enum.TimeStamp;
+import com.brainstorm.PMLIQ.Model.Notifications.Alarm;
+import com.brainstorm.PMLIQ.Model.Notifications.AlarmInfo;
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
 import java.util.List;
@@ -28,6 +30,8 @@ public class Item {
     private int frecuenciaMinima, frecuenciaMaxima;
     private int cantidadUtilizada;
     
+    private AlarmInfo cantidadMinimaAlarma;
+    
     private ConstantesItems vars = new ConstantesItems();
    
     public Item() {
@@ -45,6 +49,7 @@ public class Item {
         this.tiempoMaximoTipo = TimeStamp.valueOf(datos.get(vars.CANTIDADMAXIMATIPO));
         this.frecuenciaMaxima = Integer.parseInt(datos.get(vars.FRECUENCIAMAXIMA));
         this.frecuenciaMaximaTipo = TimeStamp.valueOf(datos.get(vars.FRECUENCIAMAXIMATIPO));
+        this.cantidadMinimaAlarma = new AlarmInfo(0L, 0L);
     }
     
     public String getNombre() {
@@ -143,4 +148,15 @@ public class Item {
         this.cantidadUtilizada = cantidadUtilizada;
     }
 
+    public AlarmInfo getCantidadMinimaAlarma() {
+        return cantidadMinimaAlarma;
+    }
+
+    public void setCantidadMinimaAlarma(AlarmInfo cantidadMinimaAlarma) {
+        this.cantidadMinimaAlarma = cantidadMinimaAlarma;
+    }
+    
+    public void setCantidadTranscurridoAlarma(Long transcurrido) {
+        this.cantidadMinimaAlarma.setTiempoActual(transcurrido);
+    }
 }

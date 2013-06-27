@@ -46,11 +46,11 @@ public class ConstantesDatosTecnicos {
     public final int USO = 9;
 
     public final String ambiente = "Temperatura Ambiente";
-    public final int minAmbiente = 1, maxAmbiente = 4;
+    public final int minAmbiente = 1, maxAmbiente = 6;
     public final int AMBIENTE = 10;
 
     public final String hr = "HR";
-    public final int minHr = 1, maxHr = 3;
+    public final int minHr = 1, maxHr = 6;
     public final int HR = 11;
     
     public final int OTRO = 12;

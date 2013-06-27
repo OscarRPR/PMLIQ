@@ -20,8 +20,8 @@ public class Actividad {
     private TipoActividad tipoActividad;
     private List<Item> partesAsociadas;
     private List<Integer> cantidades;
-    private int frecuenciaTarea, verificarInventario;
-    private TimeStamp frecuencia, verificar;
+    private int tiempoTarea;
+    private TimeStamp tiempo;
     
     private ConstantesActividadChecklist vars = new ConstantesActividadChecklist();
     
@@ -34,10 +34,8 @@ public class Actividad {
         this.partesAsociadas = partes;
         this.cantidades = cantidades;
         this.proceso = datos.get(vars.PROCESO);
-        this.frecuenciaTarea = Integer.parseInt(datos.get(vars.FRECUENCIA));
-        this.frecuencia = TimeStamp.valueOf(datos.get(vars.FRECUENCIATIEMPO).toUpperCase());
-        this.verificarInventario = Integer.parseInt(datos.get(vars.VERIFICAR));
-        this.verificar = TimeStamp.valueOf(datos.get(vars.VERIFICARTIEMPO).toUpperCase());
+        this.tiempoTarea = Integer.parseInt(datos.get(vars.TIEMPOTAREA));
+        this.tiempo = TimeStamp.valueOf(datos.get(vars.TIEMPO).toUpperCase());
     }
 
     public String getNombre() {
@@ -72,36 +70,20 @@ public class Actividad {
         this.partesAsociadas = partesAsociadas;
     }
 
-    public int getFrecuenciaTarea() {
-        return frecuenciaTarea;
+    public int getTiempoTarea() {
+        return tiempoTarea;
     }
 
-    public void setFrecuenciaTarea(int frecuenciaTarea) {
-        this.frecuenciaTarea = frecuenciaTarea;
+    public void setTiempoTarea(int tiempoTarea) {
+        this.tiempoTarea = tiempoTarea;
     }
 
-    public int getVerificarInventario() {
-        return verificarInventario;
+    public TimeStamp getTiempo() {
+        return tiempo;
     }
 
-    public void setVerificarInventario(int verificarInventario) {
-        this.verificarInventario = verificarInventario;
-    }
-
-    public TimeStamp getFrecuencia() {
-        return frecuencia;
-    }
-
-    public void setFrecuencia(TimeStamp frecuencia) {
-        this.frecuencia = frecuencia;
-    }
-
-    public TimeStamp getVerificar() {
-        return verificar;
-    }
-
-    public void setVerificar(TimeStamp verificar) {
-        this.verificar = verificar;
+    public void setTiempo(TimeStamp tiempo) {
+        this.tiempo = tiempo;
     }
 
     public List<Integer> getCantidades() {

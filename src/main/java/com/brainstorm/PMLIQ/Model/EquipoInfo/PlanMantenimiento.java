@@ -5,7 +5,10 @@
 package com.brainstorm.PMLIQ.Model.EquipoInfo;
 
 import com.brainstorm.PMLIQ.Control.Constantes.ConstantesPlanMantenimiento;
+import com.brainstorm.PMLIQ.Model.Enum.Prioridad;
+import com.brainstorm.PMLIQ.Model.Enum.TimeStamp;
 import com.brainstorm.PMLIQ.Model.Enum.TipoPlan;
+import com.brainstorm.PMLIQ.Model.Notifications.AlarmInfo;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +21,10 @@ public class PlanMantenimiento {
     private String nombre, codigo, responsable;
     private TipoPlan tipoPlan;
     private Integer maximoRegistros, frecuenciaUso;
+    private int tiempo;
+    private TimeStamp tiempoTarea;
+    private Prioridad prioridad;
+    private AlarmInfo alarmaInfo;
     private List<Actividad> checkList = new ArrayList<Actividad>();
     
     private ConstantesPlanMantenimiento vars = new ConstantesPlanMantenimiento();
@@ -32,7 +39,9 @@ public class PlanMantenimiento {
         this.responsable = datos.get(vars.RESPONSABLE);
         this.maximoRegistros = Integer.parseInt(datos.get(vars.MAXREGISTROS));
         this.frecuenciaUso = Integer.parseInt(datos.get(vars.USOSEMANAL));
-        
+        this.tiempo = Integer.parseInt(datos.get(vars.TIEMPO));
+        this.tiempoTarea = TimeStamp.valueOf(datos.get(vars.TIEMPOVAR).toUpperCase());
+        this.prioridad = Prioridad.valueOf(datos.get(vars.PRIORIDAD).toUpperCase());
         this.checkList = actividades;
     }
     
@@ -90,5 +99,29 @@ public class PlanMantenimiento {
 
     public void setCheckList(List<Actividad> checkList) {
         this.checkList = checkList;
+    }
+
+    public int getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(int tiempo) {
+        this.tiempo = tiempo;
+    }
+
+    public TimeStamp getTiempoTarea() {
+        return tiempoTarea;
+    }
+
+    public void setTiempoTarea(TimeStamp tiempoTarea) {
+        this.tiempoTarea = tiempoTarea;
+    }
+
+    public Prioridad getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(Prioridad prioridad) {
+        this.prioridad = prioridad;
     }
 }
